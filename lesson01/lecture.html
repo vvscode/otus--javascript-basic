@@ -4,62 +4,250 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>reveal-md</title>
+    <title>Занятие 1</title>
     <link rel="shortcut icon" href="./../favicon.ico"/>
     <link rel="stylesheet" href="./../dist/reveal.css" />
-    <link rel="stylesheet" href="./../dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
     <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
 
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template"># header 1 / 0
+      <div class="slides"><section ><section data-markdown><script type="text/template">
 
-## header 2
-</script></section><section  data-markdown><script type="text/template">
-## header 2
+# OTUS
 
-### header 3
-</script></section><section  data-markdown><script type="text/template">
-#### header 4
+## Javascript Basic
 
-```jsx [1-4]
-const x = <Component a="b" c={1} />;
-```
-</script></section><section  data-markdown><script type="text/template">
-### FizzBuzz
+</script></section><section data-markdown><script type="text/template">
 
-> Напишите программу, которая выводит на экран числа от 1 до 100.
-</script></section><section  data-markdown><script type="text/template">
-> При этом вместо чисел,
+### Обо мне
 
-- кратных 3, программа должна выводить слово Fizz,
-- а вместо чисел, кратных 5 — слово Buzz,
-- a число кратно 15, то программа должна выводить слово FizzBuzz
-</script></section><section  data-markdown><script type="text/template">
-> Для вывода данных использовать `console.log` (Например `console.log('FizzBuzz');`)
-</script></section><section  data-markdown><script type="text/template">
-Начало вывода:
+![@vvscode](https://avatars0.githubusercontent.com/u/6904368?s=230&u=6218c2bfbb54568018387a9149035f9b6724c111&v=4)
 
-```
-1
-2
-Fizz
-4
-Buzz
-Fizz
-7
-8
-Fizz
-Buzz
-11
-Fizz
-13
-14
-FizzBuzz
-...
+Василий Ванчук ([Li](https://www.linkedin.com/in/vvanchuk/)/[Yt](https://www.youtube.com/watch?v=Q5sQGV-n7xU&list=PLX3Jlot18dp4-a9a6B6DP0fYF3R1jjN4K))
 
-```
+</script></section><section data-markdown><script type="text/template">
+
+### Преподаватели
+
+[Страница о курсе](https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming)
+
+</script></section><section data-markdown><script type="text/template">
+
+> На курсе вы получите **навыки фронтенд-разработки**
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Навыки != знания
+1. Фронтенд разработка > Javascript
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Как проходит общение
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Slack (пишем в канал группы, пользуюемся ветками в обсуждениях)
+2. [Github](https://github.com/vvscode/otus--javascript-basic)
+3. Чат с преподавателем в ЛК
+
+</script></section><section data-markdown><script type="text/template">
+
+Давайте задавать ["вопросы по-умному"](https://www.opennet.ru/docs/RUS/smart_question/)
+
+</script></section><section data-markdown><script type="text/template">
+
+Глупых вопросов нет. Зато есть
+
+1. Не знание
+1. Не понимание
+
+На лекциях во всю дейтсвует [принцип Парето](https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%BA%D0%BE%D0%BD_%D0%9F%D0%B0%D1%80%D0%B5%D1%82%D0%BE). Мы расказываем ключевые вещи
+
+</script></section><section data-markdown><script type="text/template">
+
+Две крайности в задавании вопросов:
+
+1. Спрашивать сразу
+1. Не спрашивать вовремя
+
+**Действуем по правилу n-часов**
+
+</script></section><section data-markdown><script type="text/template">
+
+Нужен [Rubber Duck Debugging](https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D1%83%D1%82%D1%91%D0%BD%D0%BA%D0%B0)?
+
+Привлекай сокурсников и преподавателей
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Процесс работы
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Лекция
+1. Задание - PR - Обратная связь - Изменения
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Осмысленные атомарные коммиты, с понятными заголовками
+1. 1 задание === 1(?) ветка === 1(?) PR
+
+Большая часть обсуждений - в комментариях к PR
+
+</script></section><section data-markdown><script type="text/template">
+
+Еще пара моментов:
+
+1. Задания не "слишком сложные". Это точно, я проверял и не только на себе
+2. Если вам слишком легко - обращайтесь, мы исправим (персонально)
+
+**No pain, no gain**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Требования к выполнению заданий
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Тесты это часть кода. Нет тестов - задание не проверяется
+1. Мы работаем _"на стиле"_. Нет форматирования - задание не проверяется
+1. Задание должно быть представлено к проверке и задеплоено на публичный ресурс
+
+</script></section><section data-markdown><script type="text/template">
+
+### Требования к репозиториям
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Заполненая информация и README с описанием
+1. Понятная модель ветвления и внятные сообщения коммитов
+1. Настроеный CI/CD - проверка линтинга, тестов и деплой
+
+_Это все разбирается в рамках первого модуля_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Домашнее задание
+
+</script></section><section data-markdown><script type="text/template">
+
+### Part 1
+
+Развернуто (от 1000 символов) написать о следующих вещах
+
+- цель поступления на курс
+- ожидания от курса
+- как вы поймете, что курс был полезен (по каким конкретным критериям)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Part 2
+
+Написать конспект/чеклист/план к действию по мотивам статьи https://www.opennet.ru/docs/RUS/smart_question/
+
+И то и другое отправить в "Чат с преподавателем"
+
+</script></section><section data-markdown><script type="text/template">
+
+### Part 3
+
+Пройти опрос https://docs.google.com/forms/d/e/1FAIpQLSc-O5KdpMxL6fMUEg8rKRzqUH64PoWhiSs_bAoCvU9vl4dCQQ/viewform
+
+</script></section><section data-markdown><script type="text/template">
+
+### Критерии оценки
+
+</script></section><section data-markdown><script type="text/template">
+
+- Описаны цели - 1 балл
+- Описаны ожидания - 1 балл
+- Описаны критерии оценки пользы курса - 1 балл
+- Описания даны в четком формате ("сенсорно очевидные"), чтобы другой человек глядя на описание мог сказать, достигнуто/выполнено или нет - по 1 баллу за цели / ожидания / критерии
+- Описание развернутое (больше 1000 символов) - 1 балл
+
+</script></section><section data-markdown><script type="text/template">
+
+- Написан конспект к статье - 1 балл
+- Конспект содержит от 5 пунктов - 1 балл
+- Задание сдано в срок - 1 балл
+
+</script></section><section data-markdown><script type="text/template">
+
+Пройден опрос - 2 балла
+
+</script></section><section data-markdown><script type="text/template">
+
+Задание принято от 11 баллов
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Ожидания от студентов
+
+</script></section><section data-markdown><script type="text/template">
+
+Программа предназначена для начинающих специалистов, кто:
+
+- знаком с основами программирования и хочет развиваться как JavaScript-разработчик
+- начал осваивать JavaScript, но хочет систематизировать знания и получить экспертную обратную связь
+- Начал осваивать backend-разработку и хочет пополнить свой арсенал навыков frontend технологиями
+
+</script></section><section data-markdown><script type="text/template">
+
+##### Необходимые знания
+
+Программа рассчитана на тех, кто знаком с базовым синтаксисом одного из языков программирования. Будет плюсом знание принципов ООП.
+
+</script></section><section data-markdown><script type="text/template">
+
+> «Меня немного удручает тот факт, что 199 из 200 соискателей программистских вакансий не умеют программировать. Повторю: они не умеют писать код. Вообще.» **Reginald Braithwaite**
+
+[FizzBuzz, или почему программисты не умеют программировать](https://habr.com/ru/post/298134/)
+
+</script></section><section data-markdown><script type="text/template">
+
+[FizzBuzz task](https://codesandbox.io/s/bold-perlman-th4o3?file=/src/index.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Дополнительные материалы
+
+</script></section><section data-markdown><script type="text/template">
+
+- [Скринкаст по Git](https://learn.javascript.ru/screencast/git)
+- [Современный учебник JavaScript](https://learn.javascript.ru/)
+- [YT: FizzBuzz четыре варианта решения на JS](https://www.youtube.com/watch?v=TWmmfDvcYO0)
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+Опрос о занятии
+
+[https://otus.ru/polls/17805/](https://otus.ru/polls/17805/)
 </script></section></div>
     </div>
 
