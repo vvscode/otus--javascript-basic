@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "reveal-md -w",
-    "lint": "prettier --check ."
+    "lint:prettier": "prettier --check .",
+    "lint:spell": "yaspeller .",
+    "lint": "yarn lint:prettier && yarn lint:spell"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,8 @@
     "husky": ">=4",
     "lint-staged": ">=10",
     "prettier": "^2.1.2",
-    "reveal-md": "^4.1.7"
+    "reveal-md": "^4.1.7",
+    "yaspeller": "^7.0.0"
   },
   "husky": {
     "hooks": {
@@ -23,6 +26,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,html,css,md,yml,yaml}": "prettier --write"
+    "*.{js,json,html,css,md,yml,yaml}": "prettier --write",
+    "*.md": "yaspeller"
   }
 }
