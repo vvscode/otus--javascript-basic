@@ -301,7 +301,7 @@ new Number(5) === new Number(5);
 
 <!-- v -->
 
-[Абстрактное сравнение типов](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison).
+[Абстрактное сравнение типов (en)](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) ([Алгоритм SameValue (ru)](https://es5.javascript.ru/x9.html#x9.12))
 
 Поэтому eslint задает правило [eqeqeq](https://eslint.org/docs/rules/eqeqeq)
 
@@ -511,6 +511,8 @@ while (i !== 0) {
 ### Дополнительные материалы
 
 - [Основы Javascript](https://learn.javascript.ru/first-steps)
+- [ECMAScript 5.1 с аннотациями](https://es5.javascript.ru/)
+- [ECMAScript® 2020 Language Specification](http://www.ecma-international.org/ecma-262/11.0/index.html#title)
 - [Отличия == и === в JavaScript](https://habr.com/ru/post/138272/)
 - [YT: What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU)
 - [YT: Разбор isPalindrom (ОУ)](https://youtu.be/hjRic9MwJFo?t=1808)
