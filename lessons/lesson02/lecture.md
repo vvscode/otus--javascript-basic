@@ -415,7 +415,11 @@ new Number(5) === new Number(5);
 
 <!-- s -->
 
-Практика
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson02/lessons/lesson02/code/isPalindrom?file=/src/isPalindrom.js)
+
+<!-- v -->
+
+### Вопросы?
 
 <!-- s -->
 
