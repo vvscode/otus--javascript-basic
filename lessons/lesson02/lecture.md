@@ -430,6 +430,114 @@ while (i !== 0) {
 
 <!-- s -->
 
+### Функции
+
+_кратко_
+
+<!-- v -->
+
+function declaration
+
+```js[1-30]
+function x(a) {
+  console.log(a + 1);
+}
+```
+
+<!-- v -->
+
+functional expression
+
+```js[1-30]
+const x = function (a) {
+  console.log(a + 1);
+};
+```
+
+<!-- v -->
+
+вызов функций
+
+```js[1-30]
+x(1);
+```
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
+### Объекты
+
+<!-- v -->
+
+Создание
+
+```js[1-30]
+const a = {};
+const b = { x: 1 };
+const c = new Object();
+const d = new Date(2007);
+```
+
+<!-- v -->
+
+Работа со свойствами
+
+```js[1-30]
+const obj = {};
+const propName = "x";
+
+obj.y = 1;
+obj[propName] = 2;
+obj["z"] = 3;
+
+console.log(obj.y, obj[propName], obj["z"]);
+```
+
+_Зачем нужно несколько способов?_
+
+<!-- v -->
+
+Проверка и удаление свойств
+
+```js[1-30]
+x in obj; // boolean
+obj[x] === undefined; // boolean
+
+delete obj.y;
+delete obj[propName];
+```
+
+<!-- v  -->
+
+### Вопросы?
+
+<!-- s -->
+
+### Домашнее задание
+
+1. Досмотреть видео из вступительного курса
+1. Решить все задачи из вступительного курса
+
+<!-- v  -->
+
+### Вопросы?
+
+<!-- s -->
+
+### Дополнительные материалы
+
+- [Основы Javascript](https://learn.javascript.ru/first-steps)
+- [ECMAScript 5.1 с аннотациями](https://es5.javascript.ru/)
+- [ECMAScript® 2020 Language Specification](http://www.ecma-international.org/ecma-262/11.0/index.html#title)
+- [Отличия == и === в JavaScript](https://habr.com/ru/post/138272/)
+- [YT: What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU)
+- [YT: Разбор isPalindrom (ОУ)](https://youtu.be/hjRic9MwJFo?t=1808)
+
+<!-- v -->
+
 ### Вопросы для самопроверки
 
 <!-- v -->
@@ -505,17 +613,6 @@ while (i !== 0) {
 <!-- v -->
 
 ### Вопросы?
-
-<!-- s -->
-
-### Дополнительные материалы
-
-- [Основы Javascript](https://learn.javascript.ru/first-steps)
-- [ECMAScript 5.1 с аннотациями](https://es5.javascript.ru/)
-- [ECMAScript® 2020 Language Specification](http://www.ecma-international.org/ecma-262/11.0/index.html#title)
-- [Отличия == и === в JavaScript](https://habr.com/ru/post/138272/)
-- [YT: What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU)
-- [YT: Разбор isPalindrom (ОУ)](https://youtu.be/hjRic9MwJFo?t=1808)
 
 <!--s-->
 
