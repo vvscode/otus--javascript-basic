@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "reveal-md -w",
+    "dev": "reveal-md",
     "lint:prettier": "prettier --check .",
     "lint:spell": "yaspeller .",
     "lint": "yarn lint:prettier && yarn lint:spell"
