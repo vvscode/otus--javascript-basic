@@ -1,5 +1,6 @@
 {
   "separator": "<!--\\s*s\\s*-->",
   "verticalSeparator": "<!--\\s*v\\s*-->",
-  "theme": "white"
+  "theme": "white",
+  "watch": true
 }
