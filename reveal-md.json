@@ -1,5 +1,5 @@
 {
-  "separator": "<!--s-->",
-  "verticalSeparator": "<!--v-->",
+  "separator": "<!--\\s*s\\s*-->",
+  "verticalSeparator": "<!--\\s*v\\s*-->",
   "theme": "white"
 }
