@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 3</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Объектная модель в Javascript: Прототипное наследование и функции-конструкторы
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+### Передача по значению / по ссылке
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+let i = 1;
+let j = 1;
+i = 2;
+
+console.log(i, j); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+let a = {};
+let b = {};
+a.name = "Bob";
+
+console.log(a.name, b.name); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+let a = {};
+let b = a;
+a.name = "Bob";
+
+console.log(a.name, b.name); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+let a = [];
+let b = a;
+a.push("Bob");
+
+console.log(a[0], b[0]); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Правила именования переменных / свойств
+
+</script></section><section data-markdown><script type="text/template">
+
+- "Говорящее название"
+- Переменная - существительное (исключение - булевы переменные)
+- Функция/метод - глагол
+- Булевы значения - `isA`, `hasB`
+- Возможно использование венгерской нотации (`sText`, `nCount`)
+
+</script></section><section data-markdown><script type="text/template">
+
+- camelCase - для переменных и полей объектов/классов
+- PascalCase - для классов, конструкторов и пространств имен
+- UPPER_CASE - для констант (не неизменяемых переменных, а конфигурационных значений)
+- \_secretField - уже не используется, но помнить стоит
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Объекты
+
+</script></section><section data-markdown><script type="text/template">
+
+- Структура данных - хэш
+- Ключи - String | Symbol
+- Ссылочный тип данных
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Как создать
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+// Создание объекта 1
+//  через литерал
+const o1 = {};
+const o2 = {
+  prop1: "Some value",
+  prop2: null,
+  prop3: 3,
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+// Создание объекта 2
+// Вызвать функцию возвращающую объект
+const o3 = Object.create(null);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+// Создание объекта 3
+// Использовать `new` с классом или функцией-конструктором
+const o4 = new Object();
+const o5 = new Object({
+  a: 1,
+  b: 2,
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Как работать со свойствами
+
+_Какие есть способы работы со свойствами?_
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {};
+// точечная нотация
+o.prop1 = 1;
+console.log(o.prop1);
+delete o.prop1;
+
+// скобочная нотация
+o['prop2'] = 2;
+console.log(o['prop2']);
+delete o['prop2];
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  x: 1,
+};
+console.log(o.x); // ?
+const a = "x";
+o.a = 2;
+console.log(o.x); // ?
+const b = "x";
+o["b"] = 3;
+console.log(o.x); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+#### Еще немного про свойства объекта
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 2,
+};
+console.log(o);
+console.log(o.prop1); //?
+console.log(o.prop2); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  someMethod: function () {
+    console.log("Hey!");
+  },
+};
+console.log(o);
+console.log(o.someMethod); //?
+console.log(o.toString); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  someMethod: function () {
+    console.log("Hey!");
+  },
+};
+console.log(o);
+console.log(o.someMethod()); //?
+console.log(o.toString()); // ?
+console.log(o.someOtherMethod()); //?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### `__proto__`
+
+</script></section><section data-markdown><script type="text/template">
+
+При обращении к свойству объекта:
+
+- свойство ищется в самом объекте
+- если свойство не найдено, делается поиск в прототипе объекта
+- если свойство не найдено в прототипе, делается поиск дальше по цепочке прототипов, пока цепочка не закончится
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop2: 2,
+  },
+};
+console.log(o);
+console.log(o.prop1); //?
+console.log(o.prop2); //?
+console.log(o.prop3); //?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop2: 2,
+    __proto__: {
+      prop3: 3,
+    },
+  },
+};
+console.log(o);
+console.log(o.prop1); //?
+console.log(o.prop2); //?
+console.log(o.prop3); //?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop1: 2,
+  },
+};
+console.log(o);
+console.log(o.prop1); //?
+console.log(o.prop2); //?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Запись свойств
+
+</script></section><section data-markdown><script type="text/template">
+
+Запись свойств, всегда производится в сам объект (тот, что находится перед последней точкой, в точечной нотации). Независимо от того, есть свойство в объекте или нет.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = { __proto__: { prop1: 1 } };
+console.log(o.prop1, o.__proto__.prop1); // ?
+o.prop1 = 2;
+console.log(o.prop1, o.__proto__.prop1); // ?
+o["prop1"] = 3;
+console.log(o.prop1, o.__proto__.prop1); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const proto = { prop0: 1 };
+const o1 = { prop1: 1, __proto__: proto };
+const o2 = { prop2: 2, __proto__: proto };
+
+console.log(o1.prop0, o2.prop0); // ?
+
+proto.prop0 = 5;
+console.log(o1.prop0, o2.prop0); // ?
+
+o2.prop0 = 7;
+console.log(o1.prop0, o2.prop0); // ?
+
+console.log(proto.prop0); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const proto = { settings: { isAdmin: false } };
+const u1 = { name: "Bob", __proto__: proto };
+const u2 = { name: "Sam", __proto__: proto };
+
+console.log(u1.settings.isAdmin); // ?
+u1.settings.isAdmin = true;
+console.log(u1.settings.isAdmin); // ?
+
+console.log(u2.settings.isAdmin); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Задание прототипа:
+
+- прямая работа с `__proto__`
+- [`Object.setPrototypeOf()`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)
+- [`Object.create(proto[, propertiesObject])`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+- использование конструкторов
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+### Итерация по полям объекта
+
+</script></section><section data-markdown><script type="text/template">
+
+- `for(let x in obj){}`
+- получить список свойств и проитерироваться по нему - [keys](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/keys), [values](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/values), [entries](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) (но не в IE!)
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  prop2: 2,
+};
+for (propName in o) {
+  console.log(propName);
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  prop2: 2,
+};
+Object.keys(o).forEach((propName) => {
+  console.log(propName);
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop2: 2,
+  },
+};
+for (propName in o) {
+  console.log(propName);
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop2: 2,
+  },
+};
+for (propName in o) {
+  console.log(
+    propName,
+    o.hasOwnProperty(propName) ? "в объекте" : "в цепочке прототипов"
+  );
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Удаление свойств
+
+</script></section><section data-markdown><script type="text/template">
+
+Свойства удаляются (так же как и записываются) непосредственно на объекте(на том, что до последней точки, в точечной нотации), не затрагивая цепочку прототипов.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop1: 2,
+  },
+};
+console.log(o.prop1); // ?
+delete o.prop1;
+console.log(o.prop1); // ?
+delete o.prop1;
+console.log(o.prop1); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [ 1-30]
+const a = { name: 'Bob' };
+const b = { name: 'Sam' };
+const settings = {};
+
+const settings[a] = { isAdmin: true };
+const settings[b] = { isAdmin: false };
+
+console.log(settings[a]); // ?
+console.log(settings[b]); // ?
+```
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Функции
+
+</script></section><section data-markdown><script type="text/template">
+
+- тип данных - object
+- ссылочный тип данных
+- `typeof` возвращает `function`
+
+</script></section><section data-markdown><script type="text/template">
+
+Характеристики функции:
+
+- Имя функции
+- Число и тип параметров
+- Тип возвращаемого значения
+- Контекст
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Способы создания функции
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// Создание функции 1
+// Function declaration
+// - работает hosting
+// - всегда есть имя
+function greet1(name) {
+  console.log("Hello, " + name);
+}
+greet1();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// Создание функции 2
+// Functional Expression
+// - не работает хоистинг инициализации (хоистинг объявления зависит от типа переменной)
+// - имя опционально (а если задано - доступно ТОЛЬКО внутри функции)
+const greet2 = function innerGreetName(name) {
+  console.log("Hello, " + name);
+};
+const greet22 = function (name) {
+  console.log("Hello, " + name);
+};
+greet2();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// Создание функции 3
+// Function by constructor
+// - не работает хоистинг инициализации (хоистинг объявления зависит от типа переменной)
+// - имени нет, или нужно задавать вручную
+const greet3 = new Function("name", "return 'Hola, ' + name;");
+greet3();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+**Функции высшего порядка** - функции, которые принимают параметром и/или возвращают функции как результат работы.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const createGreet = function (age) {
+  const text = age > 18 ? "Приветствую" : "Хаюшки";
+  return function (name) {
+    console.log(text + ", " + name);
+  };
+};
+const greet1 = createGreet(45);
+greet1("Роберт"); // ?
+const greet2 = createGreet(11);
+greet2("Саня"); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+document.findElementById('btn')
+  .addEventListener('click', function() {
+    alert('*Opa')!
+  });
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Функция - объект
+
+```js [1-30]
+const greet = function (name) {
+  return "Hi, " + name;
+};
+console.log(typeof greet); // ?
+
+console.log(greet.hasOwnProperty("hasOwnProperty"));
+console.log(greet.hasOwnProperty("toString"));
+console.log(greet.toString());
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Функция может быть свойством объекта
+
+```js [1-30]
+const o = {
+  method: function (param) {
+    console.log("Do somethind with", param);
+  },
+};
+o.method("icecream"); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Замыкания
+
+</script></section><section data-markdown><script type="text/template">
+
+Замыкания в JS - механизм, который позволяет внутри функции получать доступ к переменным, доступным в месте создания функции.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+var createGreet = function (age) {
+  var text = age > 18 ? "Приветствую" : "Хаюшки";
+  return function (name) {
+    console.log(text + ", " + name);
+  };
+};
+var greet1 = createGreet(45);
+greet1("Роберт");
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function getCounter() {
+  let i = 0;
+  return {
+    next: function () {
+      i = i + 1;
+    },
+    reset: function () {
+      i = 0;
+    },
+    current: function () {
+      return i;
+    },
+  };
+}
+const counter = getCounter();
+console.log(counter.current()); // ?
+counter.next();
+counter.next();
+console.log(counter.current()); // ?
+counter.reset();
+console.log(counter.current()); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Доступ к параметрам функции
+
+- по имени
+- через [`arguments`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/arguments) (не работает в стрелочных функциях)
+
+</script></section><section data-markdown><script type="text/template">
+
+Для работы с неопределенным числом параметров принято использовать [`rest params`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Rest_parameters)
+
+```js [1-30]
+function sum(...values) {
+  return values.reduce((acc, el) => acc + el);
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Особенности работы с функциями
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Контекст (`this`)
+
+</script></section><section data-markdown><script type="text/template">
+
+Контекст - определяет в рамках какого **объекта** **выполняется функция**. Определяется тем, какое значение имеет ключевое слово [`this`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/this) **при выполнении** функции.
+
+Позволяет изменять/задавать поведение функции.
+
+</script></section><section data-markdown><script type="text/template">
+
+[Строгий режим Javascript](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Strict_mode) - использование ограниченной семантики языка для улучшения стабильности, и который упрощает понимание того, что происходит в программе при возникновении проблем.
+
+Обычный, нестрогий, режим выполнения JavaScript иногда называется Грязным режимом (Sloppy mode).
+
+</script></section><section data-markdown><script type="text/template">
+
+Три возможных варианта
+
+- window
+- undefined
+- объект
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// window
+function someStrangeFunction() {
+  console.log("this for someStrangeFunction", this);
+}
+someStrangeFunction();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+"use strict";
+// undefined
+function someStrangeFunction() {
+  console.log("this for someStrangeFunction", this);
+}
+someStrangeFunction();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// object
+var o = {
+  prop1: 1,
+  someStrangeFunctionInObject: function () {
+    console.log("this for someStrangeFunctionInObject", this);
+  },
+};
+o.someStrangeFunctionInObject();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+var o = {
+  prop1: 1,
+  someStrangeFunctionInObject: function () {
+    console.log("this for someStrangeFunctionInObject", this);
+  },
+};
+const func = o.someStrangeFunctionInObject;
+func(); //?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function someStrangeFunction() {
+  console.log("this for someStrangeFunction", this);
+}
+const o = { prop1: 1 };
+someStrangeFunction(); // ?
+o.someStrangeMethod = someStrangeFunction;
+o.someStrangeMethod(); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// Об этом важно помнить при передаче методов
+const o = {
+  name: "Bob",
+  greet: function () {
+    console.log("Hello, " + this.name);
+  },
+};
+document.body.addEventListener("click", o.greet);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const o = {
+  name: "Bob",
+  greet: function () {
+    console.log("Hello, " + this.name);
+  },
+};
+const x = o.greet;
+x(); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Изменение и фиксирование контекста
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const o = { prop1: 1, name: "Sam" };
+const f = function () {
+  console.log(this);
+};
+f(); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const o = { prop1: 1, name: "Sam" };
+const f = function (x) {
+  console.log(this, x);
+};
+o.of = f;
+o.of(1); // o, 1
+f.call(o, 2); // o, 2
+f.apply(o, [3]); // o, 3
+
+var of = f.bind(o);
+of(4); // o, 4
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const o = { prop1: 1, name: "Sam" };
+const f = function (name) {
+  console.log(this, name);
+};
+
+f.call(o, "user 2"); // параметры один за одним
+f.apply(o, ["user 3"]); // параметры списком
+
+f.bind(o)("user 4"); // bind возвращает функцию для вызова
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Работа с конструкторами
+
+</script></section><section data-markdown><script type="text/template">
+
+Еще один способ изменить `this` - использовать ключевое слово `new`
+
+- `new` с любой функцией (кроме стрелочной) создает новый объект
+- созданный объект получает значение `__proto__` (из свойства конструктора `prototype`)
+- созданный объект ассоциируется с `this`
+- выполняет функция
+- если функция возвращает примитивное значение - неявно возвращается `this`
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+var f = function (name) {
+  console.log(this);
+};
+f("Sam"); // ?
+console.log(new f("Bob")); // ?
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function User(name, greet) {
+  // изменяем новый объект при создании
+  this.name = name;
+  this.greetPhrase = greet;
+  this.greet = function () {
+    console.log(this.greetPhrase + ", " + this.name);
+  };
+}
+const u1 = new User("Bob", "Hello");
+const u2 = new User("Sam", "hi");
+console.log(u1, u2);
+u1.greet();
+u2.greet();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function User(name, greet) {
+  this.name = name;
+  this.greetPhrase = greet;
+}
+User.prototype = {
+  greet: function () {
+    console.log(this.greetPhrase + ", " + this.name);
+  },
+};
+const u1 = new User("Bob", "Hello");
+const u2 = new User("Sam", "hi");
+console.log(u1, u2);
+u1.greet();
+u2.greet();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function User(name, greet) {
+  this.name = name;
+  // читаем greet через замыкание
+  this.greet = function () {
+    console.log(greet + ", " + this.name);
+  };
+}
+const u1 = new User("Bob", "Hello");
+u1.greet();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Функции-конструкторы - вариант создания "классов" из до-ES6 мира. В целом современные классы, являются "синтаксическим сахаром" и так же работают на прототипах, просто позволяют нам использовать другой синтаксис для описания.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// ES5
+function User(name, greet) {
+  this.name = name;
+  this.greetPhrase = greet;
+}
+User.prototype = {
+  greet: function () {
+    console.log(this.greetPhrase + ", " + this.name);
+  },
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1--30]
+// ES6
+class User {
+  constructor(name, greet) {
+    this.name = name;
+    this.greetPhrase = greet;
+  }
+
+  greet() {
+    console.log(this.greetPhrase + ", " + this.name);
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Как проверить, что объект является экземпляром класа?
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function User() {}
+var fu = {};
+var u = new User();
+
+console.log(fu, fu instanceof User);
+console.log(u, u instanceof User);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+`instanceof` ходит по цепочке прототипов и ищет совпадение с `prototype`
+
+```
+x instanceof Y
+-> x.__proto__ === Y.prototype
+-> x.__proto__.__proto__ === Y.prototype
+-> ...
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+const o = {};
+console.log(o instanceof Array); // ?
+
+o.__proto__ = [];
+
+// o.__proto__.__proto__ === Array.prototype
+console.log(o instanceof Array);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Что со всем этим делать?
+
+_Понять, простить и пользоваться_
+
+</script></section><section data-markdown><script type="text/template">
+
+- Читать документацию, например [методы функций](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Function) / [другие встроенные объекты](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects)
+- [Monkey patching](https://learn.javascript.ru/native-prototypes#native-prototype-change)
+- [Использовать чужие методы на своих объектах](https://learn.javascript.ru/native-prototypes#zaimstvovanie-u-prototipov)
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Домашнее задание
+
+</script></section><section data-markdown><script type="text/template">
+
+В ходе выполнения задания вы поработаете с двумя репозиториями, которые содержат в себе типичные задачи работы на Javascript.
+
+Работать вы будете с двумя репозиториями
+
+https://github.com/mrdavidlaing/javascript-koans
+
+и
+
+https://github.com/liammclennan/JavaScript-Koans
+
+</script></section><section data-markdown><script type="text/template">
+
+Вам нужно для каждого из репозиториев выполнить следующие шаги:
+
+- скачать (склонировать или просто скачать) к себе репозиторий
+- разобраться как запустить задачи (которые оформлены в виде тестов)
+- внести изменения так, чтобы решения задач проходили тесты
+- сделать коммит и пуллреквест с решением
+- сделать скриншот всех пройденных тестов
+
+</script></section><section data-markdown><script type="text/template">
+
+Задание можно сдавать в формате
+
+скриншоты пройденных тестов
+
+**или**
+
+скриншоты пройденных тестов и ссылка на пуллреквест с вашими изменениями (работу с гитом мы еще не разбирали, так что это задание со звездочкой)
+
+</script></section><section data-markdown><script type="text/template">
+
+Критерии оценки:
+
+- решены все задачи в 1 репозитории (и предоставлены скриншоты пройденных тестов) - 5 баллов (по 5 за каждый)
+- сделан пуллреквест с изменениями по решенным задачам - 3 балла (по 3 за каждый репозиторий)
+
+Принято ставится от 10 баллов
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Дополнительные материалы
+
+</script></section><section data-markdown><script type="text/template">
+
+- [Отладка в браузере Chrome](https://learn.javascript.ru/debugging-chrome)
+- [Продвинутая работа с функциями](https://learn.javascript.ru/advanced-functions)
+- [Браузер: документ, события, интерфейсы](https://learn.javascript.ru/ui)
+- [YT: Про цикл событий в JavaScript или "как на самом деле работает асинхронность"?](https://www.youtube.com/watch?v=8cV4ZvHXQL4)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Вопросы для самопроверки
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Что такое контекст вызова функции? Чем определяется?
+
+2. Как изменить this внутри функции? (5 способов)
+
+3. чем различаются .call / .apply / .bind
+
+4. Что такое сигнатура функции?
+
+5. Чем характеризуется функция?
+
+</script></section><section data-markdown><script type="text/template">
+
+6. Что такое прототип?
+
+7. Как работает конструктор? Что происходит при вызове со словом new ?
+
+8. Как происходит чтение свойств из объекта?
+
+9. Как происходит запись свойств в объект?
+
+10. Как проверить на принадлежность классу?
+
+</script></section><section data-markdown><script type="text/template">
+
+11. Как работает instanceof ?
+
+12. Четыре принципа ООП
+
+13. Виды полиморфизма. И их объяснение
+
+14. Событийный цикл в javascript
+
+15. Что такое фаза захвата / capturing ?
+
+</script></section><section data-markdown><script type="text/template">
+
+16. Что такое фаза всплытия / bubbling ?
+
+17. Как подписаться на событие документа / html элемента?
+
+18. Что такое Функция высшего порядка?
+
+19. Что такое синхронный / асинхронный код?
+
+20. Что такое каррирование ?
+
+</script></section><section data-markdown><script type="text/template">
+
+21. Что такое паттерн цепочка ? Как реализовать?
+
+22. В чем разница объявления методов в конструкторе и на .prototype ?
+
+23. Что такое 'полифилл'?
+
+24. Что такое "стрелочная" ("arrow function") функция? Чем она отличается от обычной?
+
+25. Что такое CORS?
+
+</script></section><section data-markdown><script type="text/template">
+
+26. Что такое и какие есть коды ответов HTTP?
+
+27. Что такое делегирование событий? Преимущества и особенности работы с делегированием?
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+Опрос о занятии
+
+[https://otus.ru/polls/16701/](https://otus.ru/polls/16701/)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":true,"backgroundTransition":"fade"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
