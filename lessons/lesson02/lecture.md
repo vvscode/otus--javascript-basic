@@ -72,7 +72,7 @@ Javascript:
 
 <!--v-->
 
-```js[1-30]
+```js [1-30]
 typeof undefined; // "undefined"
 typeof 0; // "number"
 typeof 1n; // "bigint"
@@ -110,7 +110,7 @@ var / let / const
 
 **const** - НЕ позволяет изменять значение. НО! значение это ссылка, если это ссылка на объект - объект по прежнему можно изменять
 
-```js[1-30]
+```js [1-30]
 let a = 1;
 let b;
 b = "2";
@@ -131,7 +131,7 @@ const a = 1n;
 
 <!-- v -->
 
-```js[1-30]
+```js [1-30]
 // Вывод
 console.log(1);
 
@@ -146,13 +146,13 @@ alert(2);
 <div class="message"></div>
 ```
 
-```js[5-30]
+```js [5-30]
 document.querySelector(".message").innerHTML = "Hello";
 ```
 
 <!-- v -->
 
-```js[1-30]
+```js [1-30]
 // Ввод
 console.log(prompt("Enter your value:", 123)); // string | null
 console.log(prompt("Enter another value:")); // string | null
@@ -167,7 +167,7 @@ console.log(confirm("Are you sure?")); // boolean
 <input id="someInput" />
 ```
 
-```js[5-30]
+```js [5-30]
 const value = document.getElementById("someInput").input;
 console.log(value);
 ```
@@ -191,7 +191,7 @@ console.log(value);
 
 if
 
-```js[1-30]
+```js [1-30]
 if (someFlag) {
   console.log("Ho ho ho");
 }
@@ -205,7 +205,7 @@ if (1 === 2) console.log("You do not see it");
 
 if / else
 
-```js[1-30]
+```js [1-30]
 if (someFlag) {
   console.log("Ho ho ho");
 } else {
@@ -223,7 +223,7 @@ if (someFlag) {
 
 Тернарный оператор
 
-```js[1-20]
+```js [1-20]
 // result = условие ? значение1 : значение2;
 const workHoursPerWeek = user.age >= 18 ? 40 : 20;
 ```
@@ -232,7 +232,7 @@ const workHoursPerWeek = user.age >= 18 ? 40 : 20;
 
 Switch
 
-```js[1-20]
+```js [1-20]
 switch(x) {
   case 'value1':  // if (x === 'value1')
     ...
@@ -252,7 +252,7 @@ switch(x) {
 
 Switch
 
-```js[1-20]
+```js [1-20]
 let a = 2 + 2;
 
 switch (a) {
@@ -274,7 +274,7 @@ switch (a) {
 
 С использованием логических операторов
 
-```js[1-30]
+```js [1-30]
 // Первый же false-like результат прерывает цепочку &&
 const x = someFlag && runOnlyIfFlagIsTrue();
 
@@ -290,7 +290,7 @@ someAnotherFlag || runOnlyIfAnotherFlagIsFalse();
 
 Строгое и нестрогое сравнение
 
-```js[1-30]
+```js [1-30]
 5 == 5; // true
 5 === 5; // true
 new Number(5) == 5; // true
@@ -317,7 +317,7 @@ new Number(5) === new Number(5);
 
 while
 
-```js[1-30]
+```js [1-30]
 while (condition) {
   // код
   // также называемый "телом цикла"
@@ -328,7 +328,7 @@ while (condition) {
 
 while
 
-```js[1-30]
+```js [1-30]
 let i = 3;
 while (i) {
   // когда i будет равно 0, условие станет ложным, и цикл остановится
@@ -341,7 +341,7 @@ while (i) {
 
 do..while
 
-```js[1-30]
+```js [1-30]
 let i = 3;
 do {
   alert(i);
@@ -357,7 +357,7 @@ do {
 
 for
 
-```js[1-30]
+```js [1-30]
 // любая часть может быть пропущена
 for (начало; условие; шаг) {
   // ... тело цикла ...
@@ -366,7 +366,7 @@ for (начало; условие; шаг) {
 
 <!-- v -->
 
-```js[1-30]
+```js [1-30]
 for (let i = 0; i < 3; i++) {
   // выведет 0, затем 1, затем 2
   alert(i);
@@ -385,7 +385,7 @@ for (let i = 0; i < 3; i++) {
 
 break
 
-```js[1-30]
+```js [1-30]
 for (let i = 0; i <= 10; i++) {
   if (i === 5) {
     break;
@@ -398,7 +398,7 @@ for (let i = 0; i <= 10; i++) {
 
 continue
 
-```js[1-30]
+```js [1-30]
 let i = 5;
 while (i !== 0) {
   if (i === 3) {
@@ -438,7 +438,7 @@ _кратко_
 
 function declaration
 
-```js[1-30]
+```js [1-30]
 function x(a) {
   console.log(a + 1);
 }
@@ -448,7 +448,7 @@ function x(a) {
 
 functional expression
 
-```js[1-30]
+```js [1-30]
 const x = function (a) {
   console.log(a + 1);
 };
@@ -458,7 +458,7 @@ const x = function (a) {
 
 вызов функций
 
-```js[1-30]
+```js [1-30]
 x(1);
 ```
 
@@ -474,7 +474,7 @@ x(1);
 
 Создание
 
-```js[1-30]
+```js [1-30]
 const a = {};
 const b = { x: 1 };
 const c = new Object();
@@ -485,7 +485,7 @@ const d = new Date(2007);
 
 Работа со свойствами
 
-```js[1-30]
+```js [1-30]
 const obj = {};
 const propName = "x";
 
@@ -502,7 +502,7 @@ _Зачем нужно несколько способов?_
 
 Проверка и удаление свойств
 
-```js[1-30]
+```js [1-30]
 x in obj; // boolean
 obj[x] === undefined; // boolean
 
