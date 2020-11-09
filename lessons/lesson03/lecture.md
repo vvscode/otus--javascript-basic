@@ -376,6 +376,18 @@ Object.keys(o).forEach((propName) => {
 ```js [ 1-30]
 const o = {
   prop1: 1,
+  prop2: 2,
+};
+for (const [key, value] of Object.entries(o)) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+<!-- v -->
+
+```js [ 1-30]
+const o = {
+  prop1: 1,
   __proto__: {
     prop2: 2,
   },
@@ -399,6 +411,20 @@ for (propName in o) {
     propName,
     o.hasOwnProperty(propName) ? "в объекте" : "в цепочке прототипов"
   );
+}
+```
+
+<!-- v -->
+
+```js [1-30]
+const o = {
+  prop1: 1,
+  __proto__: {
+    prop2: 2,
+  },
+};
+for (const [key, value] of Object.entries(o)) {
+  console.log(`${key}: ${value}`);
 }
 ```
 
@@ -628,6 +654,12 @@ console.log(counter.current()); // ?
 ```js [1-30]
 function sum(...values) {
   return values.reduce((acc, el) => acc + el);
+}
+
+function myFun(a, b, ...manyMoreArgs) {
+  console.log("a", a);
+  console.log("b", b);
+  console.log("manyMoreArgs", manyMoreArgs);
 }
 ```
 
@@ -939,6 +971,98 @@ o.__proto__ = [];
 // o.__proto__.__proto__ === Array.prototype
 console.log(o instanceof Array);
 ```
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
+### [Стрелочные функции](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+<!-- v -->
+
+- короткий синтаксис
+- только Functional expression
+- нет имени
+- привязаны к значению `this` (который определяется _обычно_ в момент создания функции)
+- не могут быть конструкторами
+- в них не работают `arguments` / `new.target` / `super` / `yeild`
+- удобны для inline использования
+
+<!-- v -->
+
+```js [1-30]
+// блочная форма
+const double1 = (a) => {
+  return a * 2;
+};
+// Когда один аргумент - скобки можно опускать
+const double2 = (a) => {
+  return a * 2;
+};
+// При коротком возвращении - блок и return можно опускать
+const double3 = (a) => a * 2;
+// а иногда
+const func = (_) => new Date().toLocaleTimeString();
+```
+
+<!-- v -->
+
+```js [1-30]
+// НО!
+const func1 = () => {
+  foo: 1;
+};
+func(); // undefined
+
+const func2 = () => ({ foo: 1 });
+
+func2(); // { foo: 1 }
+```
+
+[Про label](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Statements/label)
+
+<!-- v -->
+
+```js [1-30]
+const o = {
+  name: "Bob",
+  greet: () => {
+    console.log("Hello, " + this.name);
+  },
+};
+document.body.addEventListener("click", o.greet); //?
+```
+
+<!-- v -->
+
+```js [1-30]
+function O() {
+  this.name = "Bob";
+  this.greet = () => {
+    console.log("Hello, " + this.name);
+  };
+}
+document.body.addEventListener("click", new O().greet); //?
+```
+
+<!-- v -->
+
+```js [1-30]
+const O = function () {
+  this.name = "Bob";
+  this.greet = () => {
+    console.log("Hello, " + this.name);
+  };
+};
+const greet = new O().greet;
+greet.call({ name: "Sam" }); // ?
+```
+
+<!-- v -->
+
+При использовании Babel можно пользоваться преимуществами стрелочных функций в классах c помощью [@babel/plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
 
 <!-- v -->
 
