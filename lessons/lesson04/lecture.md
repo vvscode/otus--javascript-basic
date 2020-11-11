@@ -426,9 +426,66 @@ console.log(jsonData);
 
 [Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/fetchPractice)
 
+[OpenWeather API](https://openweathermap.org/current)
+
 <!-- v -->
 
 ### Вопросы?
+
+<!-- v -->
+
+Дополнительное задание:
+
+при заходе на страницу показать пользователю погоду в его городе. Для получения этой информации можно сделать запрос на `https://get.geojs.io/v1/ip/geo.json`, который вернет данные в формате JSON.
+
+[GeoAPI](https://www.geojs.io/docs/v1/endpoints/geo/)
+
+<!-- s -->
+
+Собираем все вместе. Создайте страницу:
+
+- при открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
+- он может ввести имя города в поле ввода и увидеть погоду в выбранном городе
+- введенные города сохраняются у пользователя в браузере, так что он видит последние 10 городов, где он смотрел погоду
+- при клике по строчке города в списке он видит погоду в выбранном
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
+#### Дополнительные материалы
+
+<!-- v -->
+
+1. [Путеводитель по JavaScript Promise для новичков](https://habr.com/ru/company/zerotech/blog/317256/)
+1. [Public APIs](https://github.com/public-apis/public-apis#open-source-projects)
+1. [Чистый код на Javascript](https://github.com/BoryaMogila/clean-code-javascript-ru/)
+1. [JavaScript. Как работать с API Telegram, Youtube и VK](https://live.ithillel.ua/javascript.-rabota-s-api)
+1. [Что на самом деле происходит, когда пользователь вбивает в браузер адрес google.com](https://habr.com/ru/company/htmlacademy/blog/254825/)
+
+<!-- v -->
+
+#### Вопросы для самопроверки
+
+1. Чем куки (cookie) отличаются от localStorage ?
+
+2. Что такое CORS?
+
+3. Что такое и какие есть коды ответов HTTP?
+
+4. Что такое jsonp-запрос?
+
+5. Как реализовать подписку на клик по кнопке, которая отработает только один раз? ( с примером кода )
+
+<!-- v -->
+
+6. Что такое KISS, DRY, YAGNI?
+
+7. Быть в состоянии рассказать что такое XHR, AJAX, CDN
+
+8. Чем XMLHTTPRequest отличается от fetch?
 
 <!-- s -->
 
