@@ -32,6 +32,7 @@ module.exports = {
     "secretField",
     "typeof",
     "vvscode",
+    "XMLHttpRequest",
     "Yt",
     "Ванчук",
     "деплой",

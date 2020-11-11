@@ -263,7 +263,7 @@ API браузера для работы с веб страницей и ее э
 
 <!-- s -->
 
-### Сохранение данных
+### [Сохранение данных](https://learn.javascript.ru/data-storage)
 
 <!-- v -->
 
@@ -356,7 +356,79 @@ const x = await asyncPrompt();
 
 <!-- v -->
 
+### Вопросы?
+
+<!-- v -->
+
 [Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/dataStoragePractice)
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
+### [Работа со сторонними сервисами](https://learn.javascript.ru/network)
+
+<!-- v -->
+
+Для работы с HTTP запросами у нас есть два варианта (на самом деле больше, если подключать библиотеки):
+
+- [XMLHttpRequest](https://learn.javascript.ru/xmlhttprequest)
+- [fetch](https://learn.javascript.ru/fetch)
+
+<!-- v -->
+
+`fetch` - поддерживается современными браузерами, предоставляет Promise-based интерфейс (удобен для `async` функций) и прост в использовании.
+
+<!-- v -->
+
+```js [1-30]
+// await-friendly окружение
+let response = await fetch(url);
+
+let text = await response.text();
+
+console.log(text);
+```
+
+<!-- v -->
+
+```js [1-30]
+// await-friendly окружение
+let response = await fetch("/article/fetch/post/user", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json;charset=utf-8",
+  },
+  body: JSON.stringify(user),
+});
+
+let jsonData = await response.json();
+console.log(jsonData);
+```
+
+<!-- v -->
+
+`fetch` возвращает вам объект типа [`Response`](https://developer.mozilla.org/ru/docs/Web/API/Response).
+
+Чаще всего используются
+
+- поле `ok`
+- поле `status`
+- методы `text()` и `json()`
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- v -->
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/fetchPractice)
+
+<!-- v -->
+
+### Вопросы?
 
 <!-- s -->
 
