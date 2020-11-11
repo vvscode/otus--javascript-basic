@@ -207,6 +207,48 @@ calculateSomethingAsyncWithPromise(x)
 
 <!-- v -->
 
+### Вопросы?
+
+<!-- s -->
+
+### Работа со страницей
+
+<!-- v -->
+
+**DOM** - Document Object Model.
+
+API браузера для работы с веб страницей и ее элементами. Представлено глобальными объектами `window`, `document` и API для работы с HTML элементами (создание, удаление, редактирование).
+
+<!-- v -->
+
+Поиск элементов на странице:
+
+- `document.getElementById`
+- `document.getElementsByTagName`
+- `document.querySelector`
+- `document.querySelectoAll`
+
+[Document API](https://developer.mozilla.org/ru/docs/Web/API/Document) и [описание селекторов](http://htmlbook.ru/css/selector)([1](http://sauron.org.ua/post/1254), [2](https://migo.com.ua/blog/css/css-selectory-kotorue-dolzhen-znat-kazhduy.html), [3](https://www.exlab.net/files/tools/sheets/css/css.pdf))
+
+<!-- v -->
+
+Создание и изменение элементов. Два варианта:
+
+- использование `innerHTML` и работа с элементами как со строкой HTML
+- использование `document.createElement` и работа с элементами как с узлами дерева
+
+<!-- v -->
+
+Для подписки на события элементов есть 3 варианта:
+
+- `addEventListener` <-- мы будем использовать вот этот
+- `onclick="func()"`
+- `el.onclick=func`
+
+<!-- v -->
+
+[Пример](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/DOMExamples)
+
 <!-- s -->
 
 Опрос о занятии
