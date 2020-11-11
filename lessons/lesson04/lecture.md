@@ -249,6 +249,14 @@ API браузера для работы с веб страницей и ее э
 
 [Пример](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/DOMExamples)
 
+<!-- v -->
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/DOMExamplesPractice)
+
+<!-- v -->
+
+### Вопросы?
+
 <!-- s -->
 
 Опрос о занятии
