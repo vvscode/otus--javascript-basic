@@ -6,6 +6,7 @@ module.exports = {
   ignoreCapitalization: true,
   ignoreUppercase: true,
   dictionary: [
+    "async",
     "backend",
     "bigint",
     "Braithwaite",
@@ -39,6 +40,7 @@ module.exports = {
     "коммит(.*)",
     "линтинга",
     "минификация",
+    "Отрисовка",
     "полифилл",
     "При мерже",
     "проитерироваться",
