@@ -199,6 +199,10 @@ calculateSomethingAsyncWithPromise(x)
 
 <!-- v -->
 
+[Интерфейсы веб API](https://developer.mozilla.org/ru/docs/Web/API)
+
+<!-- v -->
+
 Что мы посмотрим сегодня:
 
 - работу со страницей (изменение страницы и чтение данных от пользователя)
@@ -256,6 +260,103 @@ API браузера для работы с веб страницей и ее э
 <!-- v -->
 
 ### Вопросы?
+
+<!-- s -->
+
+### Сохранение данных
+
+<!-- v -->
+
+- [IndexedDB](https://developer.mozilla.org/ru/docs/Web/API/IndexedDB_API)
+- [Storage](https://developer.mozilla.org/ru/docs/Web/API/Storage) (Local Storage / Session Storage)
+- [Cookies](https://developer.mozilla.org/ru/docs/Web/API/Document/cookie)
+
+<!-- v -->
+
+DOM Storage полезен для хранения небольшого количества данных, но он менее выгоден для большого числа структурированных данных (тк работает со строками). IndexedDB предоставляет решение для клиентского хранилища большого объема структурированных данных, включая файлы/blobs.
+
+<!-- v -->
+
+```js [1-30]
+// Пример работы с local storage
+const key = "someKey";
+const value = "someValue";
+localStorage.setItem(key, value);
+console.log(localStorage.getItem(key));
+localStorage.removeItem(key);
+console.log(localStorage.getItem(key)); // null
+```
+
+<!-- v -->
+
+```js [1-30]
+// ВАЖНО! работает только со строками
+const key = "someKey";
+const value = 1;
+localStorage.setItem(key, value);
+console.log(localStorage.getItem(key)); // "1"
+```
+
+<!-- v -->
+
+```js [1-30]
+// для работы с другими типами данных
+// обычно используют сериализацию
+const value1 = 1;
+const value2 = { name: "Bob" };
+localStorage.setItem("value1", JSON.stringify(value1));
+localStorage.setItem("value2", JSON.stringify(value2));
+console.log(JSON.parse(localStorage.getItem("value1"))); // 1
+console.log(JSON.parse(localStorage.getItem("value2"))); // { name: 'Bob' }
+```
+
+<!-- v -->
+
+Важно помнить, что если значения нет - вы получите `null` и десериализация сломается. Поэтому перед вызовом `parse` нужно проверять данные.
+
+<!-- v -->
+
+И еще одно отступление про асинхронность (мы будем об этом говорить подробнее на занятии по дизайну вашего API)
+
+<!-- v -->
+
+В разработке принято писать на уровне интерфейсов (абстракций), а не реализаций. То есть вы должны знать ЧТО делает функция или модуль, но не КАК.
+
+Когда вы начинаете использовать детали реализации - это называется "протекающая абстракция".
+
+<!-- v -->
+
+Типичные кандидаты на асинхронные операции:
+
+- запрос данных от пользователя
+- сохранение и чтение данных
+- обращение к стороннему сервису
+- валидации и сложные вычисления
+
+<!-- v -->
+
+Но при этом
+
+- для запроса данных от пользователя есть синхронные `alert` / `prompt`
+- для чтения и сохранения данных есть синхронный `localStorage`
+
+<!-- v -->
+
+Лучше сразу заложить возможность для расширения, и использовать асинхронные обертки. Тогда в любой момент можно будет поменять реализацию, и вместо `localStorage` сохранять данные на сервере, например. А вместо `alert` показывать красивое стилизованное модальное окно (которое не блокирует поток).
+
+<!-- v -->
+
+```js [1-30]
+async function asyncPrompt(request) {
+  return prompt(request);
+}
+// const x = asyncPrompt(); работать не будет
+const x = await asyncPrompt();
+```
+
+<!-- v -->
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/dataStoragePractice)
 
 <!-- s -->
 
