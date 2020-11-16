@@ -573,6 +573,8 @@ describe('createCalculatorUI', () => {
 3. [Мои «Ого, я этого не знал!» моменты с Jest](https://habr.com/ru/company/otus/blog/457616/)
 4. Дополнительное занятие #2 в ЛК
 5. [YT: Jest. Unit Тестирование в JavaScript](https://www.youtube.com/watch?v=IEDe8jl5efU)
+6. [JavaScript & Node.js testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+7. [Автоматизированное тестирование (в контексте разных языков, обзорно)](https://gist.github.com/codedokode/a455bde7d0748c0a351a)
 
 <!-- v -->
 
