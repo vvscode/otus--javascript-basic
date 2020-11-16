@@ -82,9 +82,9 @@ _Подробнее будет в третьем модуле на заняти�
 </script></section><section data-markdown><script type="text/template">
 
 ```js [1-30]
-// работа с callback-фукнциями
+// работа с callback-функциями
 const x = 2;
-// результат мы можем обработать в callback-фукнции
+// результат мы можем обработать в callback-функции
 calculateSomethingAsyncWithCallback(x, (result) => {
   console.log(result);
 });
@@ -100,7 +100,7 @@ calculateSomethingAsyncWithCallback(x, (error, result) => {
 </script></section><section data-markdown><script type="text/template">
 
 ```js [1-30]
-// работа с callback-фукнциями
+// работа с callback-функциями
 const x = 2;
 calculateSomethingAsyncWithCallback(x, (result) => {
   calculateSomethingElseAsyncWithCallback(result, (secondResult) => {
