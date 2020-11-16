@@ -662,4 +662,4 @@ describe('createCalculatorUI', () => {
 
 Опрос о занятии
 
-[https://otus.ru/polls/16701/](https://otus.ru/polls/16701/)
+[https://otus.ru/polls/16695/](https://otus.ru/polls/16695/)
