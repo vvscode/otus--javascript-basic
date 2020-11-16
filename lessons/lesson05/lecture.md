@@ -230,6 +230,48 @@ console.log("2112", isPalindrom("2112"), true);
 
 <!-- v -->
 
+```bash
+➜  js--game-of-life git:(master) npx jest
+ PASS  src/getNewCellState.test.js
+ PASS  src/getCellState.test.js
+ PASS  src/isAnyoneAlive.test.js
+ PASS  src/getNumOfAliveNeighbours.test.js
+ PASS  src/getNextState.test.js
+ PASS  src/drawField.test.js
+ PASS  src/createGameOfLife.test.js
+
+Test Suites: 7 passed, 7 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        3.79 s
+Ran all test suites.
+```
+
+<!-- v -->
+
+```bash
+➜  js--game-of-life git:(master) npx jest --verbose
+ PASS  src/isAnyoneAlive.test.js
+  isAnyoneAlive
+    ✓ is a function (1 ms)
+    ✓ returns `false` for empty field
+    ✓ returns `true` for field 1x1 from 1 (1 ms)
+    ✓ should return false for []
+    ✓ should return false for [[]]
+    ✓ should return true for [[1]]
+    ✓ should return true for [[1],[0]]
+    ✓ should return false for [[0],[0]] (1 ms)
+    ✓ should return true for [[0,0,0],[0,0,1]]
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        1.274 s
+Ran all test suites.
+```
+
+<!-- v -->
+
 ## Вопросы?
 
 <!-- s -->
@@ -578,4 +620,46 @@ describe('createCalculatorUI', () => {
 
 <!-- v -->
 
-## Вопросы?
+#### Вопросы для самопроверки
+
+<!-- v -->
+
+1. Из каких шагов состоит автоматизированный тест?
+
+2. Самые популярные 5 тестовых фреймворков для Javascript?
+
+3. Для чего нужны моки и стабы?
+
+4. Что такое spy-функции?
+
+5. Что такое пирамида тестирования?
+
+<!-- v  -->
+
+6. Что лучше - e2e или unit тест?
+
+7. Что такое "чистая" функция?
+
+8. Что такое "внедрение зависимостей"?
+
+9. Как запустить jest в режиме наблюдения?
+
+10. Какие хуки для тестовых наборов поддерживаются jest?
+
+<!-- v -->
+
+11. Какие есть формы написания асинхронных тестов в jest?
+
+12. Что такое jsdom?
+
+13. Чем `describe` отличается от `it` ?
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
+Опрос о занятии
+
+[https://otus.ru/polls/16701/](https://otus.ru/polls/16701/)
