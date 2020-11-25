@@ -463,3 +463,12 @@ console.log("hello".repeatify(3)); // hellohellohello
 <!-- v -->
 
 ## Вопросы?
+
+<!-- s -->
+
+Дополнительные материалы:
+
+- [Debug Visualizer](https://marketplace.visualstudio.com/items?itemName=hediet.debug-visualizer)
+- [Visualize JavaScript code execution](http://www.pythontutor.com/javascript.html#mode=edit)
+- [JavaScript Visualizer (ES5)](https://ui.dev/javascript-visualizer/)
+- [Code to graph](https://crubier.github.io/code-to-graph/)

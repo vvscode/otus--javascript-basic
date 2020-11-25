@@ -76,6 +76,7 @@ module.exports = {
     "typeof",
     "Uber",
     "untracked",
+    "Visualizer",
     "VSCode",
     "Vue",
     "vvscode",
