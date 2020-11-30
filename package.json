@@ -15,9 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "husky": ">=4",
-    "lint-staged": ">=10",
-    "prettier": "^2.1.2",
-    "reveal-md": "^4.1.7",
+    "lint-staged": "^10.5.2",
+    "prettier": "^2.2.1",
+    "reveal-md": "^4.2.0",
     "yaspeller": "^7.0.0"
   },
   "husky": {
