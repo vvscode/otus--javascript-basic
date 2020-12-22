@@ -215,7 +215,7 @@ _Это все разбирается в рамках первого модул�
 
 <!--v-->
 
-[FizzBuzz task](https://codesandbox.io/s/bold-perlman-th4o3?file=/src/index.js)
+[FizzBuzz task](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/fizzbuzz/lessons/lesson01/code/fizzbuzz)
 
 <!--v-->
 
