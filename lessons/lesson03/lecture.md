@@ -105,8 +105,8 @@ console.log(a[0], b[0]); // ?
 ```js [ 1-30]
 // Создание объекта 1
 //  через литерал
-const o1 = {};
-const o2 = {
+let o1 = {};
+let o2 = {
   prop1: "Some value",
   prop2: null,
   prop3: 3,
@@ -118,7 +118,7 @@ const o2 = {
 ```js [ 1-30]
 // Создание объекта 2
 // Вызвать функцию возвращающую объект
-const o3 = Object.create(null);
+let o3 = Object.create(null);
 ```
 
 <!-- v -->
@@ -126,8 +126,8 @@ const o3 = Object.create(null);
 ```js [ 1-30]
 // Создание объекта 3
 // Использовать `new` с классом или функцией-конструктором
-const o4 = new Object();
-const o5 = new Object({
+let o4 = new Object();
+let o5 = new Object({
   a: 1,
   b: 2,
 });
@@ -142,7 +142,7 @@ _Какие есть способы работы со свойствами?_
 <!-- v -->
 
 ```js [ 1-30]
-const o = {};
+let o = {};
 // точечная нотация
 o.prop1 = 1;
 console.log(o.prop1);
@@ -157,14 +157,14 @@ delete o['prop2];
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   x: 1,
 };
 console.log(o.x); // ?
-const a = "x";
+let a = "x";
 o.a = 2;
 console.log(o.x); // ?
-const b = "x";
+let b = "x";
 o["b"] = 3;
 console.log(o.x); // ?
 ```
@@ -180,7 +180,7 @@ console.log(o.x); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 2,
 };
 console.log(o);
@@ -191,7 +191,7 @@ console.log(o.prop2); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   someMethod: function () {
     console.log("Hey!");
   },
@@ -204,7 +204,7 @@ console.log(o.toString); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   someMethod: function () {
     console.log("Hey!");
   },
@@ -230,7 +230,7 @@ console.log(o.someOtherMethod()); //?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop2: 2,
@@ -245,7 +245,7 @@ console.log(o.prop3); //?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop2: 2,
@@ -263,7 +263,7 @@ console.log(o.prop3); //?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop1: 2,
@@ -285,7 +285,7 @@ console.log(o.prop2); //?
 <!-- v -->
 
 ```js [ 1-30]
-const o = { __proto__: { prop1: 1 } };
+let o = { __proto__: { prop1: 1 } };
 console.log(o.prop1, o.__proto__.prop1); // ?
 o.prop1 = 2;
 console.log(o.prop1, o.__proto__.prop1); // ?
@@ -296,9 +296,9 @@ console.log(o.prop1, o.__proto__.prop1); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const proto = { prop0: 1 };
-const o1 = { prop1: 1, __proto__: proto };
-const o2 = { prop2: 2, __proto__: proto };
+let proto = { prop0: 1 };
+let o1 = { prop1: 1, __proto__: proto };
+let o2 = { prop2: 2, __proto__: proto };
 
 console.log(o1.prop0, o2.prop0); // ?
 
@@ -314,9 +314,9 @@ console.log(proto.prop0); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const proto = { settings: { isAdmin: false } };
-const u1 = { name: "Bob", __proto__: proto };
-const u2 = { name: "Sam", __proto__: proto };
+let proto = { settings: { isAdmin: false } };
+let u1 = { name: "Bob", __proto__: proto };
+let u2 = { name: "Sam", __proto__: proto };
 
 console.log(u1.settings.isAdmin); // ?
 u1.settings.isAdmin = true;
@@ -350,7 +350,7 @@ console.log(u2.settings.isAdmin); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   prop2: 2,
 };
@@ -362,7 +362,7 @@ for (propName in o) {
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   prop2: 2,
 };
@@ -374,11 +374,11 @@ Object.keys(o).forEach((propName) => {
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   prop2: 2,
 };
-for (const [key, value] of Object.entries(o)) {
+for (let [key, value] of Object.entries(o)) {
   console.log(`${key}: ${value}`);
 }
 ```
@@ -386,7 +386,7 @@ for (const [key, value] of Object.entries(o)) {
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop2: 2,
@@ -400,7 +400,7 @@ for (propName in o) {
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop2: 2,
@@ -417,13 +417,13 @@ for (propName in o) {
 <!-- v -->
 
 ```js [1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop2: 2,
   },
 };
-for (const [key, value] of Object.entries(o)) {
+for (let [key, value] of Object.entries(o)) {
   console.log(`${key}: ${value}`);
 }
 ```
@@ -439,7 +439,7 @@ for (const [key, value] of Object.entries(o)) {
 <!-- v -->
 
 ```js [ 1-30]
-const o = {
+let o = {
   prop1: 1,
   __proto__: {
     prop1: 2,
@@ -459,12 +459,12 @@ console.log(o.prop1); // ?
 <!-- v -->
 
 ```js [ 1-30]
-const a = { name: 'Bob' };
-const b = { name: 'Sam' };
-const settings = {};
+let a = { name: 'Bob' };
+let b = { name: 'Sam' };
+let settings = {};
 
-const settings[a] = { isAdmin: true };
-const settings[b] = { isAdmin: false };
+let settings[a] = { isAdmin: true };
+let settings[b] = { isAdmin: false };
 
 console.log(settings[a]); // ?
 console.log(settings[b]); // ?
@@ -513,10 +513,10 @@ greet1();
 // Functional Expression
 // - не работает хоистинг инициализации (хоистинг объявления зависит от типа переменной)
 // - имя опционально (а если задано - доступно ТОЛЬКО внутри функции)
-const greet2 = function innerGreetName(name) {
+let greet2 = function innerGreetName(name) {
   console.log("Hello, " + name);
 };
-const greet22 = function (name) {
+let greet22 = function (name) {
   console.log("Hello, " + name);
 };
 greet2();
@@ -529,7 +529,7 @@ greet2();
 // Function by constructor
 // - не работает хоистинг инициализации (хоистинг объявления зависит от типа переменной)
 // - имени нет, или нужно задавать вручную
-const greet3 = new Function("name", "return 'Hola, ' + name;");
+let greet3 = new Function("name", "return 'Hola, ' + name;");
 greet3();
 ```
 
@@ -540,15 +540,15 @@ greet3();
 <!-- v -->
 
 ```js [1-30]
-const createGreet = function (age) {
-  const text = age > 18 ? "Приветствую" : "Хаюшки";
+let createGreet = function (age) {
+  let text = age > 18 ? "Приветствую" : "Хаюшки";
   return function (name) {
     console.log(text + ", " + name);
   };
 };
-const greet1 = createGreet(45);
+let greet1 = createGreet(45);
 greet1("Роберт"); // ?
-const greet2 = createGreet(11);
+let greet2 = createGreet(11);
 greet2("Саня"); // ?
 ```
 
@@ -566,7 +566,7 @@ document.findElementById('btn')
 Функция - объект
 
 ```js [1-30]
-const greet = function (name) {
+let greet = function (name) {
   return "Hi, " + name;
 };
 console.log(typeof greet); // ?
@@ -581,7 +581,7 @@ console.log(greet.toString());
 Функция может быть свойством объекта
 
 ```js [1-30]
-const o = {
+let o = {
   method: function (param) {
     console.log("Do somethind with", param);
   },
@@ -631,7 +631,7 @@ function getCounter() {
     },
   };
 }
-const counter = getCounter();
+let counter = getCounter();
 console.log(counter.current()); // ?
 counter.next();
 counter.next();
@@ -738,7 +738,7 @@ var o = {
     console.log("this for someStrangeFunctionInObject", this);
   },
 };
-const func = o.someStrangeFunctionInObject;
+let func = o.someStrangeFunctionInObject;
 func(); //?
 ```
 
@@ -748,7 +748,7 @@ func(); //?
 function someStrangeFunction() {
   console.log("this for someStrangeFunction", this);
 }
-const o = { prop1: 1 };
+let o = { prop1: 1 };
 someStrangeFunction(); // ?
 o.someStrangeMethod = someStrangeFunction;
 o.someStrangeMethod(); // ?
@@ -758,7 +758,7 @@ o.someStrangeMethod(); // ?
 
 ```js [1-30]
 // Об этом важно помнить при передаче методов
-const o = {
+let o = {
   name: "Bob",
   greet: function () {
     console.log("Hello, " + this.name);
@@ -770,13 +770,13 @@ document.body.addEventListener("click", o.greet);
 <!-- v -->
 
 ```js [1-30]
-const o = {
+let o = {
   name: "Bob",
   greet: function () {
     console.log("Hello, " + this.name);
   },
 };
-const x = o.greet;
+let x = o.greet;
 x(); // ?
 ```
 
@@ -787,8 +787,8 @@ x(); // ?
 <!-- v -->
 
 ```js [1-30]
-const o = { prop1: 1, name: "Sam" };
-const f = function () {
+let o = { prop1: 1, name: "Sam" };
+let f = function () {
   console.log(this);
 };
 f(); // ?
@@ -797,8 +797,8 @@ f(); // ?
 <!-- v -->
 
 ```js [1-30]
-const o = { prop1: 1, name: "Sam" };
-const f = function (x) {
+let o = { prop1: 1, name: "Sam" };
+let f = function (x) {
   console.log(this, x);
 };
 o.of = f;
@@ -813,8 +813,8 @@ of(4); // o, 4
 <!-- v -->
 
 ```js [1-30]
-const o = { prop1: 1, name: "Sam" };
-const f = function (name) {
+let o = { prop1: 1, name: "Sam" };
+let f = function (name) {
   console.log(this, name);
 };
 
@@ -859,8 +859,8 @@ function User(name, greet) {
     console.log(this.greetPhrase + ", " + this.name);
   };
 }
-const u1 = new User("Bob", "Hello");
-const u2 = new User("Sam", "hi");
+let u1 = new User("Bob", "Hello");
+let u2 = new User("Sam", "hi");
 console.log(u1, u2);
 u1.greet();
 u2.greet();
@@ -878,8 +878,8 @@ User.prototype = {
     console.log(this.greetPhrase + ", " + this.name);
   },
 };
-const u1 = new User("Bob", "Hello");
-const u2 = new User("Sam", "hi");
+let u1 = new User("Bob", "Hello");
+let u2 = new User("Sam", "hi");
 console.log(u1, u2);
 u1.greet();
 u2.greet();
@@ -895,7 +895,7 @@ function User(name, greet) {
     console.log(greet + ", " + this.name);
   };
 }
-const u1 = new User("Bob", "Hello");
+let u1 = new User("Bob", "Hello");
 u1.greet();
 ```
 
@@ -963,7 +963,7 @@ x instanceof Y
 <!-- v -->
 
 ```js [1-30]
-const o = {};
+let o = {};
 console.log(o instanceof Array); // ?
 
 o.__proto__ = [];
@@ -994,29 +994,29 @@ console.log(o instanceof Array);
 
 ```js [1-30]
 // блочная форма
-const double1 = (a) => {
+let double1 = (a) => {
   return a * 2;
 };
 // Когда один аргумент - скобки можно опускать
-const double2 = (a) => {
+let double2 = (a) => {
   return a * 2;
 };
 // При коротком возвращении - блок и return можно опускать
-const double3 = (a) => a * 2;
+let double3 = (a) => a * 2;
 // а иногда
-const func = (_) => new Date().toLocaleTimeString();
+let func = (_) => new Date().toLocaleTimeString();
 ```
 
 <!-- v -->
 
 ```js [1-30]
 // НО!
-const func1 = () => {
+let func1 = () => {
   foo: 1;
 };
 func(); // undefined
 
-const func2 = () => ({ foo: 1 });
+let func2 = () => ({ foo: 1 });
 
 func2(); // { foo: 1 }
 ```
@@ -1026,7 +1026,7 @@ func2(); // { foo: 1 }
 <!-- v -->
 
 ```js [1-30]
-const o = {
+let o = {
   name: "Bob",
   greet: () => {
     console.log("Hello, " + this.name);
@@ -1050,13 +1050,13 @@ document.body.addEventListener("click", new O().greet); //?
 <!-- v -->
 
 ```js [1-30]
-const O = function () {
+let O = function () {
   this.name = "Bob";
   this.greet = () => {
     console.log("Hello, " + this.name);
   };
 };
-const greet = new O().greet;
+let greet = new O().greet;
 greet.call({ name: "Sam" }); // ?
 ```
 
@@ -1217,5 +1217,3 @@ https://github.com/liammclennan/JavaScript-Koans
 <!-- s -->
 
 Опрос о занятии
-
-[https://otus.ru/polls/16701/](https://otus.ru/polls/16701/)
