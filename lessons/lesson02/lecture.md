@@ -617,5 +617,3 @@ delete obj[propName];
 <!--s-->
 
 Опрос о занятии
-
-[https://otus.ru/polls/16693/](https://otus.ru/polls/16693/)
