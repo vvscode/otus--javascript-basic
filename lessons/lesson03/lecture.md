@@ -149,9 +149,9 @@ console.log(o.prop1);
 delete o.prop1;
 
 // скобочная нотация
-o["prop2"] = 2;
-console.log(o["prop2"]);
-delete o["prop2"];
+o['prop2'] = 2;
+console.log(o['prop2']);
+delete o['prop2];
 ```
 
 <!-- v -->
@@ -459,12 +459,12 @@ console.log(o.prop1); // ?
 <!-- v -->
 
 ```js [ 1-30]
-let a = { name: "Bob" };
-let b = { name: "Sam" };
+let a = { name: 'Bob' };
+let b = { name: 'Sam' };
 let settings = {};
 
-settings[a] = { isAdmin: true };
-settings[b] = { isAdmin: false };
+let settings[a] = { isAdmin: true };
+let settings[b] = { isAdmin: false };
 
 console.log(settings[a]); // ?
 console.log(settings[b]); // ?
@@ -583,7 +583,7 @@ console.log(greet.toString());
 ```js [1-30]
 let o = {
   method: function (param) {
-    console.log("Do something with", param);
+    console.log("Do somethind with", param);
   },
 };
 o.method("icecream"); // ?
