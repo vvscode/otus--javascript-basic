@@ -661,5 +661,3 @@ describe('createCalculatorUI', () => {
 <!-- s -->
 
 Опрос о занятии
-
-[https://otus.ru/polls/16695/](https://otus.ru/polls/16695/)

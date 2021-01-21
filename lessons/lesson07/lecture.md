@@ -428,7 +428,7 @@ npx mrm lint-staged
 
 <!-- s -->
 
-Опрос о занятии: [https://otus.ru/polls/16697/](https://otus.ru/polls/16697/)
+Опрос о занятии
 
 <!-- s -->
 

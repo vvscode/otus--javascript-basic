@@ -490,5 +490,3 @@ console.log(jsonData);
 <!-- s -->
 
 Опрос о занятии
-
-[https://otus.ru/polls/16694/](https://otus.ru/polls/16694/)
