@@ -194,6 +194,42 @@ function getCityMap(city) {
 
 <!-- s -->
 
+### Установка, настройка и запуск Typescript
+
+<!-- v -->
+
+1. Создать новый npm-проект
+1. Установить пакет [`typescript`](https://www.npmjs.com/package/typescript)
+1. Инициализировать конфигурацию для Typescript
+1. Создать файлы
+1. Выполнить команду `npx tsc` (Для проверки, без сборки `npx tsc --noEmit`)
+
+<!-- v -->
+
+```bash
+mkdir typescript-test
+cd typescript-test
+
+npm init -y
+
+npm install typescript --save-dev
+
+npx tsc --init
+
+echo "export function x(n: number) { console.log('x with n', n); }" > "x.ts"
+echo "import { x } from './x'; " > "index.ts"
+echo "function y() { x(1); }" >> "index.ts"
+echo "y();" >> "index.ts"
+
+npx tsc
+```
+
+<!-- v -->
+
+### Вопросы?
+
+<!-- s -->
+
 Дополнительные материалы:
 
 - [The TypeScript Handbook (30 минут для быстрого старта)](https://www.typescriptlang.org/docs/handbook/intro.html)
