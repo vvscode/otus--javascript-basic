@@ -481,14 +481,14 @@ TDD и цикл RGR
 В рамках Jest есть такие инструменты (самые частые)
 
 - [`jest.fn()`](https://jestjs.io/docs/en/jest-object#jestfnimplementation) - для создания новых mock-функций
-- [`jest.spy()`](https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname) - для оборачивания в mock-функции существующие методы
+- [`jest.spyOn()`](https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname) - для оборачивания в mock-функции существующие методы
 - [`jest.mock`](https://jestjs.io/docs/ru/jest-object) - для мока модулей (файлов)
 
 </script></section><section data-markdown><script type="text/template">
 
 ```js [1-10]
 it("callFn alerts value entered to prompt", () => {
-  jest.spy(window, "prompt").returnValue("123");
+  jest.spyOn(window, "prompt").returnValue("123");
   window.alert = jest.fn();
   expect(window.alert).toHaveBeenCalledWith("123");
 });
@@ -509,7 +509,7 @@ afterEach(() => {
 });
 
 it("callFn alerts value entered to prompt", () => {
-  jest.spy(window, "prompt").returnValue("123");
+  jest.spyOn(window, "prompt").returnValue("123");
   expect(window.alert).toHaveBeenCalledWith("123");
 });
 ```
