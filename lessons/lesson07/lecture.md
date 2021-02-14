@@ -307,7 +307,7 @@ npm i prettier -D
 Ставим [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier)
 
 ```bash
-npm eslint-config-prettier -D
+npm i eslint-config-prettier -D
 ```
 
 > Then, add eslint-config-prettier to the "extends" array in your .eslintrc.\* file. **Make sure to put it last**, so it gets the chance to override other configs.
