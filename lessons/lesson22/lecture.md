@@ -80,6 +80,12 @@ function hasDuplicates(arr) {
 }
 ```
 
+Более короткий вариант
+
+```js [1-30]
+new Set(arr).values().length === arr.length;
+```
+
 <!-- v -->
 
 - если результат чистой функции не используется, её вызов может быть удалён
@@ -187,6 +193,12 @@ const newPerson = Object.keys(person).reduce((obj, key) => {
   }
   return obj;
 }, {});
+```
+
+Еще вариант:
+
+```js [1-30]
+const { redundantProperty, ...newPerson } = person;
 ```
 
 <!-- v -->
