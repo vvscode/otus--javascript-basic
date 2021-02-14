@@ -1,6 +1,6 @@
 ---
 title: Занятие 22
-description: ООП
+description: ФП
 ---
 
 # OTUS
@@ -169,7 +169,7 @@ console.log(newPerson); // { name: 'John', age: 30 }
 target = JSON.parse(JSON.stringify(source));
 ```
 
-ВАЖНО! JSON.stringify упадет, если будут циклические зависимости
+ВАЖНО! JSON.stringify упадет, если будут циклические зависимости, а также не будет копировать методы.
 
 <!-- v -->
 
