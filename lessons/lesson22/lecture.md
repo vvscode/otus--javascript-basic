@@ -1,6 +1,6 @@
 ---
 title: Занятие 22
-description: ООП
+description: ФП
 ---
 
 # OTUS
@@ -21,6 +21,7 @@ description: ООП
 - Функции высшего порядка
 - Декларативный VS императивный подходы
 - Семантика методов массива
+- Композиция и каррирование
 
 <!-- s -->
 
@@ -28,7 +29,7 @@ description: ООП
 
 <!-- v -->
 
-**Функциона́льное программи́рование (ФП)** — предполагает обходиться вычислением результатов функций от исходных данных и результатов других функций, и не предполагает явного хранения состояния программы. Соответственно, не предполагает оно и изменяемости этого состояния.
+**Функциональное программирование (ФП)** — предполагает обходиться вычислением результатов функций от исходных данных и результатов других функций, и не предполагает явного хранения состояния программы. Соответственно, не предполагает оно и изменяемости этого состояния.
 
 <!-- v -->
 
@@ -38,7 +39,7 @@ description: ООП
 
 <!-- s -->
 
-### Чистые функции
+## Чистые функции
 
 <!-- v -->
 
@@ -79,6 +80,12 @@ function hasDuplicates(arr) {
 }
 ```
 
+Более короткий вариант
+
+```js [1-30]
+new Set(arr).values().length === arr.length;
+```
+
 <!-- v -->
 
 - если результат чистой функции не используется, её вызов может быть удалён
@@ -93,7 +100,7 @@ function hasDuplicates(arr) {
 
 <!-- s -->
 
-### Immutable data
+## Immutable data
 
 <!-- v -->
 
@@ -168,7 +175,7 @@ console.log(newPerson); // { name: 'John', age: 30 }
 target = JSON.parse(JSON.stringify(source));
 ```
 
-ВАЖНО! JSON.stringify упадет, если будут циклические зависимости
+ВАЖНО! JSON.stringify упадет, если будут циклические зависимости, а также не будет копировать методы.
 
 <!-- v -->
 
@@ -186,6 +193,12 @@ const newPerson = Object.keys(person).reduce((obj, key) => {
   }
   return obj;
 }, {});
+```
+
+Еще вариант:
+
+```js [1-30]
+const { redundantProperty, ...newPerson } = person;
 ```
 
 <!-- v -->
@@ -215,7 +228,7 @@ Object.freeze(target);
 
 <!-- s -->
 
-### First class functions
+## First class functions
 
 <!-- v -->
 
@@ -286,11 +299,11 @@ sayArray.forEach((say) => say());
 
 <!-- s -->
 
-### Функции высшего порядка
+## Функции высшего порядка
 
 <!-- v -->
 
-**Фу́нкция вы́сшего поря́дка** — в программировании функция, принимающая в качестве аргументов другие функции или возвращающая другую функцию в качестве результата.
+**Функция высшего порядка** — в программировании функция, принимающая в качестве аргументов другие функции или возвращающая другую функцию в качестве результата.
 
 <!-- v -->
 
@@ -299,7 +312,7 @@ sayArray.forEach((say) => say());
 <!-- v -->
 
 Реализуем? :)
-[Memo](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/fizzbuzz/lessons/lesson01/code/fizzbuzz)
+[Memo](https://codesandbox.io/s/github/acsais/otus--javascript-basic/tree/lesson22/lessons/lesson22/code/memo)
 
 <!-- v -->
 
@@ -307,7 +320,7 @@ sayArray.forEach((say) => say());
 
 <!-- s -->
 
-### Декларативный VS императивный подходы
+## Декларативный VS императивный подходы
 
 <!-- v -->
 
@@ -363,7 +376,7 @@ function add(arr) {
 
 <!-- s -->
 
-### Семантика методов массива
+## Семантика методов массива
 
 <!-- v -->
 
@@ -401,12 +414,114 @@ let newArray = arr.filter(callback(element[, index, [array]])[, thisArg])
 
 <!-- v -->
 
+#### Метод reduce
+
+```js [1-30]
+array.reduce(callback[, initialValue])
+```
+
+```js [1-30]
+callback(accumulator, currentValue);
+```
+
+Пример:
+
+```js [1-30]
+const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+console.log(array1.reduce(reducer, 5)); // 15
+```
+
+<!-- v -->
+
 ### Вопросы?
 
 <!-- s -->
 
+## Композиция и каррирование
+
+<!-- v -->
+
+**Композиция** - создание сложной функциональности за счет объединения более простых функций.
+
+<!-- v -->
+
+#### Пример
+
+`upperCase` - возьмет строку и вернет её в верхнем регистре
+
+`exclaim` - возьмет строку и добавит восклицательный знак
+
+`repeat` - возьмет строку и утроит её, добавив пробел между ними
+
+```js [1-30]
+const upperCase = (str) => str.toUpperCase();
+const exclaim = (str) => `${str}!`;
+const repeat = (str) => `${str} `.repeat(3);
+```
+
+<!-- v -->
+
+Исходная строка «I love coding»
+
+```js [1-30]
+const upperCase = (str) => str.toUpperCase();
+const exclaim = (str) => `${str}!`;
+const repeat = (str) => `${str} `.repeat(3);
+
+console.log(
+  repeat(exclaim(upperCase("I love coding"))) // I LOVE CODING! I LOVE CODING! I LOVE CODING!
+);
+```
+
+Проблема - вызов получился длинным и трудным для чтения
+
+<!-- v -->
+
+Создадим функцию `compose`, которая должна работать следующим образом:
+
+```js [1-30]
+const withСompose = compose(upperCase, exclaim, repeat);
+
+console.log(withСompose("I love coding")); // I LOVE CODING! I LOVE CODING! I LOVE CODING!
+```
+
+[Compose](https://codesandbox.io/s/github/acsais/otus--javascript-basic/tree/lesson22/lessons/lesson22/code/compose)
+
+<!-- v -->
+
+**Каррирование** – это трансформация функций таким образом, чтобы они принимали аргументы не как f(a, b, c), а как f(a)(b)(c).
+
+<!-- v -->
+
+Пример:
+
+```js [1-30]
+function curry(f) {
+  // curry(f) выполняет каррирование
+  return function (a) {
+    return function (b) {
+      return f(a, b);
+    };
+  };
+}
+
+// использование
+function sum(a, b) {
+  return a + b;
+}
+
+let carriedSum = curry(sum);
+
+alert(carriedSum(1)(2)); // 3
+```
+
+<!-- s -->
+<!-- v -->
+
 Дополнительные материалы:
-TBD
+[Методы и свойства массивов](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype)
+[Методы и свойства объектов](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype)
 
 <!-- v -->
 
