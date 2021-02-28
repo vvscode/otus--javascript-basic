@@ -26,7 +26,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,html,css,md,yml,yaml}": "prettier --write",
+    "*.{js,json,html,css,md,yml,yaml,ts,tsx}": "prettier --write",
     "*.md": "yaspeller"
   }
 }
