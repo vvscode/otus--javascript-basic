@@ -1,19 +1,16 @@
 export class Form {
-  _textInput: HTMLInputElement;
-  _submitButton: HTMLButtonElement;
-  _handleAdd: () => void;
-  constructor(textInput: HTMLInputElement, submitButton: HTMLButtonElement) {
-    this._textInput = textInput;
-    this._submitButton = submitButton;
-    this._handleAdd = () => {};
-  }
+  constructor(
+    private textInput: HTMLInputElement,
+    private submitButton: HTMLButtonElement,
+    private handleAdd = () => {}
+  ) {}
   static textInput = document.querySelector(".form__input");
   static submitButton = document.querySelector(".form__submit");
   setAddHandler(cb: (value: string) => void) {
-    this._handleAdd = () => {
-      cb(this._textInput.value);
-      this._textInput.value = "";
+    this.handleAdd = () => {
+      cb(this.textInput.value);
+      this.textInput.value = "";
     };
-    this._submitButton.addEventListener("click", this._handleAdd.bind(this));
+    this.submitButton.addEventListener("click", this.handleAdd);
   }
 }

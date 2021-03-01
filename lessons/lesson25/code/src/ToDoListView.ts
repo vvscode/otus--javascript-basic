@@ -7,22 +7,22 @@ type Props = {
   submitButton: HTMLButtonElement;
 };
 export class ToDoListView {
-  _list: List;
-  _form: Form;
+  private list: List;
+  private form: Form;
   constructor({ ul, textInput, submitButton }: Props) {
-    this._list = new List(ul);
-    this._form = new Form(textInput, submitButton);
+    this.list = new List(ul);
+    this.form = new Form(textInput, submitButton);
   }
 
   setDeleteHanlder(cb: (event: any) => void) {
-    this._list.setDeleteHanlder(cb);
+    this.list.setDeleteHanlder(cb);
   }
 
   setAddHandler(cb: (value: string) => void) {
-    this._form.setAddHandler(cb);
+    this.form.setAddHandler(cb);
   }
 
   render(data: string[]) {
-    this._list.render(data);
+    this.list.render(data);
   }
 }

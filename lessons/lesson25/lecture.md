@@ -270,6 +270,10 @@ class Connection {
 
 [Weather](https://github.com/vvscode/otus--javascript-basic/blob/0eb4ce2297ff0ef45aa60d03216166d88ebbd4a0/lessons/lesson09/lecture.md)
 
+<!-- v -->
+
+### Вопросы?
+
 <!-- s -->
 
 ## Разбиение на MVC
@@ -289,6 +293,10 @@ class Connection {
 <!-- v -->
 
 ![MVC](/images/MVC-Process.png)
+
+<!-- v -->
+
+### Вопросы?
 
 <!-- s -->
 
@@ -339,21 +347,29 @@ class Connection {
 Представим, что нам нужно реализовать простой `ToDo` лист.
 ![ToDo List](/images/todolist.png)
 
+- Какие компоненты будут у приложения?
+- Какие слои?
+- Как разделить функционал?
 <!-- v -->
 
 [Код](https://codesandbox.io/s/github/acsais/otus--javascript-basic/tree/lesson25/lessons/lesson25/code)
 
+<!-- v -->
+
+Разберем по компонентам и слоям
+[Игра жизнь](https://github.com/vvscode/otus--javascript-basic/blob/7220c09094fb760e4d25cc246d271b593d185f19/lessons/lesson20/lecture.md#%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5)
+
 <!-- s -->
+
+[ДЗ](https://github.com/vvscode/js--base-course/tree/master/04/ht)
+
+<!-- v -->
 
 Дополнительные материалы:
 
 [Shadow dom](https://learn.javascript.ru/shadow-dom)
 
 [Пользовательские элементы](https://developer.mozilla.org/ru/docs/Web/Web_Components/Using_custom_elements)
-
-<!-- v -->
-
-[ДЗ](https://github.com/vvscode/js--base-course/tree/master/04/ht)
 
 <!-- v -->
 

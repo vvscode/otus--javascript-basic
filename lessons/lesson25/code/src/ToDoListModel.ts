@@ -1,15 +1,12 @@
 export class ToDoListModel {
-  _list: string[];
-  constructor() {
-    this._list = ["one", "two", "three"];
-  }
+  private list: string[] = ["one", "two", "three"];
   async delete(index: string) {
-    this._list.splice(+index, 1);
+    this.list.splice(+index, 1);
   }
   async add(item: string) {
-    this._list.push(item);
+    this.list.push(item);
   }
   async getList() {
-    return this._list;
+    return this.list;
   }
 }

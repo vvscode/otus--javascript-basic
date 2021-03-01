@@ -2,20 +2,19 @@ import { ToDoListModel } from "./ToDoListModel";
 import { ToDoListView } from "./ToDoListView";
 
 export class ToDoListController {
-  _model: ToDoListModel;
-  _view: ToDoListView;
-  constructor(model: ToDoListModel, view: ToDoListView) {
-    this._model = model;
-    this._view = view;
-    this._view.setDeleteHanlder(this._handleDelete.bind(this));
-    this._view.setAddHandler((value: string) => {
-      this._model.add(value);
-      this._model.getList().then((data) => this._view.render(data));
+  constructor(private model: ToDoListModel, private view: ToDoListView) {
+    this.view.setDeleteHanlder(this.handleDelete);
+    this.view.setAddHandler((value: string) => {
+      this.model.add(value);
+      this.render();
     });
-    this._model.getList().then((data) => this._view.render(data));
+    this.render();
   }
-  _handleDelete(event: any) {
-    this._model.delete(event.target.parentNode.id);
-    this._model.getList().then((data) => this._view.render(data));
+  private handleDelete = (event: any) => {
+    this.model.delete(event.target.parentNode.id);
+    this.render();
+  };
+  private render() {
+    this.model.getList().then((data) => this.view.render(data));
   }
 }
