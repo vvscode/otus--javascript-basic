@@ -96,6 +96,24 @@ plugins: [
 
 <!-- v -->
 
+**Задача:** иметь несколько файлов, в которых можно работать с версткой (работа с многостраничным сайтом)
+
+**Решения:**
+
+- использование шаблонизаторов (например [handlebars](https://www.npmjs.com/package/handlebars-webpack-plugin), [pug](https://www.npmjs.com/package/html-webpack-pug-plugin) и т.п.)
+- настройка [множественных шаблонов](https://github.com/vvscode/env-setup/pull/7/commits/6d77229161e76b1e5c1033e7b5cab9f0e438cc6c)
+
+<!-- v -->
+
+**Задача:** избавиться от дублирования кода в разметке (общие элементы вроде шапки, подвала)
+
+**Решения:**
+
+- использование шаблонизаторов (например [handlebars](https://www.npmjs.com/package/handlebars-webpack-plugin), [pug](https://www.npmjs.com/package/html-webpack-pug-plugin) и т.п.)
+- настройка [html-loader](https://webpack.js.org/loaders/html-loader/) (пример настройки можно посмотреть [здесь](https://github.com/jantimon/html-webpack-plugin/tree/main/examples/custom-template))
+
+<!-- v -->
+
 ### Вопросы?
 
 <!-- s -->
