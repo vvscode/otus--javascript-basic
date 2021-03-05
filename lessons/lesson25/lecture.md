@@ -361,10 +361,6 @@ class Connection {
 
 <!-- s -->
 
-[ДЗ](https://github.com/vvscode/js--base-course/tree/master/04/ht)
-
-<!-- v -->
-
 Дополнительные материалы:
 
 [Shadow dom](https://learn.javascript.ru/shadow-dom)
