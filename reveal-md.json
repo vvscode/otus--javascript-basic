@@ -3,5 +3,6 @@
   "verticalSeparator": "<!--\\s*v\\s*-->",
   "theme": "white",
   "watch": true,
-  "css": ".reveal-md/styles.css"
+  "css": ".reveal-md/styles.css",
+  "listingTemplate": ".reveal-md/listing.html"
 }
