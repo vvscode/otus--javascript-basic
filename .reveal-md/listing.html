@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="{{{themeUrl}}}" id="theme" />
+  </head>
+
+  <body>
+    <ul>
+      {{#files}}
+      <li>
+        <a href="{{filePath}}" title="{{title}} - {{description}}">
+          {{#title}}{{.}}
+          ({{filePath}}){{/title}}{{^title}}{{filePath}}{{/title}} -
+          {{description}}
+        </a>
+      </li>
+      {{/files}}
+    </ul>
+  </body>
+</html>
