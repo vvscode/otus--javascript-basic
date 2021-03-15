@@ -311,7 +311,7 @@ console.log(
 
 <!-- s -->
 
-[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/master/lessons/lesson31/code/templatePractice)
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/master/lessons/lesson31/code/code/templatePractice)
 
 Написать шаблонизатор, который поддерживает подстановку данных. Использовать регулярные выражения.
 
