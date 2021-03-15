@@ -18,7 +18,7 @@ describe("template", () => {
     });
 
     it("puts empty string into placeholders in no data provided", () => {
-      expect(template("Hi, {{SURNAME}}", data)).toBe("Hi, ");
+      expect(template("Hi, {{NAME}} {{SURNAME}}", data)).toBe("Hi, Bob ");
     });
 
     it("replaces all placeholders", () => {
