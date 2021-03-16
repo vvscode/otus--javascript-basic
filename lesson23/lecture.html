@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 23</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+### Проверка
+
+- Хорошо ли видно и слышно?
+- Проверить идёт ли запись
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Анимации в HTML страницах
+
+</script></section><section data-markdown><script type="text/template">
+
+## Цели занятия
+
+- Разобраться с основными подходами реализации интерактивных страниц
+- Разобрать разницу между CSS и JS анимациями
+
+</script></section><section data-markdown><script type="text/template">
+
+## Маршрут вебинара
+
+- Введение
+- CSS Анимации
+- JS Анимации
+- Практика
+- Итоги
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+## Введение
+
+- CSS Анимации
+  - CSS Animations && CSS Transitions
+- JS Анимации
+  - `requestAnimationFrame()`
+  - Web Animations API
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+## CSS Transitions
+
+</script></section><section data-markdown><script type="text/template">
+
+## CSS Transitions
+
+CSS Properties
+
+```css
+/* property name. ex: width, height, color, background-color, etc */
+transition-property: opacity;
+
+/* length of the transition. Ex: 1s, 300ms */
+transition-duration: 0.3s;
+
+/* Timing function. Ex: linear, step-end*/
+transition-timing-function: ease-in-out;
+
+/* Time to wait before starting transition animation */
+transition-delay: 200ms;
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## CSS Transitions
+
+Shorthand Syntax
+
+```css
+/* shorthand syntax */
+transition: <property> <duration> <timing-function> <delay>;
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## [CSS Transitions example](https://jsfiddle.net/hpdr2wxg/2/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## CSS Animations
+
+</script></section><section data-markdown><script type="text/template">
+
+## CSS Animations
+
+CSS Properties. Define animation
+
+```css
+@keyframes my-animation {
+  from: {
+    /* initial CSS */
+    width: 100px;
+  }
+  to: {
+    /* final CSS */
+    width: 1000px;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## CSS Animations
+
+CSS Properties. Apply animation
+
+```css
+animation-name: my-animation; /* name of the @keyframe at-rule */
+animation-duration: 1s; /* Length of the animation */
+animation-delay: 100ms; /* Time to wait before starting animation */
+animation-iteration-count: infinite; /* Number of times the animation should repeat */
+animation-direction: normal; /* Ex: reverse, alternate, aleternate-revers */
+animation-timing-function: linear; /* Timing function. Ex: linear, step-end*/
+animation-fill-mode: none; /* Ex: forwards, backwards, both */
+animation-play-state: running; /* Sets whether an animation is running or paused*/
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## CSS Animations
+
+Shorthand Syntax
+
+```css
+animation: <duration> | <easing-function> | <delay> | <iteration-count> |
+  <direction> | <fill-mode> | <play-state> | <name>;
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## [CSS Animations Example](https://jsfiddle.net/rav57b8h/1/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+## JS Анимации
+
+- `requestAnimationFrame()`
+- Web Animations API
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+## <code>[requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)</code>
+
+- \*[Reflow/Repaint](https://dev.to/gopal1996/understanding-reflow-and-repaint-in-the-browser-1jbg)
+- Альтернатива setTimeout. Отличия:
+  - Хорошо оптимизирована, более гладкие анимации
+  - Ставится на паузу, если страница не активна
+
+```js
+function animationStep() {
+  // ...
+  window.requestAnimationFrame(animationStep);
+}
+
+window.requestAnimationFrame(animationStep);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## [<code>requestAnimationFrame() Example</code>](https://jsfiddle.net/edqyntx1/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API)
+
+- Удобная/новая альтернатива "`requestAnimationFrame()`"
+- Позволяет создавать управляемые анимации с помощью JS
+
+</script></section><section data-markdown><script type="text/template">
+
+## [Web Animations API Example](https://jsfiddle.net/7wut1nsb/42/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+## [Практика](https://jsfiddle.net/4njbLh1f/)
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+## Итоги - Тезисы
+
+- В большинстве случаев достаточно CSS Animations
+
+  - Для переходов состояний используем "CSS Transitions"
+  - Для анимаций элементов используем "CSS Animations"
+
+- Для более сложных анимаций используем JS
+  - requestAnimationFrame()
+  - Web Animation API - Новая альтернатива "requestAnimationFrame()"
+  </script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+## Спасибо за внимание!
+
+[Ccылка на опрос](https://otus.ru/polls/20350/)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":true,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
