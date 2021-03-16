@@ -165,5 +165,12 @@ module.exports = {
     "шаблонизатор(.*)",
     "энтерпрайзного",
     "Юзабилити",
+    "переиспользовать",
+    "кастомные",
+    "Ccылка",
+    "bundlers",
+    "requestAnimationFrame",
+    "setTimeout",
+    "Reflow",
   ],
 };

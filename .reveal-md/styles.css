@@ -5,3 +5,7 @@
 .reveal pre code {
   max-height: 80%;
 }
+
+* {
+  font-family: Helvetica, sans-serif !important;
+}
