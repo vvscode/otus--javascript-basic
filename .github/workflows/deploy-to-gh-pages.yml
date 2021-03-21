@@ -18,6 +18,7 @@ jobs:
       - name: Build
         run: |
           npx reveal-md lessons/ --static dist
+          rsync -a -r lessons/ dist/
 
       - name: Deploy
         # https://github.com/marketplace/actions/deploy-to-github-pages
