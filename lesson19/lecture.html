@@ -122,12 +122,20 @@
 </script></section><section data-markdown><script type="text/template">
 
 ```ts
-function getCityMap(city: string) {
+function getCityMap(city) {
   return `https://map.com?q=${city}`;
 }
 ```
 
 Что с этим кодом может пойти не так?
+
+</script></section><section data-markdown><script type="text/template">
+
+```ts
+function getCityMap(city: string): string {
+  return `https://map.com?q=${city}`;
+}
+```
 
 </script></section><section data-markdown><script type="text/template">
 
