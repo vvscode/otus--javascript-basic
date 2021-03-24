@@ -337,7 +337,7 @@ type CombineReducer<ReducersConfig = any, Action = { type: any }> = (
   config: {
     [key in keyof ReducersConfig]: (
       state: ReducersConfig[key] | undefined,
-      Action
+      action: Action
     ) => ReducersConfig[key];
   }
 ) => (
@@ -351,6 +351,10 @@ type CombineReducer<ReducersConfig = any, Action = { type: any }> = (
   [key in keyof ReducersConfig]: ReducersConfig[key];
 };
 ```
+
+</script></section><section data-markdown><script type="text/template">
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/master/lessons/lesson34/code/combineReducers)
 
 </script></section><section data-markdown><script type="text/template">
 
