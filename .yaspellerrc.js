@@ -172,5 +172,7 @@ module.exports = {
     "D elete",
     "R ead",
     "U pdate",
+    "Самодокументированность",
+    "Pinterest",
   ],
 };
