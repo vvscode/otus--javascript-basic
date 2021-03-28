@@ -106,12 +106,20 @@ description: Различие между стандартами языка, ин
 <!-- v -->
 
 ```ts
-function getCityMap(city: string) {
+function getCityMap(city) {
   return `https://map.com?q=${city}`;
 }
 ```
 
 Что с этим кодом может пойти не так?
+
+<!-- v -->
+
+```ts
+function getCityMap(city: string): string {
+  return `https://map.com?q=${city}`;
+}
+```
 
 <!-- v -->
 
