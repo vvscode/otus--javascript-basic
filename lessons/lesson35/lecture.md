@@ -94,7 +94,8 @@ Stripe API представляет пользователей (customers), ра
 - **5XX** ошибки на стороне сервера
   <!-- v -->
   CRUD операции, HTTP глаголы и REST соглашения
-  ![CRUD операции, HTTP глаголы, and REST соглашения](/images/REST_CRUD_operations.png)
+
+<img src="./images/REST_CRUD_operations.png" alt="CRUD операции, HTTP глаголы, and REST соглашения">
   <!-- v -->
   HTTP-запрос для получение платежа через Stripe API
 
@@ -147,7 +148,7 @@ PATCH /repos/:owner/:repo/issues/:number
 <!-- v -->
 
 А что если нужно больше 4 видов операций? Например, архивировать репозиторий
-![Архивировать репозиторий](/images/Archive_repo.png)
+<img src="./images/Archive_repo.png" alt="Архивировать репозиторий">
 
 <!-- v -->
 
@@ -222,9 +223,7 @@ Authorization: Bearer xoxp-1650112-jgc2asDae
 API позволяет выполнять несколько действий, таких как архивирование, присоединение, удаление, выход и переименование. Хотя в этом случае есть явный «ресурс», не все эти действия хорошо вписываются в шаблон REST.
 
 <!-- v -->
-
-![Slack conversation API](/images/slack_conversation_API.png)
-
+<img src="./images/slack_conversation_API.png" alt="Slack conversation API">
 <!-- s -->
 
 ### GraphQL
