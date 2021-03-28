@@ -161,7 +161,7 @@ const sam = new GreetablePerson("Sam");
 
 <!-- v -->
 
-![Slicing: MVC, Components etc.](/images/slicing.png)
+<img src="./images/slicing.png" title="Slicing: MVC, Components etc." />
 
 <!-- v -->
 
