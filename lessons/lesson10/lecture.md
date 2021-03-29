@@ -122,7 +122,7 @@ setTimeout(() => {
 
 Проблема функций обратного вызова - callback hell
 
-![Callback hell](images/callbackhell.png)
+<img src="images/callbackhell.png" title="Callback hell" />
 
 <!-- v -->
 

@@ -292,7 +292,7 @@ class Connection {
 
 <!-- v -->
 
-![MVC](/images/MVC-Process.png)
+<img src="./images/MVC-Process.png" title="MVC" />
 
 <!-- v -->
 
@@ -304,14 +304,14 @@ class Connection {
 
 <!-- v -->
 
-![MKC](/images/MKC.jpg)
+<img src="./images/MKC.jpg" title="MKC" />
 
 Это международная космическая станция (МКС).
 
 <!-- v -->
 
 А это то, как она устроена (приблизительно):
-![MKC](/images/MKC_components.jpg)
+<img src="./images/MKC_components.jpg" title="MKC" />
 
 <!-- v -->
 
@@ -345,7 +345,7 @@ class Connection {
 <!-- v -->
 
 Представим, что нам нужно реализовать простой `ToDo` лист.
-![ToDo List](/images/todolist.png)
+<img src="./images/todolist.png" title="ToDo List" />
 
 <!-- v -->
 
