@@ -11,7 +11,7 @@ description: Описание процессов, как задавать воп
 
 ### Обо мне
 
-![@vvscode](https://avatars0.githubusercontent.com/u/6904368?s=230&u=6218c2bfbb54568018387a9149035f9b6724c111&v=4)
+<img src="https://avatars0.githubusercontent.com/u/6904368?s=230&u=6218c2bfbb54568018387a9149035f9b6724c111&v=4" title="@vvscode" />
 
 Василий Ванчук ([Li](https://www.linkedin.com/in/vvanchuk/)/[Yt](https://www.youtube.com/watch?v=Q5sQGV-n7xU&list=PLX3Jlot18dp4-a9a6B6DP0fYF3R1jjN4K))
 

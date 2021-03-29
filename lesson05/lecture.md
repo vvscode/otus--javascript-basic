@@ -79,7 +79,7 @@ description: Тестирование кода как часть процесс�
 
 [Пирамида тестирования](https://habr.com/ru/post/358950/)
 
-![Пирамида тестирования](https://habrastorage.org/getpro/habr/post_images/f6c/930/f2d/f6c930f2d4ae8a6068696ace34e9566e.png)
+<img src="https://habrastorage.org/getpro/habr/post_images/f6c/930/f2d/f6c930f2d4ae8a6068696ace34e9566e.png" title="Пирамида тестирования" />
 
 <!-- v -->
 
@@ -113,13 +113,13 @@ description: Тестирование кода как часть процесс�
 
 Но при этом их не достаточно:
 
-![Unit tests](http://ilkinulas.github.io/assets/integration_tests/no_integration_test.gif)
+<img src="http://ilkinulas.github.io/assets/integration_tests/no_integration_test.gif" title="Unit tests" />
 
 <!-- v -->
 
 И они не покрывают интеграцию частей
 
-![Unit tests](https://i.imgur.com/HkWPc1u.gif)
+<img src="https://i.imgur.com/HkWPc1u.gif" title="Unit tests" />
 
 <!-- v -->
 

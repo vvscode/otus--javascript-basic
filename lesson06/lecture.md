@@ -70,7 +70,7 @@ description: "Использование СКВ: проблемы и решен�
 git show 8d02d0fb279f7ae7bfc203642b00b48395412de5
 ```
 
-![git show](./images/git_show.png)
+<img src="./images/git_show.png" title="git show" />
 
 <!-- v -->
 
