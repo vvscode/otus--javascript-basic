@@ -247,12 +247,12 @@ class Modem {
 
 ```js [1-30]
 class DataChannel {
-  function dial(){}
-  function hangup() {}
+  dial() {}
+  hangup() {}
 }
 class Connection {
-  function send(request) {}
-  function receive() {}
+  send(request) {}
+  receive() {}
 }
 ```
 
@@ -346,6 +346,8 @@ class Connection {
 
 Представим, что нам нужно реализовать простой `ToDo` лист.
 <img src="./images/todolist.png" title="ToDo List" />
+
+<!-- v -->
 
 - Какие компоненты будут у приложения?
 - Какие слои?
