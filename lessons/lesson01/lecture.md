@@ -57,6 +57,20 @@ description: Описание процессов, как задавать воп
 
 На лекциях во всю действует [принцип Парето](https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%BA%D0%BE%D0%BD_%D0%9F%D0%B0%D1%80%D0%B5%D1%82%D0%BE). Мы рассказываем ключевые вещи
 
+<!-- v -->
+
+Для работы со знание полезны пара ссылок:
+
+- [Метод интервального повторения — лучший способ изучения языков программирования](https://habr.com/ru/post/196448/)
+- [Преимущества метода интервального запоминания](http://web.archive.org/web/20170315102949/https://habrahabr.ru/company/everydaytools/blog/322286/)
+
+<!-- v -->
+
+И приложения на телефоне будут полезны:
+
+- Enki [ios](https://apps.apple.com/us/app/enki-learn-code-data-skills/id993753145) / [android](https://play.google.com/store/apps/details?id=com.enki.insights&hl=ru&gl=US)
+- Solo Learn [ios](https://apps.apple.com/us/app/sololearn-learn-to-code/id1210079064) / [android](https://play.google.com/store/apps/details?id=com.sololearn&hl=ru&gl=US)
+
 <!--v-->
 
 Две крайности в задавании вопросов:
