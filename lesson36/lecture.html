@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 36</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+## Публикация проектов - npm, github
+
+</script></section><section data-markdown><script type="text/template">
+
+### План вебинара:
+
+- NPM
+- пакеты и модули
+- публикация пакета на npm
+- github workflow
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+# NPM
+
+</script></section><section data-markdown><script type="text/template">
+
+### NPM - CLI (Command-line interface/input)
+
+- npm init
+- npm install
+- npm uninstall
+- ...
+
+</script></section><section data-markdown><script type="text/template">
+
+## NPM - Хранилище/реестр ([registry](https://registry.npmjs.org))
+
+</script></section><section data-markdown><script type="text/template">
+
+## NPM - Коммьюнити
+
+npm <3 это мы
+
+</script></section><section data-markdown><script type="text/template">
+
+## NPM - [Веб-сайт](https://www.npmjs.com/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## NPM - Компания (npm, Inc)
+
+</script></section><section data-markdown><script type="text/template">
+
+# Пакеты и модули
+
+</script></section><section data-markdown><script type="text/template">
+
+### Пакет
+
+Файл или директория, описываемая с помощью **package.json**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Форматы пакетов
+
+- (a) `папка`, содержащая программу, описанную в package.json
+- (b) `gzipped tar aрхив`, содержащий (a).
+- (с) `URL адрес`, ведущий к (b).
+- (d) **`<name>@<version>`** опубликованное в реестре с (c).
+- (e) **`<name>@<tag>`** указывающая на (d).
+- (f) **`<name>`** c тэгом **latest**, удовлетворяющем (e).
+- (g) `git адрес`, который, будучи cклонированным, является (a).
+
+</script></section><section data-markdown><script type="text/template">
+
+### Git URL форматы пакетов
+
+- git://github.com/user/project.git#commit-ish
+- git+ssh://user@hostname:project.git#commit-ish
+- git+http://user@hostname/project/blah.git#commit-ish
+- git+https://user@hostname/project/blah.git#commit-ish
+
+где **commit-ish** - тэг, хэш или любой аргумент принимаемый **git checkout**  
+значение по умолчанию для commit-ish - **master**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Модуль
+
+Файл или директория в **node_modules**, который может быть загружен с помощью Node.js функции **require()**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Модулем может являться:
+
+- директория с package.json, содержащей поле **"main"**
+- JavaScript файл
+
+**так как для модуля не является необходимым наличие package.json, модуль - это не всегда пакет!**
+
+</script></section><section data-markdown><script type="text/template">
+
+## Пространства имён (scopes)
+
+При регистрации npm аккаунта каждому пользователю автоматически предоставляется определённый **scope** или **пространство имён**, совпадающие с **именем** пользователя, используемое для связанных с ним пакетов
+
+**@username**/package-name
+
+</script></section><section data-markdown><script type="text/template">
+
+### Пространства имён и уровни доступа
+
+- пакеты вне пространства имён всегда публичные
+- приватные пакеты всегда находятся в пространстве имён
+- пакеты в пространстве имён являются приватными по умолчанию
+
+чтобы изменить уровень доступа пакета в пространстве имён с приватного на публичный нужно использовать специальный флаг при его публикации с помощью CLI
+
+**npm publish** _--access public_
+
+</script></section><section data-markdown><script type="text/template">
+
+### package.json
+
+- отображает список пакетов необходимых для проекта
+- определяет версии пакетов, от которых зависит проект используя **семвер** (семантическое версионирование)
+- позволяет вашему билду быть репродуцируемым (воспроизводимым), тем самым простым для совместного использования разработчиками
+- отражает другую полезную мета-информацию
+
+</script></section><section data-markdown><script type="text/template">
+
+### Поля package.json
+
+**Обязательные:**
+
+- **name** - содержит имя пакета, должно начинаться со строчной буквы и являться одним словом, может содержать тире и нижние подчёркивания
+- **version** - должно быть в форме **x.x.x** согласно семвер
+
+Дополнительные:
+
+- _author_ - имя разработчика
+- _description_ - описание проекта
+- _keywords_ - ключевые слова, с помощью которых пользователи могут найти ваш пакет в реестре с помощью **npm search**
+- _homepage_ - домашний адрес проекта
+- _license_ - лицензия
+- ...
+
+</script></section><section data-markdown><script type="text/template">
+
+### Особые поля при работе с пакетами
+
+- **main** - ID модуля, который является входной точкой программы. В случае когда пользователь устанавливает его и делает **require('имя_модуля')** экспортируемый объект из модуля будет возвращён. Значение по умолчанию **index.js**. **!!!Необходимо для корректной работы модуля**
+- **files** - массив, представляющий собой набор паттернов, описывающих пути к файлам, необходимым для включения в пакет. **package.json** будет включён в пакет, независимо от наличия в files!
+- **private** - значение этого поля `true` отключает возможность npm публиковать пакет
+
+</script></section><section data-markdown><script type="text/template">
+
+### Инициализация package.json
+
+**npm init**  
+**npm init** _--scope=@my-username_  
+**npm init** _--yes_
+
+переопределение свойств используемых по умолчанию
+
+```js
+> npm set init.author.email "example-user@example.com"
+> npm set init.author.name "example_user"
+> npm set init.license "MIT"
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Публикация пакета
+
+**npm publish**
+
+!!!Строго рекомендуется убирать важную информацию, такую как: пароли, приватные ключи и т.д.
+
+**.gitignore**  
+**.npmignore**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Хранилища/реестры
+
+- [npm](https://registry.npmjs.org)
+- [github](https://github.com/features/packages)
+- [docker](https://docs.docker.com/registry/)
+- ...
+
+**npm config set registry** *https://registry.your-registry.npme.io/*  
+файл [.npmrc](https://docs.npmjs.com/configuring-your-registry-settings-as-an-npm-enterprise-user)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Установка пакета
+
+**npm install** _my-package_  
+**npm install** _@username/my-package_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Обновление версии пакета
+
+**npm version** _`<version_type>`_  
+**npm publish**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Семантическое версионирование
+
+- **МАЖОРНАЯ версия 2.x.x**, когда сделаны обратно несовместимые изменения API.
+- **МИНОРНАЯ версия x.1.x**, когда вы добавляете новую функциональность, не нарушая обратной совместимости.
+- **ПАТЧ-версия x.x.1**, когда вы делаете обратно совместимые исправления.
+
+</script></section><section data-markdown><script type="text/template">
+
+**Спецсимволы**
+
+**`~`** - обновление патч-версии с исходной минорной  
+**`^`** - обновление минорной версии с исходной мажорной  
+**`*`** - любая версия  
+**`latest`** - последний релиз
+
+</script></section><section data-markdown><script type="text/template">
+
+## Практика
+
+### Создаём и публикуем свой пакет!
+
+</script></section><section data-markdown><script type="text/template">
+
+## Github Workflow
+
+### для публикации своего пакета на npm
+
+</script></section><section data-markdown><script type="text/template">
+
+## Материалы
+
+- [пакеты и модули](https://docs.npmjs.com/packages-and-modules)
+- [поля package.json](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
+- [npm команды](https://docs.npmjs.com/cli/v7/commands)
+- [семвер npm](https://docs.npmjs.com/about-semantic-versioning)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Домашнее задание
+
+Покрыть тестами и опубликовать свою реализацию redux
+
+1. в репозитории прошлого проекта создать новую ветку
+2. добавить поддержку applyMiddleware
+3. покрыть код тестами
+4. опубликовать пакет
+5. создать новый проект, и за использовать в нем опубликованный пакет (достаточно базовых операций по созданию store, диспатчу пару actions и проверке state)
+
+</script></section><section data-markdown><script type="text/template">
+
+6. опубликовать тестовый проект
+7. выложить ссылку на свой пуллреквест выложить в общий чат
+8. сделать **2** ревью в чужих пуллреквестах
+9. получить **2** ревью в своем пуллреквесте
+10. при найденных багах - создать issues в чужих репозиториях
+11. покрыть тестами и исправить баги найденные другими студентами
+12. ссылку на тестовый проект (на код, и на опубликованную страницу) и на пуллреквест сбросить в чат с преподавателем
+
+</script></section><section data-markdown><script type="text/template">
+
+### Критерии оценки
+
+- есть поддержка applyMiddleware - **3** балла
+- опубликован пакет - **1** балл
+- есть тестовый проект для проверки пакета - **1** балл
+- сделано ревью 2 PR - **1** балл
+- получено 2 ревью - **1** балл
+- создано issue в чужом репозитории - **1** балл за issue (не больше **2**)
+- исправлены issues в своем репозитории (тесты + фикс) - **1** балл за issue (не больше **4**)
+
+**Принято - от 9 баллов**
+
+</script></section><section data-markdown><script type="text/template">
+
+## Спасибо за внимание!
+</script></section></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":true,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
