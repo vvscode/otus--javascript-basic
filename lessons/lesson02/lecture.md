@@ -168,7 +168,7 @@ console.log(confirm("Are you sure?")); // boolean
 ```
 
 ```js [5-30]
-const value = document.getElementById("someInput").input;
+const value = document.getElementById("someInput").value;
 console.log(value);
 ```
 
