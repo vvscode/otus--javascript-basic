@@ -27,6 +27,7 @@ module.exports = {
     "clientId",
     "codesandbox",
     "codestyle",
+    "codewars",
     "combineReducers",
     "configs",
     "createCalculatorUI",
