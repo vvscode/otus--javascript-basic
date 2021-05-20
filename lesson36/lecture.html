@@ -33,7 +33,7 @@
 
 - NPM
 - пакеты и модули
-- публикация пакета на npm
+- практика публикации пакета на npm
 - github workflow
 
 </script></section></section><section ><section data-markdown><script type="text/template">
@@ -51,25 +51,25 @@
 
 </script></section><section data-markdown><script type="text/template">
 
-## NPM - Хранилище/реестр ([registry](https://registry.npmjs.org))
+### NPM - Хранилище/реестр ([registry](https://registry.npmjs.org))
 
 </script></section><section data-markdown><script type="text/template">
 
-## NPM - Коммьюнити
+### NPM - Коммьюнити
 
 npm <3 это мы
 
 </script></section><section data-markdown><script type="text/template">
 
-## NPM - [Веб-сайт](https://www.npmjs.com/)
+### NPM - [Веб-сайт](https://www.npmjs.com/)
 
 </script></section><section data-markdown><script type="text/template">
 
-## NPM - Компания (npm, Inc)
+### NPM - Компания (npm, Inc)
 
 </script></section><section data-markdown><script type="text/template">
 
-# Пакеты и модули
+## Пакеты и модули
 
 </script></section><section data-markdown><script type="text/template">
 
@@ -159,8 +159,8 @@ npm <3 это мы
 - _author_ - имя разработчика
 - _description_ - описание проекта
 - _keywords_ - ключевые слова, с помощью которых пользователи могут найти ваш пакет в реестре с помощью **npm search**
-- _homepage_ - домашний адрес проекта
 - _license_ - лицензия
+- _workspaces_ - список путей к рабочему пространству системы (**npm v7** и выше)
 - ...
 
 </script></section><section data-markdown><script type="text/template">
@@ -217,12 +217,16 @@ npm <3 это мы
 **npm install** _my-package_  
 **npm install** _@username/my-package_
 
+**npm install** _--production_
+
+Установка пакетов из списка зависимостей **транзитивна**, если _`package<A>`_ устанавливается с помощью **npm install** и у него есть в зависимостях _`package<B>`_, то он также будет установлен вместе со своими зависимостями
+
 </script></section><section data-markdown><script type="text/template">
 
-### Обновление версии пакета
+### Удаление пакета
 
-**npm version** _`<version_type>`_  
-**npm publish**
+**npm uninstall** _my-package_  
+**npm uninstall** _@username/my-package_
 
 </script></section><section data-markdown><script type="text/template">
 
@@ -234,14 +238,66 @@ npm <3 это мы
 
 </script></section><section data-markdown><script type="text/template">
 
-**Спецсимволы**
+### Спецсимволы
 
-**`~`** - обновление патч-версии с исходной минорной  
-**`^`** - обновление минорной версии с исходной мажорной  
-**`*`** - любая версия  
-**`latest`** - последний релиз
+- **`~`** - обновление патч-версии с исходной минорной **`1.1.x`** _(если минорная версия не указана, разрешены обновления с исходной мажорной **`1.x.x`**)_
+- **`^`** - обновление минорной версии с исходной мажорной **`1.x.x`**
+- **`*`** - любая версия
+- **`latest`** - последний релиз
+
+[npm semver calculator](https://semver.npmjs.com/)
 
 </script></section><section data-markdown><script type="text/template">
+
+### Обновление версии пакета
+
+**npm version** [ _`<newversion> | major | minor | patch | premajor | preminor...`_ ]  
+**npm publish**
+
+</script></section><section data-markdown><script type="text/template">
+
+### Дистрибутивные теги
+
+Человекочитаемые метки, которые помогают организовать и пометить разные версии публикуемого пакета. Являются своеобразным дополнением к **семвер**
+
+**npm publish** _`--tag <tag>`_  
+npm publish --tag beta
+
+**npm dist-tag add** _`<package-name>@<version> [<tag>]`_  
+npm dist-tag add example-package@1.4.0 stable
+
+</script></section><section data-markdown><script type="text/template">
+
+### README
+
+Для улучшения пользовательского опыта работы с вашим пакетом и его быстрого поиска в реестре, рекомендуется создать в корневой директории **README.md**.
+
+<ins>В него можно включить</ins>:
+
+- _описание вашего пакета, его изменений и обновлений_
+- _конфигурацию_
+- _способы использования_
+- _другую полезную для пользователя информацию_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Прекращение поддержки
+
+**npm deprecate** _`<package-name> "<message>"`_  
+**npm deprecate** _`<package-name>@<version> "<message>"`_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Депубликация пакета
+
+**npm unpublish** _`<package-name>@<version>`_  
+**npm unpublish** _`<package-name> -f`_
+
+</script></section><section data-markdown><script type="text/template">
+
+## Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
 
 ## Практика
 
