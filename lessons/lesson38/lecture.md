@@ -88,9 +88,9 @@ const getStarredRepos = (username: string) => {
 
 ```js [1-30]
 const getStarredRepos = (username: string) => {
-  return fetch(
-    `https://api.github.com/users/${username}/starred`
-  ).then((data) => saveData(data));
+  return fetch(`https://api.github.com/users/${username}/starred`).then(
+    (data) => saveData(data)
+  );
 };
 ```
 
@@ -310,51 +310,55 @@ const middleware = (middlewareApi: MiddlewareApi) => (next) => (action) => {
 <!-- v -->
 
 ```ts [1-30]
-const middleware = (middlewareApi: MiddlewareApi) => (
-  next: (action: AnyAction) => AnyAction
-) => (action) => {
-  // your code
-};
+const middleware =
+  (middlewareApi: MiddlewareApi) =>
+  (next: (action: AnyAction) => AnyAction) =>
+  (action) => {
+    // your code
+  };
 ```
 
 <!-- v -->
 
 ```ts [1-30]
-const middleware = (middlewareApi: MiddlewareApi) => (
-  next: (action: AnyAction) => AnyAction
-) => (action: AnyAction): AnyAction => {
-  // your code
-};
+const middleware =
+  (middlewareApi: MiddlewareApi) =>
+  (next: (action: AnyAction) => AnyAction) =>
+  (action: AnyAction): AnyAction => {
+    // your code
+  };
 ```
 
 <!-- v -->
 
 ```ts [1-30]
-const middleware: Middleware = ({ dispatch, getState }) => (next) => (
-  action
-) => {
-  // Сделать что-то до дальнейшей цепочки
-  const resultAction = next(action);
-  // Сделать что-то после дальнейшей цепочки
-  return resultAction;
-};
+const middleware: Middleware =
+  ({ dispatch, getState }) =>
+  (next) =>
+  (action) => {
+    // Сделать что-то до дальнейшей цепочки
+    const resultAction = next(action);
+    // Сделать что-то после дальнейшей цепочки
+    return resultAction;
+  };
 ```
 
 <!-- v -->
 
 ```ts [1-30]
-const middleware: Middleware = ({ dispatch, getState }) => (next) => (
-  action
-) => {
-  const resultAction = next(action);
+const middleware: Middleware =
+  ({ dispatch, getState }) =>
+  (next) =>
+  (action) => {
+    const resultAction = next(action);
 
-  if (action.type === "BUY_BUTTON_CLICK") {
-    const state = getState();
-    sendAnalytics("buy", { user: state.currentUser });
-  }
+    if (action.type === "BUY_BUTTON_CLICK") {
+      const state = getState();
+      sendAnalytics("buy", { user: state.currentUser });
+    }
 
-  return resultAction;
-};
+    return resultAction;
+  };
 ```
 
 <!-- v -->

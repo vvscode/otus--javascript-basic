@@ -18,9 +18,9 @@ export class ListItem {
       "id",
       index
     );
-    (this.element.querySelector(
-      ".item__delete"
-    ) as HTMLElement).addEventListener("click", deleteHandler);
+    (
+      this.element.querySelector(".item__delete") as HTMLElement
+    ).addEventListener("click", deleteHandler);
   }
   getElement(): HTMLUListElement {
     return this.element;
