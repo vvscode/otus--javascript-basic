@@ -292,19 +292,19 @@ function usersReducer(
 <!-- v -->
 
 ```ts
-const reducer = combineReducers([
+const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
-]);
+});
 ```
 
 <!-- v -->
 
 ```ts
-const reducer = combineReducers([
+const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
-]);
+});
 ```
 
 <!-- v -->
