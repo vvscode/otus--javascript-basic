@@ -235,6 +235,19 @@ const dispatch = (action) => {
 
 ```js [1-30]
 // think
+const username = getCurrentUser(state).username;
+
+dispatch({ type: "LOADING" });
+
+fetch(`https://api.github.com/users/${username}/starred`)
+  .then((data) => dispatch({ type: "SUCCESS", data }))
+  .catch((error) => dispatch({ type: "ERROR", error }));
+```
+
+<!-- v -->
+
+```js [1-30]
+// thunk
 const getStarredReposForCurrentUser = () => {
   const username = getCurrentUser(state).username;
 
@@ -249,7 +262,7 @@ const getStarredReposForCurrentUser = () => {
 <!-- v -->
 
 ```js [1-30]
-// still think (with dependencies)
+// thunk (with dependencies)
 const getStarredReposForCurrentUser = (dispatch, getState) => {
   const username = getCurrentUser(getState()).username;
 
@@ -263,8 +276,26 @@ const getStarredReposForCurrentUser = (dispatch, getState) => {
 
 <!-- v -->
 
+Напомню, мы обычно используем не actions напрямую, а action creators
+
+```ts
+// не
+dispatch({ type: "USERS_LOADED", payload: list });
+
+// а
+dispatch(usersLoaded(list));
+
+// где
+const userLoaded = (payload) => ({
+  type: "USERS_LOADED",
+  payload,
+});
+```
+
+<!-- v -->
+
 ```js [1-30]
-// thunk
+// thunk action creator
 const getStarredReposForCurrentUser = () => (dispatch, getState) => {
   const username = getCurrentUser(getState()).username;
 
