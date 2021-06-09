@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 37</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+## Клиентский роутинг
+
+Как строится одностраничное приложение (SPA)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Проверка
+
+- Хорошо ли видно и слышно?
+- Проверить идёт ли запись
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Клиентский роутинг
+
+Как строится одностраничное приложение (SPA)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Цели занятия
+
+- Разобраться какие API можно использовать для организации SPA
+
+- Научиться создавать клиентский роутинг
+
+</script></section><section data-markdown><script type="text/template">
+
+### Маршрут вебинара
+
+- Введение
+- Hash API
+- History API
+- Router
+- Практика
+- Итоги
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Введение
+
+</script></section><section data-markdown><script type="text/template">
+
+**Что такое URL**
+
+</script></section><section data-markdown><script type="text/template">
+
+> Единый указатель ресурса (англ. [**Uniform Resource Locator**](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL), URL) — единообразный локатор (определитель местонахождения) ресурса.
+
+> Ранее назывался Universal Resource Locator — универсальный указатель ресурса. URL служит стандартизированным способом записи **адреса ресурса в сети Интернет**.
+
+</script></section><section data-markdown><script type="text/template">
+
+```
+scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+```
+
+```
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL#anchor
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[**Что происходит, когда вы вводите URL в браузере**](http://wsvincent.com/what-happens-when-url/)
+
+</script></section><section data-markdown><script type="text/template">
+
+**Что такое клиентский роутинг**
+
+</script></section><section data-markdown><script type="text/template">
+
+> Клиентский роутинг (**client-side routing**) это, когда пользователь перемещается по приложению/веб-сайту, и при этом **не происходит полной перезагрузки страницы**, даже если URL-адрес страницы изменяется. Вместо этого **используется JavaScript для обновления URL-адреса**, а также для извлечения и отображения нового содержимого.
+
+</script></section><section data-markdown><script type="text/template">
+
+**Способы управления URL на клиенте**
+
+</script></section><section data-markdown><script type="text/template">
+
+- Hash API
+- History API
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## `Hash API`
+
+</script></section><section data-markdown><script type="text/template">
+
+\*Старый способ. До появления HTML5.
+
+</script></section><section data-markdown><script type="text/template">
+
+> Способ управления состояниям фрагмента URL
+
+```
+scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+- window.location.hash
+- `window.onhashchange` / `"hashchange"` event
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/vigorous-black-vzbit?file=/index.html)
+
+```js
+document.body.addEventListener("click", (event) => {
+  if (!event.target.matches("a")) {
+    return;
+  }
+  event.preventDefault();
+  let url = event.target.getAttribute("href");
+  location.hash = url; // <= set only hash or URL
+});
+
+window.addEventListener("hashchange", () => {
+  // <= handle/catch hash changes
+  console.log(`hashchange: ${location.hash}`);
+});
+```
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## `History API`
+
+</script></section><section data-markdown><script type="text/template">
+
+[Новое API](https://caniuse.com/?search=history) HTML5
+
+</script></section><section data-markdown><script type="text/template">
+
+> [**History API**](https://developer.mozilla.org/en-US/docs/Web/API/History_API) опирается на один DOM интерфейс — объект **History**
+
+> Каждая вкладка браузера имеет уникальный объект History, который находится в `window.history`
+
+</script></section><section data-markdown><script type="text/template">
+
+> [**History**](https://developer.mozilla.org/en-US/docs/Web/API/History) имеет несколько методов, событий и свойств, которыми мы можем **управлять из JavaScript**.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js
+/* Количество записей в текущей сессии истории */
+window.history.length
+
+/* Возвращает текущий объект состояния истории */
+window.history.state
+
+/* Метод, позволяющий гулять по истории.
+ * В качестве аргумента передается смещение, относительно текущей позиции.
+ * Если передан 0, то будет обновлена текущая страница.
+ * Если индекс выходит за пределы истории, то ничего не произойдет. */
+window.history.go(n)
+
+/* Метод, идентичный вызову go(-1) */
+window.history.back()
+
+/* Метод, идентичный вызову go(1) */
+window.history.forward()
+
+/* Добавляет элемент истории */
+window.history.pushState(data, title [, url])
+
+/* Обновляет текущий элемент истории */
+window.history.replaceState(data, title [, url])
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js
+/* Триггерится при `history.go/back/forward` или при браузерных кликах */
+window.addEventListener("popstate", (event) => console.log(event.state));
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/vigorous-black-vzbit?file=/index.html)
+
+```js
+document.body.addEventListener("click", (event) => {
+  if (!event.target.matches("a")) {
+    return;
+  }
+  event.preventDefault();
+  let url = event.target.getAttribute("href");
+  history.pushState({}, url, url); // <--
+});
+
+/* Триггерится при `history.go/back/forward` или при браузерных кликах */
+window.addEventListener("popstate", (event) => {
+  console.log(
+    "location: " + document.location + ", state: " + JSON.stringify(event.state)
+  );
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+> \*Нужна настройка сервера, т.к. при обновлении / передаче ссылки должна загрузиться начальная страница
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## `Router`
+
+</script></section><section data-markdown><script type="text/template">
+
+> Обработчик URL - называется роутером (**Router**)
+
+> Router определяет какой код должен выполняться в зависимости от адреса.
+> Логика `router`'а может быть завязана на параметры.
+
+</script></section><section data-markdown><script type="text/template">
+
+\*Бывает серверный и **браузерный** роутинг/роутер.
+
+</script></section><section data-markdown><script type="text/template">
+
+\*Router **не встроенные API**, а скорее общепринятый термин.
+
+</script></section><section data-markdown><script type="text/template">
+
+Очень много готовых библиотек/статей:
+
+- [Pilot: многофункциональный JavaScript роутер](https://habrahabr.ru/company/mailru/blog/172333/)
+- [Роутер на JavaScript](http://blog.byndyu.ru/2009/09/javascript.html)
+- [A modern JavaScript router in 100 lines](http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url)
+- [A simple minimalistic JavaScript router with a fallback for older browsers.](https://github.com/krasimir/navigo)
+- [router.js](https://github.com/tildeio/router.js/)
+
+</script></section><section data-markdown><script type="text/template">
+
+Example. Simple Route Interface
+
+```sh
+# Interface of Route
+IRoute {
+  match     # String | RegExp | function
+  onEnter([data])   # function
+}
+```
+
+```js
+// Example
+const route = {
+  match: "/",
+  onEnter: () => console.log("onEnter index"),
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Example. Advanced Route Interface
+
+```sh
+# Interface of Route
+IRoute {
+  match     # String | RegExp | function
+  onEnter([data])   # function
+  onLeave([data])   # function
+  onBeforeEnter([data])     # function
+}
+```
+
+```js
+// Example
+const route = {
+  match: "/",
+  onEnter: () => console.log("onEnter index"),
+  onLeave: () => console.log("onLeave index"),
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Example. Router Interface 1
+
+```sh
+# Interface of Route
+IRouter {
+  add(route)    # function
+  remove(route) # function
+  go(url, [param])  # function
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Example. Router Interface 2
+
+```sh
+# Interface of Route
+IRouter {
+  on(match, onEnter)     # function
+  go(url, [params])  # function
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/vigorous-black-vzbit?file=/index.html)
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Практика
+
+</script></section><section data-markdown><script type="text/template">
+
+To-do:
+
+1. Fork sandbox
+1. Implement unsubscribe/remove functionality
+1. Add support for "onLeave" callback
+
+```sh
+# Interface of Route
+IRouter {
+  on(match, onEnter, [onLeave])     # function -> function
+  go(url, [params])  # function
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[codesandbox](https://codesandbox.io/s/vigorous-black-vzbit?file=/examples/practice.js)
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+## Итоги
+
+> 1. **Клиентский роутинг** - навигацию по приложению/веб-сайту без **перезагрузки страницы**
+
+> 2. Способы управления URL на клиенте:  
+>    (old) **Hash API** и (new) **History API**
+
+> 3. **Router** (термин)- обработчик URL, определяет какой код должен выполняться в зависимости от адреса. **\*Не встроённое API**
+
+</script></section><section  data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Спасибо за внимание!
+
+[Ccылка на опрос]()
+
+</script></section><section  data-markdown><script type="text/template">
+
+### Ссылки
+
+- [Understanding client side routing by implementing a router in Vanilla JS](https://www.willtaylor.blog/client-side-routing-in-vanilla-js/#:~:text=What%20is%20client%20side%20routing,fetch%20and%20display%20new%20content.)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":true,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
