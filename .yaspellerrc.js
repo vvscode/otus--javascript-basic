@@ -26,6 +26,7 @@ module.exports = {
     "cli",
     "clientId",
     "codesandbox",
+    "CodeSandbox",
     "codestyle",
     "codewars",
     "combineReducers",
