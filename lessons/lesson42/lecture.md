@@ -450,4 +450,44 @@ https://redux-toolkit.js.org/api/configureStore
 3. [Redux Toolkit Tutorial](https://redux-toolkit.js.org/tutorials/basic-tutorial) ( и продолжения [раз](https://redux-toolkit.js.org/tutorials/intermediate-tutorial) и [два](https://redux-toolkit.js.org/tutorials/advanced-tutorial))
 4. [Deep Dive into Redux Toolkit with React - Complete Guide](https://www.youtube.com/watch?v=9lCmbth63k0)
 
+<!-- s -->
+
+Домашнее задание
+
 <!-- v -->
+
+Реализовать одностраничное приложение - календарь задач.
+
+Приложение должно предоставлять минимум следующие страницы:
+
+- Календарь
+- Список
+- О проекте
+
+<!-- v -->
+
+<img src="./images/calendar.png" alt="Calendar" style="max-height: 50vh"/>
+
+<!-- v -->
+
+Все представления позволяют
+
+- создавать, редактировать, удалять задачи (заголовок, описание, статус выполнения, дата)
+- фильтровать по статусу выполнения
+- делать [fuzzy search](https://whatis.techtarget.com/definition/fuzzy-search) (можно взять [`Fuzzy search`](https://www.npmjs.com/package/fuzzy-search))
+- состояние должно отображаться на url (чтобы его можно было сохранять в закладки)
+
+<!-- v -->
+
+Для выполнения нужно взять:
+
+- апи для хранения данных из прошлого домашнего задания
+- роутер из прошлого домашнего задания
+
+<!-- v -->
+
+Задание проверяется после:
+
+- открыт пуллреквест
+- написаны тесты (покрытие 60%)
+- сделан деплой на github pages
