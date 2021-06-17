@@ -46,7 +46,7 @@ description: React
 - Работа с DOM напрямую — медленно
 - vDOM — модель настоящего DOM на легких js- объектах
 
-<img src="./images/vdom.png" />
+<img src="./images/vdom.png" style="height:300px" />
 
 <!-- v -->
 
