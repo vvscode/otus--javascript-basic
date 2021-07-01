@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 46</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Принципы redux?
+
+</script></section><section data-markdown><script type="text/template">
+
+Что такое редьюсер?
+
+</script></section><section data-markdown><script type="text/template">
+
+Что такое action?
+
+</script></section><section data-markdown><script type="text/template">
+
+Как создать store?
+
+</script></section><section data-markdown><script type="text/template">
+
+Какой API у store?
+
+</script></section><section data-markdown><script type="text/template">
+
+Какие паттерны разработки на React знаете?
+
+</script></section><section data-markdown><script type="text/template">
+
+Зачем нужен redux-toolkit?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Что React компонентам нужно от Redux?
+
+</script></section><section data-markdown><script type="text/template">
+
+- данные
+- возможность делать dispatch для actions
+
+</script></section><section data-markdown><script type="text/template">
+
+Самый примитивный способ для получения доступа к данным из store
+
+```tsx [1-50]
+import { store } from "./store";
+// ....
+class Screen extends React.Component {
+  // ....
+  render() {
+    return;
+    <>
+      <h1>{store.getState().user.name}</h1>
+      <h2>{store.getState().activePage.title}</h2>
+    </>;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Для dispatch соответственно
+
+```ts [1-50]
+  onClick() {
+    store.dispatch(changePage({id: 'new'}))
+  }
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Но ведь этого не достаточно.
+
+Чего не хватает?
+
+</script></section><section data-markdown><script type="text/template">
+
+```ts [1-50]
+  componentDidMount() {
+    store.subscribe(() => this.forceUpdate());
+  }
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+А так мы создаем утечку памяти.
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-50]
+// чтобы прекратить прослушивание изменений при размонтировании
+// нужно добавить
+export class Screen extends React.Component<{}, {}> {
+  storeSubscription?: Function;
+
+  componentDidMount() {
+    this.storeSubscription = store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.storeSubscription && this.storeSubscription();
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+А для того, чтобы
+
+- не вызывать `.getState()` по многу раз
+- иметь представление о том, какие данные из store нужны компоненту - хорошо бы завести **селектор**
+
+</script></section><section data-markdown><script type="text/template">
+
+```ts [1-30]
+function getScreenProps(state: State) {
+  return {
+    gameField: state.gameField,
+    nextMove: state.nextMove,
+  };
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вместе
+
+```ts [1-50]
+export class App extends React.Component {
+  private unsubscribe = () => {};
+
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  getComponentData() {
+    const state = store.getState();
+    return {
+      count: state.counter,
+      totalCount: state.actionsCounter.count,
+    };
+  }
+
+  render() {
+    const componentData = this.getComponentData();
+    return (
+      // ...
+      null
+    );
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Обобщая решение
+
+</script></section><section data-markdown><script type="text/template">
+
+Какой паттерн подходит для подобной задачи?
+
+</script></section><section data-markdown><script type="text/template">
+
+Какие части будут повторяться из компонента в компонент?
+
+</script></section><section data-markdown><script type="text/template">
+
+- подписка на обновления
+- отписка от обновлений
+- выборка данных
+
+</script></section><section data-markdown><script type="text/template">
+
+Создадим HOC:
+
+</script></section><section data-markdown><script type="text/template">
+
+```ts [13-50]
+import React, { Dispatch } from "react";
+import { AnyAction } from "redux";
+import { store } from "../store";
+
+interface DispatchProp {
+  dispatch?: Dispatch<AnyAction>;
+}
+
+type State = ReturnType<typeof store.getState>;
+
+// if you want to get more info
+// try to check https://gist.github.com/gaearon/1d19088790e70ac32ea636c025ba424e
+export function withRedux<ComponentProps = any, Props = any>(
+  TargetComponent: React.ComponentType<Props>,
+  getPropsFromRedux: (state: State) => ComponentProps
+): React.ComponentType<Omit<Props, keyof DispatchProp & ComponentProps>> {
+  class WrappedComponent extends React.Component<
+    Omit<Props, keyof ReturnType<typeof getPropsFromRedux>>,
+    State
+  > {
+    render() {
+      return <TargetComponent {...(this.props as any)} />;
+    }
+  }
+
+  return WrappedComponent;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Внутри которого добавим подписку и отписку
+
+```tsx [29-35]
+import React, { Dispatch } from "react";
+import { AnyAction } from "redux";
+import { store } from "../store";
+
+interface DispatchProp {
+  dispatch?: Dispatch<AnyAction>;
+}
+
+type State = Record<string, unknown>;
+
+// if you want to get more info
+// try to check https://gist.github.com/gaearon/1d19088790e70ac32ea636c025ba424e
+export function withRedux<ComponentProps = any, Props = any>(
+  TargetComponent: React.ComponentType<Props>,
+  getPropsFromRedux: (state: State) => ComponentProps
+): React.ComponentType<Omit<Props, keyof DispatchProp & ComponentProps>> {
+  class WrappedComponent extends React.Component<
+    Omit<Props, keyof ReturnType<typeof getPropsFromRedux>>,
+    State
+  > {
+    render() {
+      return <TargetComponent {...(this.props as any)} />;
+    }
+
+    storeSubscription = () => {};
+    componentDidMount() {
+      this.storeSubscription = store.subscribe(() => this.forceUpdate());
+    }
+    componentWillUnmount() {
+      this.storeSubscription();
+    }
+  }
+
+  return WrappedComponent;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Пробросим пробросим нужные части от store через props
+
+```tsx [26-27]
+import React, { Dispatch } from "react";
+import { AnyAction } from "redux";
+import { store } from "../store";
+
+interface DispatchProp {
+  dispatch?: Dispatch<AnyAction>;
+}
+
+type State = Record<string, unknown>;
+
+// if you want to get more info
+// try to check https://gist.github.com/gaearon/1d19088790e70ac32ea636c025ba424e
+export function withRedux<ComponentProps = any, Props = any>(
+  TargetComponent: React.ComponentType<Props>,
+  getPropsFromRedux: (state: State) => ComponentProps
+): React.ComponentType<Omit<Props, keyof DispatchProp & ComponentProps>> {
+  class WrappedComponent extends React.Component<
+    Omit<Props, keyof ReturnType<typeof getPropsFromRedux>>,
+    State
+  > {
+    storeSubscription = () => {};
+
+    render() {
+      return (
+        <TargetComponent
+          dispatch={store.dispatch}
+          {...getPropsFromRedux(store.getState())}
+          {...(this.props as any)}
+        />
+      );
+    }
+
+    componentDidMount() {
+      this.storeSubscription = store.subscribe(() => this.forceUpdate());
+    }
+
+    componentWillUnmount() {
+      this.storeSubscription();
+    }
+  }
+
+  return WrappedComponent;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+И зададим имя для компонента-обертки:
+
+```tsx [25]
+export function withRedux<ComponentProps = any, Props = any>(
+  TargetComponent: React.ComponentType<Props>,
+  getPropsFromRedux: (state: State) => ComponentProps
+): React.ComponentType<Omit<Props, keyof DispatchProp & ComponentProps>> {
+  class WrappedComponent extends React.Component<
+    Omit<Props, keyof ReturnType<typeof getPropsFromRedux>>,
+    State
+  > {
+    storeSubscription = () => {};
+
+    render() {
+      // ...
+    }
+
+    componentDidMount() {
+      this.storeSubscription = store.subscribe(() => this.forceUpdate());
+    }
+
+    componentWillUnmount() {
+      this.storeSubscription();
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (
+    WrappedComponent as any
+  ).displayName = `${TargetComponent.displayName}ConnectedToRedux`;
+
+  return WrappedComponent;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Использовать такой HOC мы можем как
+
+```tsx [1-100]
+export const App = withRedux(RawApp, getAppPropsFromRedux);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## [react-redux](https://react-redux.js.org/)
+
+</script></section><section data-markdown><script type="text/template">
+
+Весь этот функционал уже предоставляется пакетом `react-redux`. С ним redux подключается [в 3 шага](https://react-redux.js.org/introduction/quick-start):
+
+- устанавливаем пакет react-redux
+- оборачиваем приложение в <Provider>
+- подключаем компоненты с помощью connect
+
+</script></section><section data-markdown><script type="text/template">
+
+[Provider](https://react-redux.js.org/api/provider)
+
+```ts [1-50]
+/**
+* Makes the Redux store available to the connect() calls in the componet hierarchy below.
+*/
+export class Provider<A extends Action = AnyAction> extends Component<ProviderProps<A>> { }
+
+export interface ProviderProps<A Extends Action = AnyAction> {
+  /**
+  * The single Redux store in your applicaton.
+  */
+  store: Store<any, A>;
+  /**
+  Optional context to be used internally in react-redux.
+  Use React.createContext() to create a context to be used
+  If this is used, generate own connect HOC by using connectAdvanced,
+  supplying the same context provided to the Provider.
+  Initial value doesn't matter, as it is overwritten with the internal state of Provider.
+  */
+  context?: Context<ReactReduxContextValue>
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+_[Контекст](https://ru.reactjs.org/docs/context.html) позволяет передавать данные через дерево компонентов без необходимости передавать пропсы на промежуточных уровнях._
+
+</script></section><section data-markdown><script type="text/template">
+
+[`connect`](https://react-redux.js.org/api/connect)
+
+```ts [1-100]
+/*
+mapStateToProps?: Function
+mapDispatchToProps?: Function | Object
+mergeProps?: Function
+options?: Object
+*/
+
+function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?);
+```
+
+Подробное описание типов можно найти в [`@types/react-redux`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-redux/index.d.ts#L192)
+
+</script></section><section data-markdown><script type="text/template">
+
+Код будет выглядеть примерно так:
+
+```tsx [1-100]
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+
+import store from "./config/store";
+import App from "./App";
+
+import "./index.css";
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+где
+
+```tsx [1-100]
+// App
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { loadItems } from "../../actions/items";
+
+class App extends Component {
+  componentDidMount() {
+    this.props.loadItems();
+  }
+  render() {
+    return (
+      <div>
+        We have {this.props.items.length} item(s)
+        <Form />
+        <Table items={this.props.items} />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state /*, _ownProps*/) => ({
+  items: state.items,
+});
+const mapDispatchToProps = {
+  loadItems,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/master/lessons/lesson46/code/reactredux)
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Дополнительные материалы
+
+1. [Написание тестов для связки React + Redux](https://redux.js.org/usage/writing-tests#connected-components)
+1. [Мини-курс по Redux от Дэна Абрамова](https://egghead.io/)
+1. [Продвинутое продолжение курса (по связке React + Redux)](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":true,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
