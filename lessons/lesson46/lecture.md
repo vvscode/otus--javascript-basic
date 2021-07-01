@@ -499,3 +499,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 1. [Написание тестов для связки React + Redux](https://redux.js.org/usage/writing-tests#connected-components)
 1. [Мини-курс по Redux от Дэна Абрамова](https://egghead.io/)
 1. [Продвинутое продолжение курса (по связке React + Redux)](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
+1. [React HoC в TypeScript. Типизация без боли](https://habr.com/ru/company/sberbank/blog/354104/)
+1. [React TypeScript Cheat sheet: Full HOC Example](https://react-typescript-cheatsheet.netlify.app/docs/hoc/full_example)
