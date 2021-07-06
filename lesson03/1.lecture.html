@@ -40,6 +40,7 @@
 ```js [1-30]
 let i = 1;
 let j = 1;
+
 i = 2;
 
 console.log(i, j); // ?
@@ -50,6 +51,7 @@ console.log(i, j); // ?
 ```js [1-30]
 let a = {};
 let b = {};
+
 a.name = "Bob";
 
 console.log(a.name, b.name); // ?
@@ -60,6 +62,7 @@ console.log(a.name, b.name); // ?
 ```js [1-30]
 let a = {};
 let b = a;
+
 a.name = "Bob";
 
 console.log(a.name, b.name); // ?
@@ -70,6 +73,7 @@ console.log(a.name, b.name); // ?
 ```js [1-30]
 let a = [];
 let b = a;
+
 a.push("Bob");
 
 console.log(a[0], b[0]); // ?
@@ -121,7 +125,9 @@ console.log(a[0], b[0]); // ?
 ```js [1-30]
 // Создание объекта 1
 //  через литерал
+
 let o1 = {};
+
 let o2 = {
   prop1: "Some value",
   prop2: null,
@@ -142,7 +148,9 @@ let o3 = Object.create(null);
 ```js [1-30]
 // Создание объекта 3
 // Использовать `new` с классом или функцией-конструктором
+
 let o4 = new Object();
+
 let o5 = new Object({
   a: 1,
   b: 2,
@@ -159,6 +167,7 @@ _Какие есть способы работы со свойствами?_
 
 ```js [1-30]
 let o = {};
+
 // точечная нотация
 o.prop1 = 1;
 console.log(o.prop1);
@@ -177,9 +186,11 @@ let o = {
   x: 1,
 };
 console.log(o.x); // ?
+
 let a = "x";
 o.a = 2;
 console.log(o.x); // ?
+
 let b = "x";
 o["b"] = 3;
 console.log(o.x); // ?
@@ -199,6 +210,7 @@ console.log(o.x); // ?
 let o = {
   prop1: 2,
 };
+
 console.log(o);
 console.log(o.prop1); //?
 console.log(o.prop2); // ?
@@ -212,6 +224,7 @@ let o = {
     console.log("Hey!");
   },
 };
+
 console.log(o);
 console.log(o.someMethod); //?
 console.log(o.toString); // ?
@@ -225,6 +238,7 @@ let o = {
     console.log("Hey!");
   },
 };
+
 console.log(o);
 console.log(o.someMethod()); //?
 console.log(o.toString()); // ?
@@ -252,6 +266,7 @@ let o = {
     prop2: 2,
   },
 };
+
 console.log(o);
 console.log(o.prop1); //?
 console.log(o.prop2); //?
@@ -270,6 +285,7 @@ let o = {
     },
   },
 };
+
 console.log(o);
 console.log(o.prop1); //?
 console.log(o.prop2); //?
@@ -285,6 +301,7 @@ let o = {
     prop1: 2,
   },
 };
+
 console.log(o);
 console.log(o.prop1); //?
 console.log(o.prop2); //?
@@ -303,8 +320,10 @@ console.log(o.prop2); //?
 ```js [1-30]
 let o = { __proto__: { prop1: 1 } };
 console.log(o.prop1, o.__proto__.prop1); // ?
+
 o.prop1 = 2;
 console.log(o.prop1, o.__proto__.prop1); // ?
+
 o["prop1"] = 3;
 console.log(o.prop1, o.__proto__.prop1); // ?
 ```
@@ -313,9 +332,9 @@ console.log(o.prop1, o.__proto__.prop1); // ?
 
 ```js [1-30]
 let proto = { prop0: 1 };
+
 let o1 = { prop1: 1, __proto__: proto };
 let o2 = { prop2: 2, __proto__: proto };
-
 console.log(o1.prop0, o2.prop0); // ?
 
 proto.prop0 = 5;
@@ -331,13 +350,13 @@ console.log(proto.prop0); // ?
 
 ```js [1-30]
 let proto = { settings: { isAdmin: false } };
+
 let u1 = { name: "Bob", __proto__: proto };
 let u2 = { name: "Sam", __proto__: proto };
-
 console.log(u1.settings.isAdmin); // ?
+
 u1.settings.isAdmin = true;
 console.log(u1.settings.isAdmin); // ?
-
 console.log(u2.settings.isAdmin); // ?
 ```
 
@@ -370,6 +389,7 @@ let o = {
   prop1: 1,
   prop2: 2,
 };
+
 for (propName in o) {
   console.log(propName);
 }
@@ -382,6 +402,7 @@ let o = {
   prop1: 1,
   prop2: 2,
 };
+
 Object.keys(o).forEach((propName) => {
   console.log(propName);
 });
@@ -394,6 +415,7 @@ let o = {
   prop1: 1,
   prop2: 2,
 };
+
 for (let [key, value] of Object.entries(o)) {
   console.log(`${key}: ${value}`);
 }
@@ -408,6 +430,7 @@ let o = {
     prop2: 2,
   },
 };
+
 for (propName in o) {
   console.log(propName);
 }
@@ -422,6 +445,7 @@ let o = {
     prop2: 2,
   },
 };
+
 for (propName in o) {
   console.log(
     propName,
@@ -439,6 +463,7 @@ let o = {
     prop2: 2,
   },
 };
+
 for (let [key, value] of Object.entries(o)) {
   console.log(`${key}: ${value}`);
 }
@@ -462,8 +487,10 @@ let o = {
   },
 };
 console.log(o.prop1); // ?
+
 delete o.prop1;
 console.log(o.prop1); // ?
+
 delete o.prop1;
 console.log(o.prop1); // ?
 ```
@@ -477,8 +504,8 @@ console.log(o.prop1); // ?
 ```js [1-30]
 let a = { name: "Bob" };
 let b = { name: "Sam" };
-let settings = {};
 
+let settings = {};
 settings[a] = { isAdmin: true };
 settings[b] = { isAdmin: false };
 
