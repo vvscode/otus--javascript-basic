@@ -233,13 +233,14 @@ import { Link } from ‘react-router-dom’;
 <Link to={ `/user/${id}/` }>{ name }</Link>
 
 // или объектом
-<Link
-  to={{
+const target = {
     pathname: "/courses",
     search: "?sort=name",
     hash: "#the-hash",
     state: { fromDashboard: true }
-  }}
+  };
+<Link
+  to={target}
 />
 ```
 
