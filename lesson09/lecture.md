@@ -204,3 +204,4 @@ _А до этого были [`grunt`](https://gruntjs.com/) и [`gulp`](https:/
 - Jest - Configuring [1](https://www.youtube.com/watch?v=TGfrv7jgW2c) и [2](https://www.youtube.com/watch?v=2sCshscn-rc)
 - Дополнительное занятие с примером разработке Game Of Life (в личном кабинете)
 - [Workflow для деплоя на Github Pages](https://github.com/otus-js-student/js--game-of-life/blob/master/.github/workflows/deploy-gh-pages.yml)
+- [YT: Webpack, как настроить его правильно (OTUS)](https://www.youtube.com/watch?v=dOO3bX3a8YU)
