@@ -384,7 +384,7 @@ npx mrm lint-staged
 
 <!-- v -->
 
-После установки нужно проверить секции `husky` и `lint-staged` в файле `package.json`.
+После установки нужно проверить секции `husky` и `lint-staged` в файле `package.json` (для `husky@4`)
 
 ```js
   "husky": {
@@ -395,6 +395,15 @@ npx mrm lint-staged
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{css,md,yml,html}": "prettier --write"
+```
+
+<!-- v -->
+
+Для `husky@7` [настройки задаются не через `package.json`, а через директорию `.husky`](https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v7)
+
+```bash
+# .husky/pre-commit (v7)
+lint-staged
 ```
 
 <!-- v -->
