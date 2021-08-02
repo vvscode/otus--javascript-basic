@@ -200,4 +200,4 @@ someLibraryItem.doSomething();
 
 ## Спасибо за внимание!
 
-[Ccылка на опрос](https://otus.ru/polls/16711/)
+[Ссылка на опрос](https://otus.ru/polls/16711/)
