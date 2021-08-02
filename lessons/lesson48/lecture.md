@@ -1,5 +1,5 @@
 ---
-title: Занятие 48
+title: Занятие 49
 description: основные Node.js модули fs/os, использование inquirer/commander для создания консольных приложений
 ---
 
