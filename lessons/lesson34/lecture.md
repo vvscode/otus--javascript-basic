@@ -193,7 +193,7 @@ function reducer(state: GameOfLifeState, action): GameOfLifeState {
 
 ### [Store](https://rajdee.gitbooks.io/redux-in-russian/content/docs/basics/Store.html)
 
-Oбъект, который соединяет эти части вместе:
+Объект, который соединяет эти части вместе:
 
 - содержит состояние приложения (application state);
 - предоставляет доступ к состоянию с помощью getState();
