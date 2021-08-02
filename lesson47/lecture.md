@@ -295,7 +295,7 @@ const Page = ({ location }) => {
 <!-- v -->
 
 Задание:
-`withRouter` подкладывает в пропcы `location` и `match`
+`withRouter` подкладывает в пропсы `location` и `match`
 напишите `withQuery`, который подкладывает queryParams
 
 <!--v-->
