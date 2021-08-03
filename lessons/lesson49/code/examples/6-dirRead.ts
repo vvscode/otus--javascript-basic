@@ -7,7 +7,7 @@ async function print(path: string) {
 
   for await (const dirent of dir) {
     console.log(dirent.name);
-    // console.log(dirent.isFile())
+    console.log(dirent.name, dirent.isFile());
     // console.log(dirent.isDirectory());
   }
 }
