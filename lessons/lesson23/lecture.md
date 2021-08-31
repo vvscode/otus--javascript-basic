@@ -223,4 +223,4 @@ window.requestAnimationFrame(animationStep);
 
 ## Спасибо за внимание!
 
-[Ccылка на опрос](https://otus.ru/polls/20350/)
+[Ссылка на опрос](https://otus.ru/polls/20350/)
