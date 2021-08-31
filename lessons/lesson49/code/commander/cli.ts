@@ -68,21 +68,24 @@ export function createTreeShape(
   return result;
 }
 
+// program
+//   .version("1.0.0", "-v, --vers", "output the current version")
+//   .option("-p, --path [string]", "path to the directory", '.')
+//   .option("-d, --depth <number>", "the depth of search", (value, _) => {
+//     return '2';
+//   });
+
 program
-  .storeOptionsAsProperties()
-  .version("1.0.0", "-v, --vers", "output the current version")
-  .option("-p, --path [string]", "path to the directory", ".")
-  .option("-d, --depth <number>", "the depth of search", (value, _) => {
-    value = "2";
-    return value;
+  .command("exec [path] <depth>")
+  .description("draw directory tree for given path with given depth")
+  .action(async (path, depth, options) => {
+    console.log(options, "options");
+    await getDirTree(path ? path : ".", depth ? depth : 2).then((result) =>
+      console.log(createTreeShape(result).join("\n"))
+    );
   });
 
-// program
-//   .command('exec [path] <depth>')
-//   .description('draw directory tree for given path with given depth')
-//   .action((path, depth) => {
-//     getDirTree(path ? path : '.', depth ? depth : 2).then((result) => console.log(createTreeShape(result).join("\n")));
-//   })
+program.showHelpAfterError("(add --help for additional information)");
 
 // program.showHelpAfterError('(add --help for additional information)');
 
@@ -90,7 +93,14 @@ program.parse();
 
 const options = program.opts();
 
-getDirTree(
-  options.path ? options.path : ".",
-  options.depth ? options.depth : 3
-).then((result) => console.log(createTreeShape(result).join("\n")));
+console.log(options);
+
+if (options.path && options.depth) {
+  getDirTree(options.path, options.depth).then((result) =>
+    console.log(createTreeShape(result).join("\n"))
+  );
+}
+
+// getDirTree(
+//   '.', 2
+// ).then((result) => console.log(createTreeShape(result).join("\n")));
