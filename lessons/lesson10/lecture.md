@@ -268,7 +268,7 @@ af();
 <!-- v -->
 
 ```js [1-30]
-let promise = new Promise((resolve) =>
+let promise = new Promise((resolve, reject) =>
   setTimeout(reject, 2000, new Error("some error"))
 );
 
