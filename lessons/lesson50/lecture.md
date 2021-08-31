@@ -171,7 +171,7 @@ description: Презентация работы - что сделать, что
 
 | <span style="color: LightSlateGrey">Markdown</span> | <span style="color: LightSlateGrey">HTML</span>                                                                                                   | <span style="color: LightSlateGrey">Отображение</span> |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `![jsguy](/images/jsguy.gif "JS Guy")`              | `<img src="https://camo.githubusercontent.com/3f..." alt="jsguy!" title="JS Guy" data-canonical-src="/images/jsguy.gif" style="max-width:100%;">` | ![jsguy!](/images/jsguy.gif "JS Guy")                  |
+| `![jsguy](/images/jsguy.gif "JS Guy")`              | `<img src="https://camo.githubusercontent.com/3f..." alt="jsguy!" title="JS Guy" data-canonical-src="/images/jsguy.gif" style="max-width:100%;">` | <img src="./images/jsguy.gif" alt="JS Guy">            |
 
 <!-- v -->
 
@@ -203,7 +203,7 @@ description: Презентация работы - что сделать, что
 
 ### На этом Github Markdown всё
 
-!["markdown opps is over"](/images/polnomochiya.jpg)
+<img src="./images/polnomochiya.jpg" alt="" />
 
 <!-- v -->
 
@@ -278,15 +278,15 @@ if (
 
 <!-- v -->
 
-![exorcism](/images/exorcism.gif)
+<img src="./images/exorcism.gif"  alt="exorcist" />
 
 <!-- v -->
 
-![good code](/images/ron_jeffries.jpg)
+<img src="./images/ron_jeffries.jpg" alt="Ron Jeffries" />
 
 <!-- v -->
 
-![clean code](/images/bob_martin.jpg)
+<img src="./images/bob_martin.jpg" alt="Bob Martin" />
 
 <!-- v -->
 
