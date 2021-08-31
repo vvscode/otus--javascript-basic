@@ -57,8 +57,6 @@ description: Презентация работы - что сделать, что
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | Markdown is my favourite. <br> Now I will use it for all my docs. | `<p>Markdown is my favourite.</p><br>`<br>`<p>Now I will use it for all my docs.</p>` | Markdown is my favourite.<br>Now I will use it for all my docs. |
 
-\*_Также для разрыва строки можно закончить текущую строку с двумя или более пробельными символами и затем сделать перевод на новую строку_
-
 <!-- v -->
 
 ### Выделение текста
@@ -70,8 +68,6 @@ description: Презентация работы - что сделать, что
 | `*Italic*`                                          | `<em>Italic</em>`                               | _Italic_                                               |
 | `_Italic_`                                          | `<em>Italic</em>`                               | _Italic_                                               |
 | `~~Text~~`                                          | `<del>Text</del>`                               | ~~Text~~                                               |
-
-\*_Можно комбинировать_
 
 <!-- v -->
 
@@ -89,8 +85,6 @@ description: Презентация работы - что сделать, что
 | --------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------ |
 | 1. First<br>2. Second<br>3. Third                   | `<ol>`<br>`<li>First</li>`<br>`<li>Second</li>`<br>`<li>Third</li>`<br>`</ol>` | <ol><li>First</li><li>Second</li><li>Third</li></ol>   |
 | 1. First<br>1. Second<br>1. Third                   | `<ol>`<br>`<li>First</li>`<br>`<li>Second</li>`<br>`<li>Third</li>`<br>`</ol>` | <ol><li>First</li><li>Second</li><li>Third</li></ol>   |
-
-\*_Упорядоченные списки всегда должны начинаться с единицы_
 
 <!-- v -->
 
@@ -116,9 +110,7 @@ description: Презентация работы - что сделать, что
 | <span style="color: LightSlateGrey">Markdown</span> | <span style="color: LightSlateGrey">HTML</span>                                                        | <span style="color: LightSlateGrey">Отображение</span>                                                                                                                                                                           |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | I'm \`nano\` code.                                  | `I'm <code>nano</code> code.`                                                                          | I'm <code style="background-color: lightgray">nano</code> code.                                                                                                                                                                  |
-| ``js<br>const fs = require('fs')<br>`\`             | `<pre>`<br>`<span class="pl-k">`<br>const<br>`</span>`<br>`<span>`fs...<br> = require('fs')<br>`<pre>` | <pre><span class="pl-k">const</span> <span class="pl-s1">fs</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">'fs'</span><span class="pl-kos">)</span></pre> |
-
-\*_Помимо этого блок кода можно создать, если каждую строку кода сместить вправо на четыре пробельных символа, либо один символ табуляции_
+| \`\`\`js<br>const fs = require('fs')<br>\`\`\`      | `<pre>`<br>`<span class="pl-k">`<br>const<br>`</span>`<br>`<span>`fs...<br> = require('fs')<br>`<pre>` | <pre><span class="pl-k">const</span> <span class="pl-s1">fs</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">'fs'</span><span class="pl-kos">)</span></pre> |
 
 <!-- v -->
 
@@ -166,7 +158,7 @@ description: Презентация работы - что сделать, что
 ### Другие виды ссылок
 
 - **SHA ссылки**:
-  > hash
+  > hash  
   > username@hash
 - **ссылки на Issue или PR**:
   > #1  
@@ -180,8 +172,6 @@ description: Презентация работы - что сделать, что
 | <span style="color: LightSlateGrey">Markdown</span> | <span style="color: LightSlateGrey">HTML</span>                                                                                                   | <span style="color: LightSlateGrey">Отображение</span> |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | `![jsguy](/images/jsguy.gif "JS Guy")`              | `<img src="https://camo.githubusercontent.com/3f..." alt="jsguy!" title="JS Guy" data-canonical-src="/images/jsguy.gif" style="max-width:100%;">` | ![jsguy!](/images/jsguy.gif "JS Guy")                  |
-
-\*_Важно помнить, изображение будет пытаться занять всё доступное место, соответствующее своему размеру_
 
 <!-- v -->
 
