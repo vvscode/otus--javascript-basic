@@ -1,5 +1,5 @@
 ---
-title: Занятие 48
+title: Занятие 49
 description: основные Node.js модули fs/os, использование inquirer/commander для создания консольных приложений
 ---
 
@@ -31,7 +31,7 @@ description: основные Node.js модули fs/os, использован
 ### [Встроенные модули Node.js](https://nodejs.org/dist/latest-v14.x/docs/api/)
 
 - [Crypto](https://nodejs.org/dist/latest-v14.x/docs/api/crypto.html)
-- [Buffer](https://nodejs.org/dist/latest-v14.x/docs/api/process.html)
+- [Buffer](https://nodejs.org/dist/latest-v14.x/docs/api/buffer.html)
 - [Process](https://nodejs.org/dist/latest-v14.x/docs/api/process.html)
 - [File System](https://nodejs.org/dist/latest-v14.x/docs/api/fs.html)
 - [HTTP](https://nodejs.org/dist/latest-v14.x/docs/api/http.html)/[HTTPS](https://nodejs.org/dist/latest-v14.x/docs/api/https.html)/[HTTP2](https://nodejs.org/dist/latest-v14.x/docs/api/http2.html)
@@ -105,4 +105,4 @@ const fs = require("fs");
 
 <!-- v -->
 
-# Спасибо за внимание!
+## Спасибо за внимание!

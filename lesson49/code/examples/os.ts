@@ -1,14 +1,14 @@
 import os from "os";
 
-// Example-1
-if (os.EOL === "\n") {
-  console.log(String.raw`You are working with line \n delimeter. Posix`);
-} else if (os.EOL === `\r\n`) {
-  console.log(String.raw`You are working with line \r\n delimeter. Windows`);
-}
+//Example-1
+// if (os.EOL === "\n") {
+//   console.log(String.raw`You are working with line \n delimeter. Posix`);
+// } else if (os.EOL === `\r\n`) {
+//   console.log(String.raw`You are working with line \r\n delimeter. Windows`);
+// }
 
 // Example-2
-// https://nodejs.org/dist/latest-v16.x/docs/api/os.html#os_os_constants_1
+//https://nodejs.org/dist/latest-v16.x/docs/api/os.html#os_os_constants_1
 // console.log(os.constants);
 
 // Example-3

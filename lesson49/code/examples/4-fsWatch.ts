@@ -13,6 +13,12 @@ const watcher = fs.watch(
   }
 );
 
-// watcher.on('change', (event, filename) => {
-//   console.log(event, filename, '\n');
-// })
+watcher.on("change", (event, filename) => {
+  console.log(event, filename, "\n");
+});
+
+watcher.on("close", () => {
+  console.log("closed!");
+});
+
+setTimeout(() => watcher.close(), 10000);
