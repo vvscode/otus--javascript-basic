@@ -54,14 +54,14 @@ npm i -D style-loader css-loader
 ```js
 // webpack.config.js
 module: {
-rules: [
+  rules: [
     {
-    // https://webpack.js.org/loaders/css-loader/
-    test: /\.css$/i,
-    use: ["style-loader", "css-loader"],
+      // https://webpack.js.org/loaders/css-loader/
+      test: /\.css$/i,
+      use: ["style-loader", "css-loader"],
     },
-],
-},
+  ];
+}
 ```
 
 и
@@ -88,10 +88,10 @@ import "./css/styles.css";
 ```js
 // webpack.config.js
 plugins: [
-    new HtmlWebpackPlugin({
-        template: "public/index.html",
-    }),
-],
+  new HtmlWebpackPlugin({
+    template: "public/index.html",
+  }),
+];
 ```
 
 <!-- v -->
@@ -163,7 +163,7 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 // https://www.npmjs.com/package/browser-sync-webpack-plugin
 new BrowserSyncPlugin(
-    {
+  {
     // browse to http://localhost:3000/ during development
     host: "localhost",
     port: 3000,
@@ -171,14 +171,14 @@ new BrowserSyncPlugin(
     // (which should be serving on http://localhost:3100/)
     // through BrowserSync
     proxy: "http://localhost:9000/",
-    },
-    // plugin options
-    {
+  },
+  // plugin options
+  {
     // prevent BrowserSync from reloading the page
     // and let Webpack Dev Server take care of this
     reload: false,
-    }
-),
+  }
+);
 ```
 
 <!-- v -->
@@ -200,6 +200,8 @@ npm i -D stylelint stylelint-config-standard
 ```
 
 после чего создать файл конфигурации
+
+<!-- eslint-skip -->
 
 ```js
 // .stylelintrc.json
@@ -441,13 +443,15 @@ module.exports = {
 
 и
 
+<!-- eslint-skip -->
+
 ```js
 // webpack.config.js
-      {
-        // https://webpack.js.org/loaders/css-loader/
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      },
+    {
+      // https://webpack.js.org/loaders/css-loader/
+      test: /\.css$/i,
+      use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+    },
 ```
 
 <!-- v -->
