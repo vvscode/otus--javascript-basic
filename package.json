@@ -31,6 +31,7 @@
   },
   "lint-staged": {
     "*.{js,json,html,css,md,yml,yaml,ts,tsx}": "prettier --write",
+    "{*js,*.md}": "eslint --cache --fix",
     "*.md": "yaspeller"
   }
 }
