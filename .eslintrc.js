@@ -9,7 +9,9 @@ module.exports = {
     },
     {
       files: ["**/*.md/*.js"],
-      rules: {},
+      rules: {
+        "comma-dangle": ["error", "only-multiline"],
+      },
     },
   ],
 };
