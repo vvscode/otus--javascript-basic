@@ -200,6 +200,8 @@ const thunk = () => dispatch({ type: "ADD", value: 666 });
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js [1-30]
 // если избавиться от внешних зависимостей и передавать их параметрами
 const thunk = (dispatch) => dispatch({ type: "ADD", value: 666 });

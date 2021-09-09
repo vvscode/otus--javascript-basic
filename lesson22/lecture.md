@@ -382,6 +382,8 @@ function add(arr) {
 
 #### Метод forEach
 
+<!-- eslint-skip -->
+
 ```js [1-30]
 arr.forEach(function callback(currentValue, index, array) {
     //your iterator
@@ -406,6 +408,8 @@ arr.sort([compareFunction]);
 
 #### Метод filter
 
+<!-- eslint-skip -->
+
 ```js [1-30]
 let newArray = arr.filter(callback(element[, index, [array]])[, thisArg])
 ```
@@ -415,6 +419,8 @@ let newArray = arr.filter(callback(element[, index, [array]])[, thisArg])
 <!-- v -->
 
 #### Метод reduce
+
+<!-- eslint-skip -->
 
 ```js [1-30]
 array.reduce(callback[, initialValue])
