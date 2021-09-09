@@ -110,6 +110,8 @@ var / let / const
 
 **const** - НЕ позволяет изменять значение. НО! значение это ссылка, если это ссылка на объект - объект по прежнему можно изменять
 
+<!-- eslint-skip -->
+
 ```js [1-30]
 let a = 1;
 let b;
@@ -231,6 +233,8 @@ const workHoursPerWeek = user.age >= 18 ? 40 : 20;
 <!-- v -->
 
 Switch
+
+<!-- eslint-skip -->
 
 ```js [1-20]
 switch(x) {

@@ -162,6 +162,8 @@ https://redux-toolkit.js.org/api/createAction
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js
 if (action.type === "SOME_ACTION") {
   action.payload. // nothing here
@@ -175,6 +177,8 @@ if (someActionCreator2.match(action)) {
 https://basarat.gitbook.io/typescript/type-system/typeguard
 
 <!-- v -->
+
+<!-- eslint-skip -->
 
 ```js
 function counter(state = 0, action) {

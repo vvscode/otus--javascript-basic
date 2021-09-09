@@ -267,6 +267,8 @@ npx eslint file.js --fix
 
 Обычно эти команды вешают на скрипты `lint` / `lint:fix`.
 
+<!-- eslint-skip -->
+
 ```js
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -317,6 +319,8 @@ npm i eslint-config-prettier -D
 <!-- v -->
 
 Заодно хорошо бы добавить его в секцию скриптов (в задачи `lint` / `lint:fix`)
+
+<!-- eslint-skip -->
 
 ```js
     "lint": "prettier --check . && eslint .",
@@ -385,6 +389,8 @@ npx mrm lint-staged
 <!-- v -->
 
 После установки нужно проверить секции `husky` и `lint-staged` в файле `package.json` (для `husky@4`)
+
+<!-- eslint-skip -->
 
 ```js
   "husky": {

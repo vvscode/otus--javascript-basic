@@ -151,6 +151,8 @@ window.addEventListener("hashchange", () => {
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js
 /* Количество записей в текущей сессии истории */
 window.history.length

@@ -67,18 +67,18 @@ unlisten();
 <!--v-->
 
 ```js [1-100]
-import { BrowserRouter, Route } from ‘react-router-dom’;
+import { BrowserRouter, Route } from "react-router-dom";
 
 // BrowserRouter создает объект history и прокидывает
 // его вниз
 // Можно также HashRouter / MemoryRouter
 const App = () => (
   <BrowserRouter>
-    { /* Route просто описывает пути */ }
+    {/* Route просто описывает пути */}
     <Route exact path="/" component={Home} />
-    { /* Вместо component можно render */ }
-    <Route exact path=“/news" render={() => <News />} />
-    <Route path=“/category” component={Category} />
+    {/* Вместо component можно render */}
+    <Route exact path="/news" render={() => <News />} />
+    <Route path="/category" component={Category} />
   </BrowserRouter>
 );
 // как называется паттерн в Route?)
@@ -90,25 +90,23 @@ const App = () => (
 ### Вложенные Route
 
 ```js [1-100]
-import {
-  BrowserRouter, Route, Switch
-} from ‘react-router-dom’;
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // также обратите внимание на Switch
 const Category = () => (
   <Switch>
-    <Route exact path=“/“ component={ CatList } />
-    <Route exact path=“/:catid“ component={ CatPage } />
+    <Route exact path="/" component={CatList} />
+    <Route exact path="/:catid" component={CatPage} />
   </Switch>
 );
 
 const App = () => (
   <BrowserRouter>
-    { /* Route просто описывает пути */ }
+    {/* Route просто описывает пути */}
     <Route exact path="/" component={Home} />
-    { /* Вместо component можно render */ }
-    <Route exact path=“/news" render={() => <News />} />
-    <Route path=“/category” component={Category} />
+    {/* Вместо component можно render */}
+    <Route exact path="/news" render={() => <News />} />
+    <Route path="/category" component={Category} />
   </BrowserRouter>
 );
 ```
@@ -118,14 +116,12 @@ const App = () => (
 ### Route с параметрами
 
 ```js [1-100]
-const CatPage = ({ match }) => (
-  <h1>Viewing category { match.params.catid }</h1>
-);
+const CatPage = ({ match }) => <h1>Viewing category {match.params.catid}</h1>;
 
 const Category = () => (
   <Switch>
-    <Route exact path=“/“ component={ CatList } />
-    <Route exact path=“/:catid“ component={ CatPage } />
+    <Route exact path="/" component={CatList} />
+    <Route exact path="/:catid" component={CatPage} />
   </Switch>
 );
 ```
@@ -138,24 +134,26 @@ const Category = () => (
 class CatPage extends Component {
   // используем лайфсайкл-хук
   componentDidMount() {
-    get(`/goods/${ this.props.catid }`).then(…);
+    get(`/goods/${this.props.catid}`).then(/*...*/);
   }
   componentDidUpdate() {
     // стандарто: проверка изменения & load
   }
-  render () {
+  render() {
     const { match } = this.props;
     const { list = [] } = this.state;
-    return <div>
-      <h1>Viewing category { match.params.catid }</h1>
-    </div>
+    return (
+      <div>
+        <h1>Viewing category {match.params.catid}</h1>
+      </div>
+    );
   }
 }
 
 const Category = () => (
   <Switch>
-    <Route exact path=“/“ component={ CatList } />
-    <Route exact path=“/:catid“ component={ CatPage } />
+    <Route exact path="/" component={CatList} />
+    <Route exact path="/:catid" component={CatPage} />
   </Switch>
 );
 ```
@@ -192,9 +190,7 @@ const Category = () => (
 - Если вместо **`<a>`** рисовать
 
 ```js [1-100]
-  <span onClick={ () => history.pushState(…) }>
-    link
-  </span>
+<span onClick={() => history.pushState(/*...*/)}>link</span>
 ```
 
 то мы теряем всю браузерную обвеску.
@@ -203,14 +199,16 @@ const Category = () => (
 
 <!--v-->
 
+<!-- eslint-skip -->
+
 ```js [1-100]
-import { Link } from ‘react-router-dom’;
+import { Link } from "react-router-dom";
 // Хитрая ссылка
-<Link to=“/news”>Новости!</Link>
+<Link to="/news">Новости!</Link>
 
 // можно generatePath
 <Link
-  to={ generatePath(“/user/:id/", { id }) }
+  to={ generatePath("/user/:id/", { id }) }
 >{ name }</Link>
 
 // или просто руками:
@@ -231,6 +229,8 @@ const target = {
 <!--v-->
 
 ### Внешние ссылки
+
+<!-- eslint-skip -->
 
 ```js [1-100]
 //у Link есть подвох
@@ -257,21 +257,23 @@ const target = {
 
 ### Redirect
 
+<!-- eslint-skip -->
+
 ```js [1-100]
-import { Redirect } from ‘react-router-dom’;
+import { Redirect } from "react-router-dom";
 // Рендерим Redirect - переходим по адресу
-<Redirect to=“/view-ad“ />
+<Redirect to="/view-ad" />
 
 // или прямо в списке роутов (допустим, миграция):
 <HashRouter>
-  <Redirect from=“/user-list" to="/users" />
+  <Redirect from="/user-list" to="/users" />
 </HashRouter>
 
 // Более полезный кейс:
 const withAuth = Cmp => props => {
   return props.user
     ? <Cmp { ...props } />
-    : <Redirect to=“/login” />;
+    : <Redirect to="/login" />;
 };
 ```
 
