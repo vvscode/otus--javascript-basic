@@ -48,7 +48,7 @@ $ curl -v www.google.com
 
 ### Базовый http-сервер
 
-```ts
+```js
 import http from "http";
 
 // Create a local server to receive data from
@@ -90,7 +90,7 @@ $ npm install @types/express --save-dev
 
 ### Перепишем наш http-сервер с использованием express
 
-```ts
+```js
 import express from "express";
 
 const app = express();
@@ -134,13 +134,13 @@ $ npm install pug --save
 
 1. Для свойства приложения `views`, определяющее директорию для хранения шаблонов, зададим необходимый путь:
 
-```ts
+```js
 app.set("views", "./views");
 ```
 
 1. Также, установим нужное значения для свойства `view engine`, отвечающее за используемый шаблонизатор:
 
-```ts
+```js
 app.set("view engine", "pug");
 ```
 
@@ -157,7 +157,7 @@ html
 
 1. Создаём роут для итогового шаблона:
 
-```ts
+```js
 app.get("/", function (req, res) {
   res.render("index", { title: "My Template", message: "Hello, Otus!" });
 });
@@ -206,7 +206,7 @@ $ npm install supertest @types/supertest --save-dev
 
 ### Пишем свой middleware
 
-```ts
+```js
 const requestLogger = (
   request: express.Request,
   response: express.Response,
@@ -294,7 +294,7 @@ $ npm install @types/mongoose --save-dev
 
 ### Подключаемся к базе данных
 
-```ts
+```js
 import mongoose from "mongoose";
 
 // НЕ СОХРАНЯЕМ ПАРОЛЬ НА GITHUB!
@@ -325,7 +325,7 @@ mongoose
 
 ### Опишем произвольную схему и на её основе создадим модель.
 
-```ts
+```js
 const bookSchema = new mongoose.Schema({
   author: String,
   year: Number,
@@ -339,24 +339,27 @@ const Book = mongoose.model("Book", bookSchema);
 
 ### Используем базу данных в обработчике роутинга
 
-```ts
+```js
 app.post("/api/books", (req, res) => {
-  const body = req.body
+  const body = req.body;
 
   if (body.content === undefined) {
-    return res.status(400).json({ error: "content missing" })
+    return res.status(400).json({ error: "content missing" });
   }
 
   const book = new Book({
     author: "Mark Twain",
     date: 1876,
-    title:  "The Adventures of Tom Sawyer",
+    title: "The Adventures of Tom Sawyer",
   });
 
-  book.save().then((savedBook) => {
-    response.json(savedBook))
-  }).catch((e) => console.log(e));
-})
+  book
+    .save()
+    .then((savedBook) => {
+      response.json(savedBook);
+    })
+    .catch((e) => console.log(e));
+});
 ```
 
 <!-- v -->
@@ -371,7 +374,7 @@ app.post("/api/books", (req, res) => {
 
 Пример тестирования базы данных.
 
-```ts
+```js
 import mongoose from "mongoose";
 import supertest from "supertest";
 import app from "./app";
