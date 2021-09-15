@@ -126,7 +126,9 @@ app.listen(port, () => {
 
 ### [Настраиваем работу с шаблонизатором](https://expressjs.com/en/guide/using-template-engines.html)
 
-1. Устанавливаем шаблонизатор:
+<!-- prettier-ignore -->
+1. Устанавливаем шаблонизатор:  
+<!-- eslint skip -->
 
 ```
 $ npm install pug --save
