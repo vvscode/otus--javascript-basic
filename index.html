@@ -2,121 +2,381 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <title>Выбор темы и организация проектной работы</title>
-    <link rel="shortcut icon" href="./favicon.ico"/>
-    <link rel="stylesheet" href="./dist/reveal.css" />
+    <title>reveal-md</title>
     <link rel="stylesheet" href="./dist/theme/white.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
-    <link rel="stylesheet" href="./_assets/.reveal-md/styles.css" />
-
-    <script>
-      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
-    </script>
   </head>
+
   <body>
-    <div class="reveal">
-      <div class="slides"><section ><section data-markdown><script type="text/template">
-
-# OTUS
-
-## Javascript Basic
-
-</script></section><section data-markdown><script type="text/template">
-
-Вопросы?
-
-</script></section></section><section ><section data-markdown><script type="text/template">
-
-Требования к финальному проекту
-
-</script></section><section data-markdown><script type="text/template">
-
-Обязательно все из списка:
-
-- поддержка пользовательских сессий / сохранения пользовательских данных
-- использование внешнего API
-- минимум 3 разных роута
-- использование параметризированных роутов
-- покрытие кода тестами от 70%
-- настроенные линтеры, тесты и автодеплой через CI/CD
-- возможность проверить приложение без локального запуска (с исключениями)
-- оформленный репозиторий и README
-- основной функционал покрыт интеграционными тестами (testing-library/cypress/testcafe/etc)
-
-</script></section><section data-markdown><script type="text/template">
-
-Поддержка хотя бы одного пункта из списка:
-
-- аутентификация пользователя
-- отзывчивый дизайн
-- работа в оффлайн (PWA) / нативные технологии под мобильные платформы (React Native/cordova)
-- совместная работа пользователей
-
-</script></section><section data-markdown><script type="text/template">
-
-Примеры:
-
-- крокодил c рисованием на канвасе
-- сеги
-- книга рецептов
-- расширение для браузера для подсветки и создания заметок
-- клиент для slack / tg / vk
-- базовая аркадная игра с преследованием
-
-</script></section><section data-markdown><script type="text/template">
-
-Вопросы?
-</script></section></section></div>
-    </div>
-
-    <script src="./dist/reveal.js"></script>
-
-    <script src="./plugin/markdown/markdown.js"></script>
-    <script src="./plugin/highlight/highlight.js"></script>
-    <script src="./plugin/zoom/zoom.js"></script>
-    <script src="./plugin/notes/notes.js"></script>
-    <script src="./plugin/math/math.js"></script>
-    <script>
-      function extend() {
-        var target = {};
-        for (var i = 0; i < arguments.length; i++) {
-          var source = arguments[i];
-          for (var key in source) {
-            if (source.hasOwnProperty(key)) {
-              target[key] = source[key];
-            }
-          }
-        }
-        return target;
-      }
-
-      // default options to init reveal.js
-      var defaultOptions = {
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-        transition: 'default', // none/fade/slide/convex/concave/zoom
-        plugins: [
-          RevealMarkdown,
-          RevealHighlight,
-          RevealZoom,
-          RevealNotes,
-          RevealMath
-        ]
-      };
-
-      // options from URL query string
-      var queryOptions = Reveal().getQueryHash() || {};
-
-      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%"}, queryOptions);
-    </script>
-
-
-    <script>
-      Reveal.initialize(options);
-    </script>
+    <ul>
+      <li>
+        <a
+          href="final-task&#x2F;lecture.html"
+          title="Выбор темы и организация проектной работы - Выбор темы и организация проектной работы (final-task&#x2F;lecture.html)"
+        >
+          Выбор темы и организация проектной работы  -
+          Выбор темы и организация проектной работы
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson01&#x2F;lecture.html"
+          title="Занятие 1 - Описание процессов, как задавать вопросы, как сдавать домашки, какие требования, использование редакторов + типовой подход к работе с домашками (lesson01&#x2F;lecture.html)"
+        >
+          Занятие 1  -
+          Описание процессов, как задавать вопросы, как сдавать домашки, какие требования, использование редакторов + типовой подход к работе с домашками
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson02&#x2F;lecture.html"
+          title="Занятие 2 - Писать базовые скрипты на javascript, создавать программы обрабатывающие ввод от пользователя и делать вывод на странице (lesson02&#x2F;lecture.html)"
+        >
+          Занятие 2  -
+          Писать базовые скрипты на javascript, создавать программы обрабатывающие ввод от пользователя и делать вывод на странице
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson03&#x2F;1.lecture.html"
+          title="Занятие 3.1 - Объектная модель в Javascript. Прототипное наследование (lesson03&#x2F;1.lecture.html)"
+        >
+          Занятие 3.1  -
+          Объектная модель в Javascript. Прототипное наследование
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson03&#x2F;2.lecture.html"
+          title="Занятие 3.2 - Функции и контекст, функции-конструкторы (lesson03&#x2F;2.lecture.html)"
+        >
+          Занятие 3.2  -
+          Функции и контекст, функции-конструкторы
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson04&#x2F;lecture.html"
+          title="Занятие 4 - Базовое использование API и JavaScript. Как работать с DOM и другими доступными API (lesson04&#x2F;lecture.html)"
+        >
+          Занятие 4  -
+          Базовое использование API и JavaScript. Как работать с DOM и другими доступными API
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson05&#x2F;lecture.html"
+          title="Занятие 5 - Тестирование кода как часть процесса разработки, пример применения тестирования к домашним заданиям (lesson05&#x2F;lecture.html)"
+        >
+          Занятие 5  -
+          Тестирование кода как часть процесса разработки, пример применения тестирования к домашним заданиям
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson06&#x2F;lecture.html"
+          title="Занятие 6 - Использование СКВ: проблемы и решения, типовой порядок разработки с использованием Git. Использование CI&#x2F;CD для проверки и доставки продукта (lesson06&#x2F;lecture.html)"
+        >
+          Занятие 6  -
+          Использование СКВ: проблемы и решения, типовой порядок разработки с использованием Git. Использование CI&#x2F;CD для проверки и доставки продукта
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson07&#x2F;lecture.html"
+          title="Занятие 7 - Код как «проект» - артефакты работы разработчика. Зависимости и утилиты в стеке JavaScript (lesson07&#x2F;lecture.html)"
+        >
+          Занятие 7  -
+          Код как «проект» - артефакты работы разработчика. Зависимости и утилиты в стеке JavaScript
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson08&#x2F;lecture.html"
+          title="Занятие 8 - Код как «проект» - артефакты работы разработчика. Зависимости и утилиты в стеке JavaScript (lesson08&#x2F;lecture.html)"
+        >
+          Занятие 8  -
+          Код как «проект» - артефакты работы разработчика. Зависимости и утилиты в стеке JavaScript
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson09&#x2F;lecture.html"
+          title="Занятие 9 - Современный инструментарий при разработке клиентских (и не только) приложений (lesson09&#x2F;lecture.html)"
+        >
+          Занятие 9  -
+          Современный инструментарий при разработке клиентских (и не только) приложений
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson10&#x2F;lecture.html"
+          title="Занятие 10 - Очередь и стек (lesson10&#x2F;lecture.html)"
+        >
+          Занятие 10  -
+          Очередь и стек
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson13&#x2F;lecture.html"
+          title="Занятие 13 - Инструменты разработки. Тестирование верстки (lesson13&#x2F;lecture.html)"
+        >
+          Занятие 13  -
+          Инструменты разработки. Тестирование верстки
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson19&#x2F;lecture.html"
+          title="Занятие 19 - Различие между стандартами языка, инструменты транспиляции, проблемы типизации (lesson19&#x2F;lecture.html)"
+        >
+          Занятие 19  -
+          Различие между стандартами языка, инструменты транспиляции, проблемы типизации
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson20&#x2F;lecture.html"
+          title="Занятие 20 - Настройка окружения для современной разработки на TS, настройка тестового окружения (lesson20&#x2F;lecture.html)"
+        >
+          Занятие 20  -
+          Настройка окружения для современной разработки на TS, настройка тестового окружения
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson21&#x2F;lecture.html"
+          title="Занятие 21 - ООП (lesson21&#x2F;lecture.html)"
+        >
+          Занятие 21  -
+          ООП
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson22&#x2F;lecture.html"
+          title="Занятие 22 - ФП (lesson22&#x2F;lecture.html)"
+        >
+          Занятие 22  -
+          ФП
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson23&#x2F;lecture.html"
+          title="Занятие 23 - Создание интерактивных страниц, работа с анимациями (lesson23&#x2F;lecture.html)"
+        >
+          Занятие 23  -
+          Создание интерактивных страниц, работа с анимациями
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson24&#x2F;lecture.html"
+          title="Занятие 24 - Создание подключаемых плагинов (lesson24&#x2F;lecture.html)"
+        >
+          Занятие 24  -
+          Создание подключаемых плагинов
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson25&#x2F;lecture.html"
+          title="Занятие 25 - «Некоторые паттерны разработки на JavaScript - разделение представления и логики» (lesson25&#x2F;lecture.html)"
+        >
+          Занятие 25  -
+          «Некоторые паттерны разработки на JavaScript - разделение представления и логики»
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson26&#x2F;lecture.html"
+          title="Занятие 26 - «Разбор базовых приемов разработки на Typescript - типы, интерфейсы, перечисления и прочее» (lesson26&#x2F;lecture.html)"
+        >
+          Занятие 26  -
+          «Разбор базовых приемов разработки на Typescript - типы, интерфейсы, перечисления и прочее»
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson27&#x2F;lecture.html"
+          title="Занятие 27 - Расширенные возможности типизации (lesson27&#x2F;lecture.html)"
+        >
+          Занятие 27  -
+          Расширенные возможности типизации
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson28&#x2F;lecture.html"
+          title="Занятие 28 - Разработка собственного API (lesson28&#x2F;lecture.html)"
+        >
+          Занятие 28  -
+          Разработка собственного API
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson31&#x2F;lecture.html"
+          title="Занятие 31 - Разработка шаблонизатора (lesson31&#x2F;lecture.html)"
+        >
+          Занятие 31  -
+          Разработка шаблонизатора
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson33&#x2F;lecture.html"
+          title="Занятие 33 - Mediator и EventEmitter как инструмент организации кода (lesson33&#x2F;lecture.html)"
+        >
+          Занятие 33  -
+          Mediator и EventEmitter как инструмент организации кода
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson34&#x2F;lecture.html"
+          title="Занятие 34 - Управление состоянием приложения, разработка redux (lesson34&#x2F;lecture.html)"
+        >
+          Занятие 34  -
+          Управление состоянием приложения, разработка redux
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson35&#x2F;lecture.html"
+          title="Занятие 35 - «REST, RPC и работа с внешними API» (lesson35&#x2F;lecture.html)"
+        >
+          Занятие 35  -
+          «REST, RPC и работа с внешними API»
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson36&#x2F;lecture.html"
+          title="Занятие 36 - «Публикация проектов - github, npm» (lesson36&#x2F;lecture.html)"
+        >
+          Занятие 36  -
+          «Публикация проектов - github, npm»
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson37&#x2F;lecture.html"
+          title="Занятие 38 - Работа с асинхронными actions в redux (lesson37&#x2F;lecture.html)"
+        >
+          Занятие 38  -
+          Работа с асинхронными actions в redux
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson38&#x2F;lecture.html"
+          title="Занятие 38 - Работа с асинхронными actions в redux (lesson38&#x2F;lecture.html)"
+        >
+          Занятие 38  -
+          Работа с асинхронными actions в redux
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson39&#x2F;lecture.html"
+          title="Занятие 37 - Клиентский роутинг, как строится одностраничное приложение (lesson39&#x2F;lecture.html)"
+        >
+          Занятие 37  -
+          Клиентский роутинг, как строится одностраничное приложение
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson40&#x2F;lecture.html"
+          title="Занятие 40 - Некоторые моменты про деплой одностраничных приложений (lesson40&#x2F;lecture.html)"
+        >
+          Занятие 40  -
+          Некоторые моменты про деплой одностраничных приложений
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson42&#x2F;lecture.html"
+          title="Занятие 42 - Redux toolkit (lesson42&#x2F;lecture.html)"
+        >
+          Занятие 42  -
+          Redux toolkit
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson43&#x2F;lecture.html"
+          title="Занятие 43 - React (lesson43&#x2F;lecture.html)"
+        >
+          Занятие 43  -
+          React
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson44&#x2F;lecture.html"
+          title="Занятие 44 - Умные и глупые компоненты в разрезе React (lesson44&#x2F;lecture.html)"
+        >
+          Занятие 44  -
+          Умные и глупые компоненты в разрезе React
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson46&#x2F;lecture.html"
+          title="Занятие 46 - React и Redux (lesson46&#x2F;lecture.html)"
+        >
+          Занятие 46  -
+          React и Redux
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson47&#x2F;lecture.html"
+          title="Занятие 47 - React Router (lesson47&#x2F;lecture.html)"
+        >
+          Занятие 47  -
+          React Router
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson48&#x2F;lecture.html"
+          title="Занятие 48 - Сферы применения Node.js (lesson48&#x2F;lecture.html)"
+        >
+          Занятие 48  -
+          Сферы применения Node.js
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson49&#x2F;lecture.html"
+          title="Занятие 49 - основные Node.js модули fs&#x2F;os, использование inquirer&#x2F;commander для создания консольных приложений (lesson49&#x2F;lecture.html)"
+        >
+          Занятие 49  -
+          основные Node.js модули fs&#x2F;os, использование inquirer&#x2F;commander для создания консольных приложений
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson50&#x2F;lecture.html"
+          title="Занятие 50 - Презентация работы - что сделать, чтобы было хорошо (lesson50&#x2F;lecture.html)"
+        >
+          Занятие 50  -
+          Презентация работы - что сделать, чтобы было хорошо
+        </a>
+      </li>
+      <li>
+        <a
+          href="lesson51&#x2F;lecture.html"
+          title="Занятие 51 - Создание сервера приложений с использованием Node.js., использование express.js, использование шаблонизаторов и middleware, тесты (lesson51&#x2F;lecture.html)"
+        >
+          Занятие 51  -
+          Создание сервера приложений с использованием Node.js., использование express.js, использование шаблонизаторов и middleware, тесты
+        </a>
+      </li>
+    </ul>
   </body>
 </html>
