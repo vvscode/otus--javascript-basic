@@ -17,7 +17,7 @@ jobs:
           yarn install
       - name: Build
         run: |
-          npx reveal-md lessons/ --static dist
+          npx reveal-md lessons/*/lecture.md --static dist
           rsync -a -r lessons/ dist/
 
       - name: Deploy
