@@ -317,14 +317,12 @@ const reducer = combineReducers({
 Условно тип можно было бы описать как
 
 ```ts
-type CombineReducer<ReducersConfig = any, Action = { type: any }> = (
-  config: {
-    [key in keyof ReducersConfig]: (
-      state: ReducersConfig[key] | undefined,
-      action: Action
-    ) => ReducersConfig[key];
-  }
-) => (
+type CombineReducer<ReducersConfig = any, Action = { type: any }> = (config: {
+  [key in keyof ReducersConfig]: (
+    state: ReducersConfig[key] | undefined,
+    action: Action
+  ) => ReducersConfig[key];
+}) => (
   state:
     | {
         [key in keyof ReducersConfig]: ReducersConfig[key];
