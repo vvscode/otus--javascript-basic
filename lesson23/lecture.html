@@ -71,6 +71,10 @@
 
 </script></section><section data-markdown><script type="text/template">
 
+> [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions) is a module of CSS that defines how to create smooth transitions between values of a given CSS properties. It allows to create them, but also to define their evolution, using timing functions.
+
+</script></section><section data-markdown><script type="text/template">
+
 ## CSS Transitions
 
 CSS Properties
@@ -102,6 +106,12 @@ transition: <property> <duration> <timing-function> <delay>;
 
 </script></section><section data-markdown><script type="text/template">
 
+ℹ️ Не все CSS Атрибуты поддаются анимированию!
+
+\*[Animatable CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
+
+</script></section><section data-markdown><script type="text/template">
+
 ## [CSS Transitions example](https://jsfiddle.net/hpdr2wxg/2/)
 
 </script></section><section data-markdown><script type="text/template">
@@ -111,6 +121,10 @@ transition: <property> <duration> <timing-function> <delay>;
 </script></section></section><section ><section data-markdown><script type="text/template">
 
 ## CSS Animations
+
+</script></section><section data-markdown><script type="text/template">
+
+> [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) is a module of CSS that lets you animate the values of CSS properties over time, using keyframes. The behavior of these keyframe animations can be controlled by specifying their timing function, duration, their number of repetitions, and other attributes.
 
 </script></section><section data-markdown><script type="text/template">
 
@@ -133,6 +147,45 @@ CSS Properties. Define animation
 
 </script></section><section data-markdown><script type="text/template">
 
+```css
+@keyframes my-animation {
+  0%: {
+    /* initial CSS */
+    width: 100px;
+    background-color: white;
+  }
+  100%: {
+    /* final CSS */
+    width: 1000px;
+    background-color: blue;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```css
+@keyframes my-animation {
+  0%: {
+    /* initial CSS */
+    width: 100px;
+    background-color: white;
+  }
+  30%: {
+    /* initial CSS */
+    width: 800px;
+    background-color: yellow;
+  }
+  100%: {
+    /* final CSS */
+    width: 1000px;
+    background-color: blue;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
 ## CSS Animations
 
 CSS Properties. Apply animation
@@ -142,7 +195,7 @@ animation-name: my-animation; /* name of the @keyframe at-rule */
 animation-duration: 1s; /* Length of the animation */
 animation-delay: 100ms; /* Time to wait before starting animation */
 animation-iteration-count: infinite; /* Number of times the animation should repeat */
-animation-direction: normal; /* Ex: reverse, alternate, aleternate-revers */
+animation-direction: normal; /* Ex: reverse, alternate, alternate-revers */
 animation-timing-function: linear; /* Timing function. Ex: linear, step-end*/
 animation-fill-mode: none; /* Ex: forwards, backwards, both */
 animation-play-state: running; /* Sets whether an animation is running or paused*/
@@ -158,6 +211,12 @@ Shorthand Syntax
 animation: <duration> | <easing-function> | <delay> | <iteration-count> |
   <direction> | <fill-mode> | <play-state> | <name>;
 ```
+
+</script></section><section data-markdown><script type="text/template">
+
+ℹ️ Не все CSS Атрибуты поддаются анимированию!
+
+\*[Animatable CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
 
 </script></section><section data-markdown><script type="text/template">
 
@@ -215,11 +274,7 @@ window.requestAnimationFrame(animationStep);
 
 ## Вопросы?
 
-</script></section></section><section  data-markdown><script type="text/template">
-
-## [Практика](https://jsfiddle.net/4njbLh1f/)
-
-</script></section><section ><section data-markdown><script type="text/template">
+</script></section></section><section ><section data-markdown><script type="text/template">
 
 ## Итоги - Тезисы
 
@@ -239,7 +294,7 @@ window.requestAnimationFrame(animationStep);
 
 ## Спасибо за внимание!
 
-[Ссылка на опрос](https://otus.ru/polls/20350/)
+[ССылка на опрос]()
 </script></section></div>
     </div>
 
