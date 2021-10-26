@@ -409,7 +409,7 @@ npx mrm lint-staged
 
 ```bash
 # .husky/pre-commit (v7)
-lint-staged
+npx lint-staged
 ```
 
 <!-- v -->
