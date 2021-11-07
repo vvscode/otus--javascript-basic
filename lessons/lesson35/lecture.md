@@ -332,7 +332,7 @@ GraphQL строго типизирован. Во время разработк�
 const xhr = new XMLHttpRequest();
 xhr.open(
   "GET",
-  "http://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&output=json"
+  "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&output=json"
 );
 // Подписываемся на изменение состояния запроса
 xhr.onreadystatechange = function () {
