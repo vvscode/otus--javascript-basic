@@ -280,22 +280,22 @@ GraphQL позволяет вкладывать запросы друг в др�
 
 <!-- v -->
 
-__Нет управления версиями__  
+**Нет управления версиями**  
 Вы можете добавлять новые поля и типы в GraphQL API, не затрагивая существующие запросы. Точно так же проще отказаться от использования существующих полей.
 
 <!-- v -->
 
-__Ничего лишнего__  
+**Ничего лишнего**  
 Благодаря GraphQL, поскольку клиенты могут точно указать, что им нужно, размеры полезной нагрузки могут быть меньше.
 
 <!-- v -->
 
-__Строго типизированный__  
+**Строго типизированный**  
 GraphQL строго типизирован. Во время разработки проверка типов GraphQL помогает гарантировать, что запрос синтаксически верен и действителен.
 
 <!-- v -->
 
-__Самодокументированность__  
+**Самодокументированность**  
 Хотя существуют внешние решения, такие как Swagger, которые помогают упростить изучение REST API, в GraphQL изначально поставляется с GraphQL, встроенной в браузер IDE для изучения GraphQL.
 
 <!-- v -->
@@ -331,8 +331,8 @@ __Самодокументированность__
 ```javascript
 const xhr = new XMLHttpRequest();
 xhr.open(
-  "GET",
-  "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&output=json"
+  'GET',
+  'https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&output=json'
 );
 // Подписываемся на изменение состояния запроса
 xhr.onreadystatechange = function () {
@@ -344,7 +344,7 @@ xhr.onreadystatechange = function () {
     console.log(xhr.responseText);
   } else {
     // Обработка ошибки
-    console.log("HTTP error", xhr.status, xhr.statusText);
+    console.log('HTTP error', xhr.status, xhr.statusText);
   }
 };
 // Отправляем запрос
@@ -358,7 +358,7 @@ xhr.send();
 ```javascript
 // установка timeout
 xhr.timeout = 3000; // 3 секунды
-xhr.ontimeout = () => console.log("timeout", xhr.responseURL);
+xhr.ontimeout = () => console.log('timeout', xhr.responseURL);
 ```
 
 <!-- v -->
@@ -367,7 +367,7 @@ xhr.ontimeout = () => console.log("timeout", xhr.responseURL);
 
 ```javascript
 xhr.upload.onprogress = (p) => {
-  console.log(Math.round((p.loaded / p.total) * 100) + "%");
+  console.log(Math.round((p.loaded / p.total) * 100) + '%');
 };
 ```
 
@@ -380,9 +380,9 @@ xhr.upload.onprogress = (p) => {
 Число параметров может вызывать недоумение, и ранние реализации XMLHttpRequest имели несколько кросс-браузерных несоответствий. По этой причине большинство библиотек и сред предлагают функции-оболочки Ajax для решения этих проблем, например, метод jQuery.ajax():
 
 ```javascript
-$.ajax("http://domain/service")
+$.ajax('http://domain/service')
   .done((data) => console.log(data))
-  .fail((xhr, status) => console.log("error:", status));
+  .fail((xhr, status) => console.log('error:', status));
 ```
 
 <!-- v -->
@@ -394,10 +394,10 @@ $.ajax("http://domain/service")
 Приведенный выше пример XHR можно преобразовать в гораздо более простой код на основе Fetch, который даже анализирует возвращенный JSON:
 
 ```javascript
-fetch("http://domain/service", { method: "GET" })
+fetch('http://domain/service', { method: 'GET' })
   .then((response) => response.json())
   .then((json) => console.log(json))
-  .catch((error) => console.error("error:", error));
+  .catch((error) => console.error('error:', error));
 ```
 
 <!-- v -->
@@ -420,13 +420,13 @@ Fetch API достаточно хорошо поддерживается, но �
 
 ```javascript
 const controller = new AbortController();
-fetch("http://domain/service", {
-  method: "GET",
+fetch('http://domain/service', {
+  method: 'GET',
   signal: controller.signal,
 })
   .then((response) => response.json())
   .then((json) => console.log(json))
-  .catch((error) => console.error("Error:", error));
+  .catch((error) => console.error('Error:', error));
 ```
 
 Обработка может быть прервана вызовом controller.abort(). Будет вызвана функция `.catch()`.
