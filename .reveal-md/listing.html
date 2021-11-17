@@ -8,15 +8,17 @@
 
   <body>
     <ul>
-      {{#files}}
+      {{#files}} {{#title}}
       <li>
-        <a href="{{filePath}}" title="{{title}} - {{description}}">
-          {{#title}}{{.}}
-          ({{filePath}}){{/title}}{{^title}}{{filePath}}{{/title}} -
+        <a
+          href="{{filePath}}"
+          title="{{title}} - {{description}} ({{filePath}})"
+        >
+          {{#title}}{{.}} {{/title}}{{^title}}{{filePath}}{{/title}} -
           {{description}}
         </a>
       </li>
-      {{/files}}
+      {{/title}} {{/files}}
     </ul>
   </body>
 </html>

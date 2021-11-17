@@ -267,6 +267,8 @@ npx eslint file.js --fix
 
 Обычно эти команды вешают на скрипты `lint` / `lint:fix`.
 
+<!-- eslint-skip -->
+
 ```js
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -317,6 +319,8 @@ npm i eslint-config-prettier -D
 <!-- v -->
 
 Заодно хорошо бы добавить его в секцию скриптов (в задачи `lint` / `lint:fix`)
+
+<!-- eslint-skip -->
 
 ```js
     "lint": "prettier --check . && eslint .",
@@ -384,7 +388,9 @@ npx mrm lint-staged
 
 <!-- v -->
 
-После установки нужно проверить секции `husky` и `lint-staged` в файле `package.json`.
+После установки нужно проверить секции `husky` и `lint-staged` в файле `package.json` (для `husky@4`)
+
+<!-- eslint-skip -->
 
 ```js
   "husky": {
@@ -395,6 +401,15 @@ npx mrm lint-staged
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{css,md,yml,html}": "prettier --write"
+```
+
+<!-- v -->
+
+Для `husky@7` [настройки задаются не через `package.json`, а через директорию `.husky`](https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v7)
+
+```bash
+# .husky/pre-commit (v7)
+npx lint-staged
 ```
 
 <!-- v -->
@@ -437,3 +452,4 @@ npx mrm lint-staged
 - [Распутываем спагетти-код: как писать поддерживаемый JavaScript](http://prgssr.ru/development/rasputyvaem-spagetti-kod-kak-pisat-podderzhivaemyj-javascript.html)
 - [Детальный список инструментов для JavaScript](https://vc.ru/dev/172374-detalnyy-spisok-instrumentov-dlya-javascript)
 - [CI/CD для фронтенда: обзор инструментов и практик для автоматизации разработки](https://dou.ua/lenta/articles/ci-cd-for-frontend/)
+- [Советы по созданию проектов](https://github.com/elsewhencode/project-guidelines/blob/master/README-ru.md)

@@ -71,7 +71,7 @@ description: Создание подключаемых плагинов
 
 ## скриптов/стилей к странице
 
-1. npm registry + bunders
+1. npm registry + bundlers
 1. &lt;link>, &lt;script> tags
 
 <!-- v -->
@@ -80,7 +80,7 @@ description: Создание подключаемых плагинов
 
 ## скриптов/стилей к странице
 
-1. [npm registry](http://npmjs.com/) + bunders (webpack, parcel, etc)
+1. [npm registry](http://npmjs.com/) + bundlers (webpack, parcel, etc)
 
 ```sh
 $ npm install some-library
@@ -200,4 +200,4 @@ someLibraryItem.doSomething();
 
 ## Спасибо за внимание!
 
-[Ccылка на опрос](https://otus.ru/polls/16711/)
+[Ссылка на опрос](https://otus.ru/polls/16711/)

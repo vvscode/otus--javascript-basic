@@ -55,6 +55,10 @@ description: Создание интерактивных страниц, раб�
 
 <!-- v -->
 
+> [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions) is a module of CSS that defines how to create smooth transitions between values of a given CSS properties. It allows to create them, but also to define their evolution, using timing functions.
+
+<!-- v -->
+
 ## CSS Transitions
 
 CSS Properties
@@ -86,6 +90,12 @@ transition: <property> <duration> <timing-function> <delay>;
 
 <!-- v -->
 
+ℹ️ Не все CSS Атрибуты поддаются анимированию!
+
+\*[Animatable CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
+
+<!-- v -->
+
 ## [CSS Transitions example](https://jsfiddle.net/hpdr2wxg/2/)
 
 <!-- v -->
@@ -95,6 +105,10 @@ transition: <property> <duration> <timing-function> <delay>;
 <!-- s -->
 
 ## CSS Animations
+
+<!-- v -->
+
+> [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) is a module of CSS that lets you animate the values of CSS properties over time, using keyframes. The behavior of these keyframe animations can be controlled by specifying their timing function, duration, their number of repetitions, and other attributes.
 
 <!-- v -->
 
@@ -117,6 +131,45 @@ CSS Properties. Define animation
 
 <!-- v -->
 
+```css
+@keyframes my-animation {
+  0%: {
+    /* initial CSS */
+    width: 100px;
+    background-color: white;
+  }
+  100%: {
+    /* final CSS */
+    width: 1000px;
+    background-color: blue;
+  }
+}
+```
+
+<!-- v -->
+
+```css
+@keyframes my-animation {
+  0%: {
+    /* initial CSS */
+    width: 100px;
+    background-color: white;
+  }
+  30%: {
+    /* initial CSS */
+    width: 800px;
+    background-color: yellow;
+  }
+  100%: {
+    /* final CSS */
+    width: 1000px;
+    background-color: blue;
+  }
+}
+```
+
+<!-- v -->
+
 ## CSS Animations
 
 CSS Properties. Apply animation
@@ -126,7 +179,7 @@ animation-name: my-animation; /* name of the @keyframe at-rule */
 animation-duration: 1s; /* Length of the animation */
 animation-delay: 100ms; /* Time to wait before starting animation */
 animation-iteration-count: infinite; /* Number of times the animation should repeat */
-animation-direction: normal; /* Ex: reverse, alternate, aleternate-revers */
+animation-direction: normal; /* Ex: reverse, alternate, alternate-revers */
 animation-timing-function: linear; /* Timing function. Ex: linear, step-end*/
 animation-fill-mode: none; /* Ex: forwards, backwards, both */
 animation-play-state: running; /* Sets whether an animation is running or paused*/
@@ -142,6 +195,12 @@ Shorthand Syntax
 animation: <duration> | <easing-function> | <delay> | <iteration-count> |
   <direction> | <fill-mode> | <play-state> | <name>;
 ```
+
+<!-- v -->
+
+ℹ️ Не все CSS Атрибуты поддаются анимированию!
+
+\*[Animatable CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
 
 <!-- v -->
 
@@ -201,10 +260,6 @@ window.requestAnimationFrame(animationStep);
 
 <!-- s -->
 
-## [Практика](https://jsfiddle.net/4njbLh1f/)
-
-<!-- s -->
-
 ## Итоги - Тезисы
 
 - В большинстве случаев достаточно CSS Animations
@@ -223,4 +278,4 @@ window.requestAnimationFrame(animationStep);
 
 ## Спасибо за внимание!
 
-[Ccылка на опрос](https://otus.ru/polls/20350/)
+[ССылка на опрос]()

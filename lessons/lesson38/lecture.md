@@ -200,6 +200,8 @@ const thunk = () => dispatch({ type: "ADD", value: 666 });
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js [1-30]
 // если избавиться от внешних зависимостей и передавать их параметрами
 const thunk = (dispatch) => dispatch({ type: "ADD", value: 666 });
@@ -235,6 +237,19 @@ const dispatch = (action) => {
 
 ```js [1-30]
 // think
+const username = getCurrentUser(state).username;
+
+dispatch({ type: "LOADING" });
+
+fetch(`https://api.github.com/users/${username}/starred`)
+  .then((data) => dispatch({ type: "SUCCESS", data }))
+  .catch((error) => dispatch({ type: "ERROR", error }));
+```
+
+<!-- v -->
+
+```js [1-30]
+// thunk
 const getStarredReposForCurrentUser = () => {
   const username = getCurrentUser(state).username;
 
@@ -249,7 +264,7 @@ const getStarredReposForCurrentUser = () => {
 <!-- v -->
 
 ```js [1-30]
-// still think (with dependencies)
+// thunk (with dependencies)
 const getStarredReposForCurrentUser = (dispatch, getState) => {
   const username = getCurrentUser(getState()).username;
 
@@ -263,8 +278,26 @@ const getStarredReposForCurrentUser = (dispatch, getState) => {
 
 <!-- v -->
 
+Напомню, мы обычно используем не actions напрямую, а action creators
+
+```ts
+// не
+dispatch({ type: "USERS_LOADED", payload: list });
+
+// а
+dispatch(usersLoaded(list));
+
+// где
+const userLoaded = (payload) => ({
+  type: "USERS_LOADED",
+  payload,
+});
+```
+
+<!-- v -->
+
 ```js [1-30]
-// thunk
+// thunk action creator
 const getStarredReposForCurrentUser = () => (dispatch, getState) => {
   const username = getCurrentUser(getState()).username;
 
@@ -491,14 +524,15 @@ store.dispatch({
 
 - создать и настроить проект в новом репозитории
 
-- реализовать приложение чат - которое позволяет отправлять сообщения и отображает входящие сообщения из канала в firebase (api и формат сообщения будет предоставлено)
-  -- создать Redux структуру для приложения час
-  -- создать UI для приложения
-  -- добавить функционал по отображению входящих сообщений
-  -- добавить функционал по отправке сообщений
-  -- добавить функционал по обработке смайликов (в виде картинок)
+- реализовать приложение чат - которое позволяет отправлять сообщения и отображает входящие сообщения из канала в firebase.
 
-- подготовить работу к сдаче\*
+  - создать Redux структуру для приложения чат
+  - создать UI для приложения
+  - добавить функционал по отображению входящих сообщений
+  - добавить функционал по отправке сообщений
+  - добавить функционал по обработке смайликов (в виде картинок)
+
+- подготовить работу к сдаче (тесты, деплой на github pages)
 - сделать ревью 2 других работ
 - сбросить ссылку на PR, опубликованный проект и рассмотренные пуллреквесты в чат с преподавателем
 
@@ -514,6 +548,20 @@ store.dispatch({
 Статус принято от 5 баллов
 
 Задание не проверяется при не соответствии базовым требованиям к заданию
+
+<!-- v -->
+
+Как заготовку для API можно взять [файл](https://gist.github.com/vvscode/ff059675f389f58d135711c09800884f) с примером реализации функций отправки и получения сообщений.
+
+Формат сообщений должен быть:
+
+```js
+{
+  name: string;
+  message: string;
+  now: number;
+}
+```
 
 <!-- v -->
 

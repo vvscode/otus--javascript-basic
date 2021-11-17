@@ -193,7 +193,7 @@ function reducer(state: GameOfLifeState, action): GameOfLifeState {
 
 ### [Store](https://rajdee.gitbooks.io/redux-in-russian/content/docs/basics/Store.html)
 
-Oбъект, который соединяет эти части вместе:
+Объект, который соединяет эти части вместе:
 
 - содержит состояние приложения (application state);
 - предоставляет доступ к состоянию с помощью getState();
@@ -292,19 +292,19 @@ function usersReducer(
 <!-- v -->
 
 ```ts
-const reducer = combineReducers([
+const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
-]);
+});
 ```
 
 <!-- v -->
 
 ```ts
-const reducer = combineReducers([
+const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
-]);
+});
 ```
 
 <!-- v -->
@@ -317,14 +317,12 @@ const reducer = combineReducers([
 Условно тип можно было бы описать как
 
 ```ts
-type CombineReducer<ReducersConfig = any, Action = { type: any }> = (
-  config: {
-    [key in keyof ReducersConfig]: (
-      state: ReducersConfig[key] | undefined,
-      action: Action
-    ) => ReducersConfig[key];
-  }
-) => (
+type CombineReducer<ReducersConfig = any, Action = { type: any }> = (config: {
+  [key in keyof ReducersConfig]: (
+    state: ReducersConfig[key] | undefined,
+    action: Action
+  ) => ReducersConfig[key];
+}) => (
   state:
     | {
         [key in keyof ReducersConfig]: ReducersConfig[key];

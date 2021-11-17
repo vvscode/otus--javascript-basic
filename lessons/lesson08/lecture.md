@@ -420,9 +420,11 @@ b instanceof A; // should be true
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js [1-20]
 // create singleton
-const getInstance = /* put your code here */;
+const getInstance = /* put your code here */
 const o1 = getInstance();
 const o2 = getInstance();
 o1 instanceof User; // true
@@ -430,6 +432,8 @@ o1 === o2; // true
 ```
 
 <!-- v -->
+
+<!-- eslint-skip -->
 
 ```js [1-20]
 // create singleton

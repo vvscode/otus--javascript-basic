@@ -455,3 +455,6 @@ function isFish(pet: Fish | Bird): pet is Fish {
 - [Обобщенные типы и классы. Документация TypeScript](http://typescript-lang.ru/docs/Generics.html)
 - [Typescript: Объединение типов в глубину](https://habr.com/ru/post/526998/)
 - [Продвинутые дженерики в TypeScript — Александр Николаичев](https://www.youtube.com/watch?v=YDTZpQrBXjc)
+- [PiterJS #53: разработка тайпскриптовых типов через тестирование](https://www.youtube.com/watch?v=KSzZnw7upqM)
+- [Advanced Typed Get](https://habr.com/ru/post/556538/)
+- [Type Challenges](https://github.com/type-challenges/type-challenges)
