@@ -427,7 +427,7 @@ try {
 - [Рекурсия и стек](https://learn.javascript.ru/recursion)
 - [Промисы, async/await](https://learn.javascript.ru/async)
 - [Событийный цикл: микрозадачи и макрозадачи](https://learn.javascript.ru/event-loop)
-- [YT: Про цикл событий в JavaScript или "как на самом деле работает асинхронность"?](https://www.youtube.com/watch?v=8cV4ZvHXQL4)
+- [YT: Асинхронность в JS – Григорий Бизюкин](https://youtu.be/x0Y3TfkvCgY)
 - [Loupe](http://latentflip.com/loupe/)
 - [Параллельная модель и цикл событий](https://developer.mozilla.org/ru/docs/Web/JavaScript/EventLoop#%D0%9E%D1%87%D0%B5%D1%80%D0%B5%D0%B4%D1%8C)
 - [Асинхронный JavaScript](https://developer.mozilla.org/ru/docs/Learn/JavaScript/Asynchronous)
