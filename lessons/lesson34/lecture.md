@@ -344,7 +344,7 @@ type CombineReducer<ReducersConfig = any, Action = { type: any }> = (config: {
 
 <!-- s -->
 
-### [Домашнее задание:](./homework.md)
+### [Домашнее задание](./homework.md)
 
 <!-- s -->
 
