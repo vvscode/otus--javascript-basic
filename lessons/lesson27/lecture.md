@@ -139,6 +139,8 @@ const login: ReduxAction<"login"> = {
 
 [Условные типы (Conditional Types)](<https://nauchikus.gitlab.io/typescript-definitive-guide/book/contents/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5%20%D1%82%D0%B8%D0%BF%D1%8B%20(Conditional%20Types).html>), это типы способные принимать одно из двух значений, основываясь на выражении,в котором устанавливается принадлежность к заданному типу данных. Условные типы семантически схожи с тернарным оператором.
 
+<!-- eslint-skip -->
+
 ```ts
 T extends U ? T1 : T2
 ```
