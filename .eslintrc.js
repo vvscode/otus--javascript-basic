@@ -1,5 +1,9 @@
 module.exports = {
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
+  parserOptions: {
+    "requireConfigFile": false,
+    "ecmaVersion": 8
+  },
   extends: "plugin:markdown/recommended",
   plugins: ["markdown"],
   overrides: [
