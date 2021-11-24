@@ -15,7 +15,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
     "eslint": "^8.0.0",
     "eslint-plugin-markdown": "^2.2.1",
     "husky": "^7.0.2",
