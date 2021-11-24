@@ -97,7 +97,7 @@ function draw2({
 ```ts
 function asyncOperation(
   param: any,
-  fun: (error: Error | null, data: any) => {}
+  fn: (error: Error | null, data: any) => {}
 ): any;
 ```
 
