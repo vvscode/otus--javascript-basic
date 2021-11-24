@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">### "Разработать и покрыть тестами redux-api, реализовать combineReducer"
+
+Необходимо:
+
+- создать новый проект, инициализировать его с .gitignore, настройкой линтеров, actions, webpack
+- создать новую ветку
+- реализовать `store api`, `create Store` (без поддержки middlewares), `combineReducers `
+- покрыть код тестами
+- сделать пуллреквест
+- сбросить ссылку на пуллреквест в чат с преподавателем
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Критерии оценки:
+
+- store.dispatch. - **1** балл
+- store.subscribe - **1** балл
+- store.getState - **1** балл
+- store.replaceReducer - **1** балл
+- createStore - **1** балл (с поддержкой preloadedState)
+- combineReducer - **1** балл
+- поддержка middlewares - **3** балла
+
+Реализация включает в себя - код + тесты ( код без тестов = нет кода)
+
+#### Принято ставится от 8 баллов
+</script></section></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
