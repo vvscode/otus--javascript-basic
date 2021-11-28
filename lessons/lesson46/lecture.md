@@ -71,6 +71,8 @@ class Screen extends React.Component {
 
 Для dispatch соответственно
 
+<!-- eslint-skip -->
+
 ```ts [1-50]
   onClick() {
     store.dispatch(changePage({id: 'new'}))
@@ -84,6 +86,8 @@ class Screen extends React.Component {
 Чего не хватает?
 
 <!-- v -->
+
+<!-- eslint-skip -->
 
 ```ts [1-50]
   componentDidMount() {
@@ -193,7 +197,7 @@ export class App extends React.Component {
 
 <!-- v -->
 
-```ts [13-50]
+```tsx [13-50]
 import React, { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { store } from "../store";
@@ -380,7 +384,7 @@ export const App = withRedux(RawApp, getAppPropsFromRedux);
 
 [Provider](https://react-redux.js.org/api/provider)
 
-```ts [1-50]
+```tsx [1-50]
 /**
 * Makes the Redux store available to the connect() calls in the componet hierarchy below.
 */

@@ -66,8 +66,10 @@ unlisten();
 
 <!--v-->
 
-```js [1-100]
+```jsx [1-100]
+import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import News from "./News";
 
 // BrowserRouter создает объект history и прокидывает
 // его вниз
@@ -89,8 +91,10 @@ const App = () => (
 
 ### Вложенные Route
 
-```js [1-100]
+```jsx [1-100]
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import News from "./News";
 
 // также обратите внимание на Switch
 const Category = () => (
@@ -115,7 +119,11 @@ const App = () => (
 
 ### Route с параметрами
 
-```js [1-100]
+<!-- eslint-skip -->
+
+```jsx [1-100]
+import React from "react";
+
 const CatPage = ({ match }) => <h1>Viewing category {match.params.catid}</h1>;
 
 const Category = () => (
@@ -130,7 +138,7 @@ const Category = () => (
 
 ### Действия при входе
 
-```js [1-100]
+```jsx [1-100]
 class CatPage extends Component {
   // используем лайфсайкл-хук
   componentDidMount() {
@@ -189,7 +197,7 @@ const Category = () => (
   - **`<a>`** можно даже перетаскивать!
 - Если вместо **`<a>`** рисовать
 
-```js [1-100]
+```jsx [1-100]
 <span onClick={() => history.pushState(/*...*/)}>link</span>
 ```
 
@@ -201,7 +209,7 @@ const Category = () => (
 
 <!-- eslint-skip -->
 
-```js [1-100]
+```jsx [1-100]
 import { Link } from "react-router-dom";
 // Хитрая ссылка
 <Link to="/news">Новости!</Link>
@@ -232,7 +240,7 @@ const target = {
 
 <!-- eslint-skip -->
 
-```js [1-100]
+```jsx [1-100]
 //у Link есть подвох
 // если на https://vasya-superman.ru написать
 <Link to="https://mail.yandex.ru">Yandex.Mail</Link>
@@ -259,7 +267,7 @@ const target = {
 
 <!-- eslint-skip -->
 
-```js [1-100]
+```jsx [1-100]
 import { Redirect } from "react-router-dom";
 // Рендерим Redirect - переходим по адресу
 <Redirect to="/view-ad" />
@@ -281,7 +289,7 @@ const withAuth = Cmp => props => {
 
 ### Парсим query string
 
-```js [1-100]
+```jsx [1-100]
 // Противоречивое решение react-router v4:
 // убрать работу с queryString
 // Теперь все сами:

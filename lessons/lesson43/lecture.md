@@ -321,7 +321,7 @@ describe("App", () => {
 
 > RTL используется для взаимодействия с вашими компонентами React так, как это делает человек. То, что видит человек, - это просто визуализированный HTML из ваших компонентов React, поэтому вы видите эту структуру HTML как результат
 
-```js [1-30]
+```html [1-30]
 <body>
   <div>
     <div>Hello React</div>
@@ -467,25 +467,25 @@ describe("App", () => {
 
 `getByLabelText`:
 
-```js
+```html
 <label for="search" />
 ```
 
 `getByPlaceholderText`:
 
-```js
+```html
 <input placeholder="Search" />
 ```
 
 `getByAltText`:
 
-```js
+```html
 <img alt="profile" />
 ```
 
 `getByDisplayValue`:
 
-```js
+```html
 <input value="JavaScript" />
 ```
 
@@ -621,6 +621,9 @@ describe("App", () => {
 <!-- v -->
 
 ```js [1-30]
+import React from "react";
+import App from "./App";
+
 describe("App", () => {
   test("renders App component", async () => {
     render(<App />);
@@ -677,7 +680,11 @@ describe("App", () => {
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```js
+import React from "react";
+
 function Search({ value, onChange, children }) {
   return (
     <div>
@@ -691,6 +698,8 @@ function Search({ value, onChange, children }) {
 <!-- v -->
 
 ```js [1-30]
+import React from "react";
+import Search from "./Search";
 //  FireEvent
 describe("Search", () => {
   test("calls the onChange callback handler", () => {
@@ -714,6 +723,8 @@ describe("Search", () => {
 <!-- v -->
 
 ```js [1-30]
+import React from "react";
+import Search from "./Search";
 // UserEvent
 describe("Search", () => {
   test("calls the onChange callback handler", async () => {

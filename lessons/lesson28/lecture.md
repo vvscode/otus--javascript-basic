@@ -95,7 +95,10 @@ function draw2({
 Для callback функций есть стандартное [error-first соглашение](http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/)
 
 ```ts
-function asyncOperation(param: any, (error: Error | null, data: any) => {});
+function asyncOperation(
+  param: any,
+  fn: (error: Error | null, data: any) => {}
+): any;
 ```
 
 <!-- v -->
