@@ -78,7 +78,7 @@ description: Работа с асинхронными actions в redux
 
 <!-- v -->
 
-```js [1-30
+```ts [1-30]
 const getStarredRepos = (username: string) => {
   return fetch(`https://api.github.com/users/${username}/starred`);
 };
@@ -86,7 +86,7 @@ const getStarredRepos = (username: string) => {
 
 <!-- v -->
 
-```js [1-30]
+```ts [1-30]
 const getStarredRepos = (username: string) => {
   return fetch(`https://api.github.com/users/${username}/starred`).then(
     (data) => saveData(data)
@@ -96,7 +96,7 @@ const getStarredRepos = (username: string) => {
 
 <!-- v -->
 
-```js [1-30]
+```ts [1-30]
 const getStarredRepos = (username: string) => {
   return fetch(`https://api.github.com/users/${username}/starred`)
     .then((data) => saveData(data))
@@ -106,7 +106,7 @@ const getStarredRepos = (username: string) => {
 
 <!-- v -->
 
-```js [1-30]
+```ts [1-30]
 const getStarredRepos = (username: string) => {
   saveIsLoading();
 
@@ -118,7 +118,7 @@ const getStarredRepos = (username: string) => {
 
 <!-- v -->
 
-```js [1-30]
+```ts [1-30]
 const getStarredRepos = (username: string) => {
   dispatch({ type: "LOADING" });
 
@@ -130,7 +130,7 @@ const getStarredRepos = (username: string) => {
 
 <!-- v -->
 
-```js [1-30]
+```ts [1-30]
 const reducer = (state = { isLoading: false }, action) => {
   switch (action.type) {
     case "LOADING":
