@@ -385,21 +385,21 @@ https://github.com/reduxjs/redux-toolkit/blob/master/package.json#L60
 ```ts
 type ConfigureEnhancersCallback = (
   defaultEnhancers: StoreEnhancer[]
-) => StoreEnhancer[]
+) => StoreEnhancer[];
 
 interface ConfigureStoreOptions<S = any, A extends Action = AnyAction> {
   // A single reducer function that will be used as the root reducer, or an
   // object of slice reudcers that will passed to `combineReducers()`
-  reducer: Reducer<S, A> | ReducersMapObject<S, A>
+  reducer: Reducer<S, A> | ReducersMapObject<S, A>;
   // An array of Redux middleware to install
-  middleware?; Middleware<{}, S>[]
+  middleware?: Middleware<{}, S>[];
   // Whether to enable Redux DevTools integration. Defaults to `true`.
   // Additional configuration can be done by passing Redux Devtools options
-  devTools?: boolean | DevToolsOptions
+  devTools?: boolean | DevToolsOptions;
   // the initial state, same as Redux's createStore.
-  preloadedState?: DeepPartial<S extends any ? S : S>
+  preloadedState?: DeepPartial<S extends any ? S : S>;
   // The store enhancers to apply. See Redux's `createStore()`.
-  enhancers?: StoreEnhancer[] | ConfigureEnhancersCallback
+  enhancers?: StoreEnhancer[] | ConfigureEnhancersCallback;
 }
 ```
 

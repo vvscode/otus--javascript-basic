@@ -71,6 +71,8 @@ description: Mediator и EventEmitter как инструмент организ
 
 Может быть представлен как
 
+<!-- eslint-skip -->
+
 ```ts
 IObservable {
   addObserver(event, handler)
@@ -82,6 +84,8 @@ IObservable {
 <!-- v -->
 
 или
+
+<!-- eslint-skip -->
 
 ```ts
 EventTarget {
@@ -95,6 +99,8 @@ EventTarget {
 
 или
 
+<!-- eslint-skip -->
+
 ```ts
 Backbone.Events {
   on(event, handler)
@@ -106,6 +112,8 @@ Backbone.Events {
 <!-- v -->
 
 Иногда могут добавлять вспомогательные методы, например
+
+<!-- eslint-skip -->
 
 ```ts
 Backbone.Events {
