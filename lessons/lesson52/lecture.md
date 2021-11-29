@@ -103,11 +103,11 @@ Long term support
 // ES6 modules
 
 /* main.js */
-console.log('running main.js');
-import secondary from './secondary.js'; 👈
+console.log("running main.js");
+import secondary from "./secondary.js"; //👈
 
 /* secondary.js */
-console.log('running secondary.js');
+console.log("running secondary.js");
 ```
 
 ```txt
@@ -121,11 +121,11 @@ running main.js
 // CommonJS modules
 
 /* main.js */
-console.log('running main.js');
-const secondary = require('./secondary.js') 👈
+console.log("running main.js");
+const secondary = require("./secondary.js"); //👈
 
 /* secondary.js */
-console.log('running secondary.js');
+console.log("running secondary.js");
 ```
 
 ```txt
@@ -147,11 +147,11 @@ running secondary.js
 // ES6 modules for Node.js
 
 /* main.js */
-console.log('running main.js');
-import secondary from './secondary.js'
+console.log("running main.js");
+import secondary from "./secondary.js";
 
-/* secondary.mjs */ 👈
-console.log('running secondary.js');
+/* secondary.mjs */ //👈
+console.log("running secondary.js");
 ```
 
 <!-- v -->
@@ -260,7 +260,7 @@ const END_MSG = "ended";
 
 console.log(START_MSG);
 
-debugger; 👈
+debugger; //👈
 
 console.log(END_MSG);
 ```

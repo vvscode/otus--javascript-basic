@@ -1,7 +1,7 @@
 module.exports = {
-  parser: "babel-eslint",
-  extends: "plugin:markdown/recommended",
-  plugins: ["markdown"],
+  parser: "@typescript-eslint/parser",
+  extends: ["plugin:react/recommended", "plugin:markdown/recommended"],
+  plugins: ["@typescript-eslint", "react", "markdown"],
   overrides: [
     {
       files: ["**/*.md"],
@@ -14,4 +14,9 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    react: {
+      version: "17.0.2",
+    },
+  },
 };

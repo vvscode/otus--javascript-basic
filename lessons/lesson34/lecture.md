@@ -259,6 +259,8 @@ function usersReducer(
 
 <!-- v -->
 
+<!-- eslint-skip -->
+
 ```ts
 interface State {
   users: // ... <- usersReducer
