@@ -155,7 +155,7 @@ _А до этого были [`grunt`](https://gruntjs.com/) и [`gulp`](https:/
 
 <!-- s -->
 
-## [Домашнее задание](./homework.md)
+## [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson09/homework.md)
 
 <!-- v -->
 
