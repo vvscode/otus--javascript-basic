@@ -516,7 +516,7 @@ store.dispatch({
 
 <!-- s -->
 
-### [Домашнее задание](./homework.md)
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson38/homework.md)
 
 <!-- v -->
 
