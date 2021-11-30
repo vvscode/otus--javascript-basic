@@ -24,7 +24,7 @@ description: Некоторые моменты про деплой одност�
 
 <!-- s -->
 
-### [Домашнее задание](./homework.md)
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson40/homework.md)
 
 <!-- s -->
 
