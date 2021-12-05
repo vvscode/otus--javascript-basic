@@ -231,7 +231,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 Внутри которого добавим подписку и отписку
 
-```tsx [29-35]
+```tsx [25-35]
 import React, { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { store } from "../store";
