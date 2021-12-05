@@ -323,7 +323,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 И зададим имя для компонента-обертки:
 
-```tsx [25]
+```tsx [25-27]
 export function withRedux<ComponentProps = any, Props = any>(
   TargetComponent: React.ComponentType<Props>,
   getPropsFromRedux: (state: State) => ComponentProps
