@@ -231,7 +231,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 Внутри которого добавим подписку и отписку
 
-```tsx [29-35]
+```tsx [25-35]
 import React, { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { store } from "../store";
@@ -271,7 +271,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 <!-- v -->
 
-Пробросим пробросим нужные части от store через props
+Пробросим нужные части от store через props
 
 ```tsx [26-27]
 import React, { Dispatch } from "react";
@@ -323,7 +323,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 И зададим имя для компонента-обертки:
 
-```tsx [25]
+```tsx [25-27]
 export function withRedux<ComponentProps = any, Props = any>(
   TargetComponent: React.ComponentType<Props>,
   getPropsFromRedux: (state: State) => ComponentProps
@@ -348,9 +348,9 @@ export function withRedux<ComponentProps = any, Props = any>(
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (
-    WrappedComponent as any
-  ).displayName = `${TargetComponent.displayName}ConnectedToRedux`;
+  (WrappedComponent as any).displayName = `${
+    TargetComponent.displayName || TargetComponent.name || "Component"
+  }ConnectedToRedux`;
 
   return WrappedComponent;
 }
