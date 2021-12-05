@@ -348,9 +348,9 @@ export function withRedux<ComponentProps = any, Props = any>(
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (
-    WrappedComponent as any
-  ).displayName = `${TargetComponent.displayName}ConnectedToRedux`;
+  (WrappedComponent as any).displayName = `${
+    TargetComponent.displayName || TargetComponent.name || "Component"
+  }ConnectedToRedux`;
 
   return WrappedComponent;
 }
