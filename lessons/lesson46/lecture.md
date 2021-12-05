@@ -271,7 +271,7 @@ export function withRedux<ComponentProps = any, Props = any>(
 
 <!-- v -->
 
-Пробросим пробросим нужные части от store через props
+Пробросим нужные части от store через props
 
 ```tsx [26-27]
 import React, { Dispatch } from "react";
