@@ -464,7 +464,7 @@ console.log(jsonData);
 
 <!-- s -->
 
-### [Домашнее задание](./homework.md)
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson04/homework.md)
 
 <!-- v -->
 

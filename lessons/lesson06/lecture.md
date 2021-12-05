@@ -516,7 +516,7 @@ npm run test
 
 <!-- v -->
 
-### [Домашнее задание](./homework.md)
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson06/homework.md)
 
 <!-- s -->
 
