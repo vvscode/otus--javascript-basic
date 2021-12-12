@@ -405,3 +405,7 @@ const HugeComponent = React.lazy(() =>
 1. [Code Splitting React Router Routes with React Lazy and React Suspense](https://karlhadwen.medium.com/code-splitting-react-router-routes-with-react-lazy-and-react-suspense-a3852b42c0a9)
 1. [React router examples](https://reactrouter.com/web/guides/quick-start)
 1. [React Router v5: The Complete Guide](https://www.sitepoint.com/react-router-complete-guide/)
+
+<!-- v -->
+
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson47/homework.md)
