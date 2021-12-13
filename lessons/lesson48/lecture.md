@@ -149,3 +149,7 @@ description: Сферы применения Node.js
 - [Quick start](https://nodejs.dev/learn)
 - [Скринкаст от Ильи Кантора](https://learn.javascript.ru/screencast/nodejs)
 - [Лекции Тимура Шемсединова](https://www.youtube.com/c/TimurShemsedinov)
+
+<!-- v -->
+
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson48/homework.md)
