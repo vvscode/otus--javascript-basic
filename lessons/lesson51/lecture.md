@@ -343,12 +343,12 @@ const Book = mongoose.model("Book", bookSchema);
 
 ```js
 app.post("/api/books", (req, res) => {
-  const body = req.body;
+  const { author, title, year } = req.body;
 
   const book = new Book({
-    author: body.author,
-    date: body.date,
-    title: body.title,
+    author,
+    year,
+    title,
   });
 
   book
