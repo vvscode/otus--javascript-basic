@@ -9,7 +9,8 @@
     "lint:prettier": "prettier --check .",
     "lint:spell": "yaspeller .",
     "lint": "yarn lint:prettier && yarn lint:spell && yarn lint:code",
-    "lint:code": "eslint --ext .js,.ts,.md ."
+    "lint:code": "eslint --ext .js,.ts,.md .",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
