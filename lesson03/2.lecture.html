@@ -29,7 +29,7 @@
 
 </script></section></section><section  data-markdown><script type="text/template">
 
-### Объектная модель в Javascript: Функции и контекст, функции-конструкторы
+### Контекст при работе с функциями
 
 </script></section><section ><section data-markdown><script type="text/template">
 
@@ -394,159 +394,11 @@ f.bind(o)("user 4"); // bind возвращает функцию для вызо
 
 Напишите функцию, которая позволит привязывать контекст, так, как это делает метод `.bind` (сам метод использовать нельзя).
 
-</script></section></section><section ><section data-markdown><script type="text/template">
-
-#### Работа с конструкторами
-
-</script></section><section data-markdown><script type="text/template">
-
-Еще один способ изменить `this` - использовать ключевое слово `new`
-
-- `new` с любой функцией (кроме стрелочной) создает новый объект
-- созданный объект получает значение `__proto__` (из свойства конструктора `prototype`)
-- созданный объект ассоциируется с `this`
-- выполняет функция
-- если функция возвращает примитивное значение - неявно возвращается `this`
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-var f = function (name) {
-  console.log(this);
-};
-f("Sam"); // ?
-console.log(new f("Bob")); // ?
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-function User(name, greet) {
-  // изменяем новый объект при создании
-  this.name = name;
-  this.greetPhrase = greet;
-  this.greet = function () {
-    console.log(this.greetPhrase + ", " + this.name);
-  };
-}
-let u1 = new User("Bob", "Hello");
-let u2 = new User("Sam", "hi");
-console.log(u1, u2);
-u1.greet();
-u2.greet();
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-function User(name, greet) {
-  this.name = name;
-  this.greetPhrase = greet;
-}
-User.prototype = {
-  greet: function () {
-    console.log(this.greetPhrase + ", " + this.name);
-  },
-};
-let u1 = new User("Bob", "Hello");
-let u2 = new User("Sam", "hi");
-console.log(u1, u2);
-u1.greet();
-u2.greet();
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-function User(name, greet) {
-  this.name = name;
-  // читаем greet через замыкание
-  this.greet = function () {
-    console.log(greet + ", " + this.name);
-  };
-}
-let u1 = new User("Bob", "Hello");
-u1.greet();
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-Функции-конструкторы - вариант создания "классов" из до-ES6 мира. В целом современные классы, являются "синтаксическим сахаром" и так же работают на прототипах, просто позволяют нам использовать другой синтаксис для описания.
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-// ES5
-function User(name, greet) {
-  this.name = name;
-  this.greetPhrase = greet;
-}
-User.prototype = {
-  greet: function () {
-    console.log(this.greetPhrase + ", " + this.name);
-  },
-};
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1--30]
-// ES6
-class User {
-  constructor(name, greet) {
-    this.name = name;
-    this.greetPhrase = greet;
-  }
-
-  greet() {
-    console.log(this.greetPhrase + ", " + this.name);
-  }
-}
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-#### Как проверить, что объект является экземпляром класа?
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-function User() {}
-var fu = {};
-var u = new User();
-
-console.log(fu, fu instanceof User);
-console.log(u, u instanceof User);
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-`instanceof` ходит по цепочке прототипов и ищет совпадение с `prototype`
-
-```
-x instanceof Y
--> x.__proto__ === Y.prototype
--> x.__proto__.__proto__ === Y.prototype
--> ...
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```js [1-30]
-let o = {};
-console.log(o instanceof Array); // ?
-
-o.__proto__ = [];
-
-// o.__proto__.__proto__ === Array.prototype
-console.log(o instanceof Array);
-```
-
-</script></section><section data-markdown><script type="text/template">
+</script></section></section><section  data-markdown><script type="text/template">
 
 ### Вопросы?
 
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section><section ><section data-markdown><script type="text/template">
 
 ### [Стрелочные функции](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
@@ -643,29 +495,15 @@ greet.call({ name: "Sam" }); // ?
 
 </script></section><section data-markdown><script type="text/template">
 
-[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/master/lessons/lesson03/code/singleton)
-
-Напишите функцию или класс, которые будут являться синглтоном.
-
-Напишите функцию, которая делает синглтоны на основе других классов.
-
-</script></section></section><section ><section data-markdown><script type="text/template">
-
 ### Что со всем этим делать?
 
 _Понять, простить и пользоваться_
 
 </script></section><section data-markdown><script type="text/template">
 
-- Читать документацию, например [методы функций](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Function) / [другие встроенные объекты](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects)
-- [Monkey patching](https://learn.javascript.ru/native-prototypes#native-prototype-change)
 - [Использовать чужие методы на своих объектах](https://learn.javascript.ru/native-prototypes#zaimstvovanie-u-prototipov)
 
 </script></section><section data-markdown><script type="text/template">
-
-### Вопросы?
-
-</script></section></section><section ><section data-markdown><script type="text/template">
 
 ### Дополнительные материалы
 
