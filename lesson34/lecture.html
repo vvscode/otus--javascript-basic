@@ -287,38 +287,6 @@ interface State {
 </script></section><section data-markdown><script type="text/template">
 
 ```ts
-type UsersState = {
-  name: string;
-  score: number;
-}[];
-
-const defaultUsersState = [];
-
-function usersReducer(
-  state: UsersState = defaultUsersState,
-  action: Action
-): UsersState {
-  switch (action.type) {
-    case "ADD_USER":
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-}
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```ts
-const reducer = combineReducers({
-  users: usersReducer,
-  gameField: gameFieldReducer,
-});
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```ts
 const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
