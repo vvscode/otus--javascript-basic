@@ -294,7 +294,7 @@ if (
 
 - [Адаптация Чистого Кода для JS](https://github.com/ryanmcdermott/clean-code-javascript)
 - [Пишем хорошие комментарии](https://stackoverflow.blog/2021/07/05/best-practices-for-writing-code-comments/)
-- [Комментарии, Чисты Код и JavaScript](https://betterprogramming.pub/javascript-clean-code-comments-c926d5aae2cb)
+- [Комментарии, Чистый Код и JavaScript](https://betterprogramming.pub/javascript-clean-code-comments-c926d5aae2cb)
 
 <!-- s -->
 
@@ -306,6 +306,10 @@ if (
 
 - [Набор шаблонов для readme](https://github.com/kautukkundan/Awesome-Profile-README-templates)
 - [Видео урок](https://www.youtube.com/watch?v=KhGWbt1dAKQ)
+
+<!-- v -->
+
+## [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson50/homework.md)
 
 <!-- v -->
 

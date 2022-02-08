@@ -528,3 +528,4 @@ npm run test
 - [Курс "Введение в Git"](https://ru.hexlet.io/courses/intro_to_git)
 - [Скринкаст по Git](https://learn.javascript.ru/screencast/git)
 - [Первоначальная настройка Git](https://hyperhost.ua/info/ru/pervonachalnaya-nastroyka-git)
+- [30 команд Git, необходимых для освоения интерфейса командной строки Git](https://habr.com/ru/company/ruvds/blog/599929/)

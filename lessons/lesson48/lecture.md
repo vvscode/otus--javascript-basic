@@ -56,7 +56,7 @@ description: Сферы применения Node.js
 
 <!-- v -->
 
-Построен вокруг движка [v8](https://v8.dev/), к которому написана [обвязка на c++](https://github.com/libuv/libuv) для работы c I/O и [набор модулей на javascript](https://nodejs.org/docs/latest-v12.x/api/)
+Построен вокруг движка [v8](https://v8.dev/), к которому написана [обвязка на c++](https://github.com/libuv/libuv) для работы c асинхронным I/O и [набор модулей на javascript](https://nodejs.org/docs/latest-v12.x/api/)
 
 <!-- v -->
 
@@ -74,11 +74,11 @@ description: Сферы применения Node.js
 
 - Отсутствие браузерных API
 - Собственная библиотека модулей
-- Использование [commonjs модулей](https://nodejs.org/api/modules.html#modules_modules_commonjs_modules)
-- [ES6 импорты поддерживаются ограниченно](https://nodejs.org/api/esm.html#esm_modules_ecmascript_modules)
+- Использование [CommonJS модулей](https://nodejs.org/api/modules.html#modules_modules_commonjs_modules)
+- [Полная поддержка ES6 модулей](https://nodejs.org/api/esm.html#esm_modules_ecmascript_modules)\*
 - [Возможность контролировать версию окружения](https://github.com/nvm-sh/nvm) (и [пресекать использование других версий](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#engines))
-- нет заботы о размере используемых пакетов (но нужно помнить про качество этих пакетов)
-- callback интерфейсы в стандартной библиотеке (с возможностью [конвертации в promise-based код](https://nodejs.org/api/util.html#util_util_promisify_original)) или блокирующие функции
+- Нет заботы о размере используемых пакетов (но нужно помнить про качество этих пакетов)
+- Callback/Promise-based/Synchronous интерфейсы в стандартной библиотеке
 
 <!-- v -->
 
@@ -88,8 +88,8 @@ description: Сферы применения Node.js
 
 [Отладка скриптов](https://nodejs.org/ru/docs/guides/debugging-getting-started/) может делаться через:
 
-- встроенный инструмент отладки
-- chrome://inspect
+- [встроенный инструмент отладки](https://nodejs.org/en/docs/guides/debugging-getting-started/)
+- [chrome://inspect](https://nodejs.org/en/docs/guides/debugging-getting-started/#chrome-devtools-55-microsoft-edge)
 - IDE
 
 <!-- v -->
@@ -102,7 +102,7 @@ description: Сферы применения Node.js
 
 <!-- v -->
 
-[nodemon](https://www.npmjs.com/package/nodemon) - для перезапуска скриптов при изменении исходного кода (замета refresh/hot reload)
+[nodemon](https://www.npmjs.com/package/nodemon) - для перезапуска скриптов при изменении исходного кода (замена refresh/hot reload)
 
 <!-- v -->
 
@@ -135,7 +135,8 @@ description: Сферы применения Node.js
 
 - typescript
 - фокус на безопасности
-- нет npm (зато есть поддержка разных источников пакетов)
+- нет npm (зато есть поддержка разных источников пакетов, например, [https://deno.land/std](https://deno.land/std@0.117.0))
+- встроенные утилиты, такие как `deno info` и форматер кода `deno fmt`
 
 <!-- v -->
 
@@ -147,3 +148,8 @@ description: Сферы применения Node.js
 
 - [Quick start](https://nodejs.dev/learn)
 - [Скринкаст от Ильи Кантора](https://learn.javascript.ru/screencast/nodejs)
+- [Лекции Тимура Шемсединова](https://www.youtube.com/c/TimurShemsedinov)
+
+<!-- v -->
+
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson48/homework.md)

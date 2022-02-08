@@ -271,38 +271,6 @@ interface State {
 <!-- v -->
 
 ```ts
-type UsersState = {
-  name: string;
-  score: number;
-}[];
-
-const defaultUsersState = [];
-
-function usersReducer(
-  state: UsersState = defaultUsersState,
-  action: Action
-): UsersState {
-  switch (action.type) {
-    case "ADD_USER":
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-}
-```
-
-<!-- v -->
-
-```ts
-const reducer = combineReducers({
-  users: usersReducer,
-  gameField: gameFieldReducer,
-});
-```
-
-<!-- v -->
-
-```ts
 const reducer = combineReducers({
   users: usersReducer,
   gameField: gameFieldReducer,
