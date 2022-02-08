@@ -309,4 +309,8 @@ if (
 
 <!-- v -->
 
+## [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson50/homework.md)
+
+<!-- v -->
+
 ## Спасибо за внимание!
