@@ -311,6 +311,10 @@ describe("App", () => {
     render(<App />);
     // Debug info
     screen.debug();
+    // For debugging using testing-playground,
+    //  screen exposes this convenient method
+    //  which logs a URL that can be opened in a browser
+    screen.logTestingPlaygroundURL();
   });
 });
 ```
@@ -794,3 +798,4 @@ npx create-react-app my-app --template typescript
 2. https://jasonformat.com/wtf-is-jsx/
 3. https://github.com/pomber/didact
 4. Paul O Shannessy - Building React From Scratch https://www.youtube.com/watch?v=_MAD4Oly9yg
+5. [YT: Автотесты. Модульное тестирование – Дмитрий Андриянов](https://www.youtube.com/watch?v=DFLXBdfnAeE)
