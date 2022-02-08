@@ -330,8 +330,8 @@ mongoose
 ```js
 const bookSchema = new mongoose.Schema({
   author: String,
+  title: { type: String, required: true },
   year: Number,
-  title: String,
 });
 
 const Book = mongoose.model("Book", bookSchema);
@@ -343,24 +343,23 @@ const Book = mongoose.model("Book", bookSchema);
 
 ```js
 app.post("/api/books", (req, res) => {
-  const body = req.body;
-
-  if (body.content === undefined) {
-    return res.status(400).json({ error: "content missing" });
-  }
+  const { author, title, year } = req.body;
 
   const book = new Book({
-    author: "Mark Twain",
-    date: 1876,
-    title: "The Adventures of Tom Sawyer",
+    author,
+    year,
+    title,
   });
 
   book
     .save()
     .then((savedBook) => {
-      response.json(savedBook);
+      res.json(savedBook);
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      console.log(e);
+      res.status(400).send("Bad request");
+    });
 });
 ```
 
