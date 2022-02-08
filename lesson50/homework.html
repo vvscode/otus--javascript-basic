@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="shortcut icon" href="./../favicon.ico"/>
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">### "Создать приложение-игру крестики-нолики с поддержкой многопользовательской игры"
+
+В результате выполнения ДЗ вы создадите базовый WS-сервер, с поддержкой подключения клиентов, узнаете как общаться через WS и как настраивать выполнение серверного javascript. Потренируете навыки разработки в контексте многопользовательской работы и используете redux не только на клиенте
+
+#### Необходимо:
+
+- создать и настроить проект\*
+- создать приложение сервер, которое поддерживает подключение 2 пользователей на игру, и любого числа пользователей на просмотр
+- создать клиентское приложение, которое может работать с сервером, отображать ход игры и позволяет активным игрокам делать ходы
+- обработать ситуации, когда зрители пытаются сделать ход, или активный игрок ходит вне своей очереди
+- опубликовать работу с использованием сервиса [heroku](https://id.heroku.com/login)
+- подготовить работу с сдаче\*
+- сделать ревью 2 других работ
+- сбросить ссылку на PR, опубликованный проект и рассмотренные пуллреквесты в част с преподавателем
+
+#### Критерии оценки:
+
+- создано клиентское приложение, которое отображает ход игры - **1** балл
+- клиентское приложение поддерживает ввод ходов - **1** балл
+- клиентское приложение позволяет менять статус активный игрок/зритель - **1** балл
+- серверное приложение использует redux для управления логикой - **1** балл
+- серверное приложение обрабатывает и публикует ходы - **1** балл
+- серверное приложение корректно обрабатывает нестандартные ситуации - **1** балл
+- проверены 2 работы - **1** балл
+
+#### Задание не проверяется при не соответствии базовым требованиям к заданию!
+
+#### Принято - от 5 баллов
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

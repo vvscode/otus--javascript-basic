@@ -1,6 +1,6 @@
 ---
-title: Занятие 38
-description: Работа с асинхронными actions в redux
+title: Занятие 37
+description: Разработка виджетов, микроприложений
 ---
 
 # OTUS
