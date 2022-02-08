@@ -225,7 +225,7 @@ const dispatch = (action) => {
 // а если бы мы хотели поддерживать thunk
 const dispatch = (action) => {
   if (typeof action === "function") {
-    action(dispatch, store.getState);
+    return action(dispatch, store.getState);
   }
 
   const newState = rootReducer(store.getState(), action);
@@ -469,7 +469,7 @@ const thunk = (store) => (next) => (action) =>
 
 [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 
-и как эта функция выглядит в [исходном коде](https://github.com/reduxjs/redux-thunk/blob/master/src/index.js)
+и как эта функция выглядит в [исходном коде](https://github.com/reduxjs/redux-thunk/blob/master/src/index.ts)
 
 <!-- v -->
 
