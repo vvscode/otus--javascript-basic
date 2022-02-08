@@ -210,7 +210,7 @@ input.addEventListener("keyup", () => {
 
 <!-- s -->
 
-### Game of Life
+### [Game of Life](https://codesandbox.io/s/game-of-life-tsoopblank-bsdkb?file=/src/GameView.ts)
 
 <!-- v -->
 
