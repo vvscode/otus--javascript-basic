@@ -175,7 +175,7 @@ console.log(`Hi, my name is ${name}. I'm ${age} years old`);
 
 ```js [1-30]
 function render(data) {
-  return `Hi, my name is ${name}. I'm ${age} years old`;
+  return `Hi, my name is ${data.name}. I'm ${data.age} years old`;
 }
 
 console.log(render({ name: "Bob", age: 23 }));
