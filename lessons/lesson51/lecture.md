@@ -51,6 +51,8 @@ $ curl -v www.google.com
 ```js
 import http from "http";
 
+const PORT = process.env.PORT || 3000;
+
 // Create a local server to receive data from
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
@@ -58,7 +60,9 @@ const server = http.createServer((req, res) => {
   res.end();
 });
 
-server.listen(8000);
+server.listen(PORT, () => {
+  console.log("Server is running at http://localhost:%s", PORT);
+});
 ```
 
 <!-- v -->
@@ -93,15 +97,16 @@ $ npm install @types/express --save-dev
 ```js
 import express from "express";
 
+const port = process.env.PORT || 3000;
+
 const app = express();
-const port = 8000;
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello, Otus!</h1>");
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log("Server is running at http://localhost:%s", PORT);
 });
 ```
 
@@ -209,22 +214,24 @@ $ npm install supertest @types/supertest --save-dev
 ### Пишем свой middleware
 
 ```js
+import Express from "express";
+
 const requestLogger = (
-  request: express.Request,
-  response: express.Response,
-  next: NextFunction
+  request: Express.Request,
+  response: Express.Response,
+  next: Express.NextFunction
 ) => {
-  console.log("Method:", request.method);
-  console.log("Path:  ", request.path);
-  console.log("Body:  ", request.body);
-  console.log("---");
+  console.log(req.url, " ", req.method);
+  console.log("-------------------");
   next();
 };
 ```
 
-<!-- v -->
+<!-- s -->
 
-### [Express-session](https://www.npmjs.com/package/express-session)
+### [Cookie-session](https://www.npmjs.com/package/cookie-session)
+
+<!-- v -->
 
 Node.js модуль, с помощью которого можно создавать и управлять пользовательскими сессиями.
 
@@ -232,20 +239,19 @@ Node.js модуль, с помощью которого можно создав
 
 ```
 // Установка
-$ npm install express-session --save
-$ npm install @types/express-session --save-dev
+$ npm install cookie-session --save
+$ npm install @types/cookie-session --save-dev
 ```
 
 ```js
+import cookieSession from "cookie-session";
+
 const oneDay = 1000 * 60 * 60 * 24;
 
-// Подключение
 app.use(
   session({
     secret: "sfajnh4faAN99", // обязательное поле
-    cookie: { maxAge: oneDay },
-    resave: false,
-    saveUninitialized: false,
+    maxAge: oneDay,
   })
 );
 ```
@@ -299,7 +305,7 @@ $ npm install @types/mongoose --save-dev
 ```js
 import mongoose from "mongoose";
 
-// НЕ СОХРАНЯЕМ ПАРОЛЬ НА GITHUB!
+// НЕ СОХРАНЯЕМ ДАННУЮ СТРОКУ НА GITHUB!
 const url =
   "mongodb+srv://<USERNAME>:<PASSWORD>@cluster0-ostce.mongodb.net/<DB_NAME>?retryWrites=true";
 
@@ -307,7 +313,7 @@ console.log("connecting to", url);
 
 mongoose
   .connect(url)
-  .then((result) => {
+  .then((_) => {
     console.log("connected to MongoDB");
   })
   .catch((error) => {
@@ -328,11 +334,20 @@ mongoose
 ### Опишем произвольную схему и на её основе создадим модель.
 
 ```js
-const bookSchema = new mongoose.Schema({
-  author: String,
-  title: { type: String, required: true },
-  year: Number,
-});
+interface IBook {
+  author: string;
+  title: string;
+  year: number;
+}
+
+const bookSchema =
+  new mongoose.Schema() <
+  IBook >
+  {
+    author: String,
+    title: { type: String, required: true },
+    year: Number,
+  };
 
 const Book = mongoose.model("Book", bookSchema);
 ```
@@ -390,10 +405,14 @@ const initialBooks = [
   },
 ];
 
-beforeEach(async () => {
+beforeAll(async () => {
   await Book.deleteMany({});
   let bookObj = new Book(initialBooks[0]);
   await bookObj.save();
+});
+
+afterAll(() => {
+  mongoose.connection.close();
 });
 
 test("should return books as json", async () => {
@@ -407,10 +426,6 @@ test("should return one book", async () => {
   const response = await api.get("/api/books");
 
   expect(response.body).toHaveLength(1);
-});
-
-afterAll(() => {
-  mongoose.connection.close();
 });
 ```
 
