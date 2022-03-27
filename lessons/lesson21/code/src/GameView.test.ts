@@ -35,21 +35,21 @@ describe.skip("GameView", () => {
     it("renders field from .updateGameField", () => {
       gameView.updateGameField([
         [0, 1],
-        [1, 0]
+        [1, 0],
       ]);
       expect(el.querySelectorAll(".cell").length).toBe(4);
       expect(el.querySelectorAll(".cell.cell--alive").length).toBe(2);
       expect(el.querySelectorAll(".cell.cell--dead").length).toBe(2);
       gameView.updateGameField([
         [0, 0],
-        [1, 0]
+        [1, 0],
       ]);
       expect(el.querySelectorAll(".cell").length).toBe(4);
       expect(el.querySelectorAll(".cell.cell--alive").length).toBe(1);
       expect(el.querySelectorAll(".cell.cell--dead").length).toBe(3);
       gameView.updateGameField([
         [0, 0, 1],
-        [1, 0, 1]
+        [1, 0, 1],
       ]);
       expect(el.querySelectorAll(".cell").length).toBe(6);
       expect(el.querySelectorAll(".cell.cell--alive").length).toBe(3);
@@ -60,17 +60,17 @@ describe.skip("GameView", () => {
       gameView.onCellClick(onCellClick);
       gameView.updateGameField([
         [0, 0],
-        [1, 0]
+        [1, 0],
       ]);
       el.querySelector(".cell.cell--alive").dispatchEvent(
         new Event("click", {
-          bubbles: true
+          bubbles: true,
         })
       );
       expect(onCellClick).toHaveBeenCalledWith(0, 1);
       el.querySelectorAll(".cell.cell--dead")[1].dispatchEvent(
         new Event("click", {
-          bubbles: true
+          bubbles: true,
         })
       );
       expect(onCellClick).toHaveBeenCalledWith(1, 0);
@@ -90,16 +90,20 @@ describe.skip("GameView", () => {
       );
       expect(
         Number(
-          (el.querySelector(
-            "input[type='number'].field-size.field-size--width"
-          ) as HTMLInputElement).value
+          (
+            el.querySelector(
+              "input[type='number'].field-size.field-size--width"
+            ) as HTMLInputElement
+          ).value
         )
       ).toBe(3);
       expect(
         Number(
-          (el.querySelector(
-            "input[type='number'].field-size.field-size--height"
-          ) as HTMLInputElement).value
+          (
+            el.querySelector(
+              "input[type='number'].field-size.field-size--height"
+            ) as HTMLInputElement
+          ).value
         )
       ).toBe(3);
       gameView.updateGameState({ isRunning: false, width: 5, height: 6 });
@@ -111,16 +115,20 @@ describe.skip("GameView", () => {
       ).toBe("Play");
       expect(
         Number(
-          (el.querySelector(
-            "input[type='number'].field-size.field-size--width"
-          ) as HTMLInputElement).value
+          (
+            el.querySelector(
+              "input[type='number'].field-size.field-size--width"
+            ) as HTMLInputElement
+          ).value
         )
       ).toBe(5);
       expect(
         Number(
-          (el.querySelector(
-            "input[type='number'].field-size.field-size--height"
-          ) as HTMLInputElement).value
+          (
+            el.querySelector(
+              "input[type='number'].field-size.field-size--height"
+            ) as HTMLInputElement
+          ).value
         )
       ).toBe(6);
     });
@@ -130,14 +138,14 @@ describe.skip("GameView", () => {
       gameView.updateGameState({ isRunning: true, width: 2, height: 1 });
       el.querySelector(".run-button.run-button--runned").dispatchEvent(
         new Event("click", {
-          bubbles: true
+          bubbles: true,
         })
       );
       expect(onGameStateChange).toHaveBeenCalledWith(false);
       gameView.updateGameState({ isRunning: false, width: 2, height: 1 });
       el.querySelector(".run-button.run-button--stopped").dispatchEvent(
         new Event("click", {
-          bubbles: true
+          bubbles: true,
         })
       );
       expect(onGameStateChange).toHaveBeenCalledWith(true);
@@ -149,19 +157,25 @@ describe.skip("GameView", () => {
       [
         [33, 66],
         [22, 12],
-        [1, 2]
+        [1, 2],
       ].forEach(([width, height]) => {
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--width"
-        ) as HTMLInputElement).value = `${width}`;
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--height"
-        ) as HTMLInputElement).value = `${height}`;
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--width"
-        ) as HTMLInputElement).dispatchEvent(
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--width"
+          ) as HTMLInputElement
+        ).value = `${width}`;
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--height"
+          ) as HTMLInputElement
+        ).value = `${height}`;
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--width"
+          ) as HTMLInputElement
+        ).dispatchEvent(
           new Event("change", {
-            bubbles: true
+            bubbles: true,
           })
         );
         expect(onFieldSizeChange).toHaveBeenCalledWith(width, height);
@@ -170,19 +184,25 @@ describe.skip("GameView", () => {
       [
         [101, 103],
         [104, 105],
-        [106, 107]
+        [106, 107],
       ].forEach(([width, height]) => {
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--width"
-        ) as HTMLInputElement).value = `${width}`;
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--height"
-        ) as HTMLInputElement).value = `${height}`;
-        (el.querySelector(
-          "input[type='number'].field-size.field-size--height"
-        ) as HTMLInputElement).dispatchEvent(
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--width"
+          ) as HTMLInputElement
+        ).value = `${width}`;
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--height"
+          ) as HTMLInputElement
+        ).value = `${height}`;
+        (
+          el.querySelector(
+            "input[type='number'].field-size.field-size--height"
+          ) as HTMLInputElement
+        ).dispatchEvent(
           new Event("change", {
-            bubbles: true
+            bubbles: true,
           })
         );
         expect(onFieldSizeChange).toHaveBeenCalledWith(width, height);
