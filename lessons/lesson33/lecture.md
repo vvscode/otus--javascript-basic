@@ -218,6 +218,7 @@ eventBus.trigger("city:changed", "Minsk");
 - [Backbone Events](https://backbonejs.org/#Events) и [исходники](https://backbonejs.org/docs/backbone.html#section-17)
 - [EventTarget simple implementation](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)
 - [Паттерны проектирования понятным языком](https://refactoring.guru/ru/design-patterns)
+- [Design patterns for humans!](https://github.com/sohamkamani/javascript-design-patterns-for-humans)
 
 <!-- v -->
 
