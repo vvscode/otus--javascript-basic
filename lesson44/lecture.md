@@ -98,7 +98,7 @@ export default function App() {
 
 <!-- s -->
 
-### Smart and dump components
+### Smart and dumb components
 
 <!-- v -->
 
