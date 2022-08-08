@@ -334,7 +334,7 @@ mongoose
 ### Опишем произвольную схему и на её основе создадим модель.
 
 ```js
-interface IBook {
+interface BookSchema {
   author: string;
   title: string;
   year: number;
@@ -342,7 +342,7 @@ interface IBook {
 
 const bookSchema =
   new mongoose.Schema() <
-  IBook >
+  BookSchema >
   {
     author: String,
     title: { type: String, required: true },
