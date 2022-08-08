@@ -173,7 +173,7 @@ const b = numId(1); // <-- number
 
 Более навороченным вариантом условных типов являются типы, созданные с помощью ключевого слова `infer`.
 
-[`infer` позволяет задать переменный тип](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#type-inference-in-conditional-types), который должен быть веден (а не задан, как обычно в generic)
+[`infer` позволяет задать переменный тип](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#type-inference-in-conditional-types), который должен быть выведен (а не задан, как обычно в generic)
 
 ```ts [1-30]
 type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
