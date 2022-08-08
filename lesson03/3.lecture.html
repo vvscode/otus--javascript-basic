@@ -100,8 +100,8 @@ function getUserWithPrototype(name) {
   };
 }
 
-const user1 = getUser("Bob");
-const user2 = getUser("Sam");
+const user1 = getUserWithPrototype("Bob");
+const user2 = getUserWithPrototype("Sam");
 
 user1.greet();
 ```
@@ -122,9 +122,8 @@ function getUserWithPrototype(name) {
     },
   });
 }
-
-const user1 = getUser("Bob");
-const user2 = getUser("Sam");
+const user1 = getUserWithPrototype("Bob");
+const user2 = getUserWithPrototype("Sam");
 
 user1.greet();
 ```
@@ -150,7 +149,7 @@ user1.greet();
 - `new` с любой функцией (кроме стрелочной) создает новый объект
 - созданный объект получает значение `__proto__` (из свойства конструктора `prototype`)
 - созданный объект ассоциируется с `this`
-- выполняет функция
+- выполняется функция
 - если функция возвращает примитивное значение - неявно возвращается `this`
 
 </script></section><section data-markdown><script type="text/template">
@@ -236,7 +235,7 @@ document.body.addEventListener("click", u2.greet);
 
 </script></section><section data-markdown><script type="text/template">
 
-Функции-конструкторы - вариант создания "классов" из до-ES6 мира. В целом современные классы, являются "синтаксическим сахаром" и так же работают на прототипах, просто позволяют нам использовать другой синтаксис для описания.
+Функции-конструкторы - вариант создания "классов" до-ES6 мира. В целом, современные классы являются "синтаксическим сахаром" и так же работают на прототипах, просто позволяют нам использовать другой синтаксис для описания.
 
 </script></section><section data-markdown><script type="text/template">
 
@@ -255,7 +254,7 @@ User.prototype = {
 
 </script></section><section data-markdown><script type="text/template">
 
-```js [1--30]
+```js [1-30]
 // ES6
 class User {
   constructor(name, greet) {
@@ -276,7 +275,7 @@ document.body.addEventListener("click", u3.greet);
 
 </script></section><section data-markdown><script type="text/template">
 
-```js [1--30]
+```js [1-30]
 // ES6
 class User {
   constructor(name, greet) {
@@ -302,7 +301,7 @@ document.body.addEventListener("click", u4.greet);
 
 </script></section><section data-markdown><script type="text/template">
 
-#### Как проверить, что объект является экземпляром класа?
+#### Как проверить, что объект является экземпляром класса?
 
 </script></section><section data-markdown><script type="text/template">
 
