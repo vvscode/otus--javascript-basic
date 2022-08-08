@@ -17,48 +17,50 @@ description: React
 
 <!-- v -->
 
-Проблемы шаблонизации:
+#### Проблемы шаблонизации
 
-- Скорость разработки приложения
-- Скорость работы приложения
-
-<!-- v -->
-
-Что говорят его разработчики React:
-
-- Декларативный
-- Основан на компонентах
-- Научитесь однажды — пишите где угодно
+- скорость разработки приложения
+- скорость работы приложения
 
 <!-- v -->
 
-Особенности React:
+#### React
 
-- С компонентами (но не Web Components)
-- Оптимизация обновлений через vDOM
-- Минимальный синтаксис шаблонов — JSX
+- декларативный
+- основан на [компонентах](https://reactjs.org/docs/components-and-props.html)
+- научитесь однажды — пишите где угодно
 
 <!-- v -->
 
-Идея скорости - Virtual DOM
+Особенности **React**
 
-- Архитектура React — заново отрисовать все приложение при изменении
-- Работа с DOM напрямую — медленно
-- vDOM — модель настоящего DOM на легких js- объектах
+- с компонентами (но не [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))
+- оптимизация обновлений через [vDOM](https://reactjs.org/docs/faq-internals.html)
+- минимальный синтаксис шаблонов — [JSX](https://facebook.github.io/jsx/)
 
-<img src="./images/vdom.png" style="height:300px" />
+<!-- v -->
+
+Идея скорости — [**Virtual DOM**](https://reactjs.org/docs/faq-internals.html)
+
+- архитектура React — отрисовать минимально необходимые изменения
+- работа с DOM напрямую — медленно
+- vDOM — модель настоящего DOM на легких js-объектах
+
+<!-- v -->
+
+<img src="./images/dom-reconciliation.webp" style="height:500px" />
 
 <!-- v -->
 
 ### React - абстрактная идея
 
-- Может использоваться на разных платформах (не только Web, но и нативные системы и что-угодно еще представляющее UI - [React Native](https://reactnative.dev/), [React for terminal](https://github.com/vadimdemedes/ink))
-- Сам React никак не связан ни с Web ни с DOM
-- Для работы с DOM(HTML) используется отдельный пакет - react-dom
+- может использоваться на разных платформах (не только Web, но и нативные системы и что-угодно еще представляющее UI - [React Native](https://reactnative.dev/), [React for terminal](https://github.com/vadimdemedes/ink))
+- сам React никак не связан ни с Web ни с DOM
+- для работы с DOM(HTML) используется отдельный пакет — [react-dom](https://reactjs.org/docs/react-dom.html)
 
 <!-- v -->
 
-### Из чего состоит приложение на реакт?
+### Из чего состоит приложение на React?
 
 [React-элементы](https://ru.reactjs.org/docs/glossary.html) — это составляющие блоки React-приложений. Их **можно перепутать с более известной концепцией «компонентов»**, но в отличие от компонента, элемент описывает то, что вы хотите увидеть на экране.
 React-элементы иммутабельны.
@@ -67,7 +69,9 @@ React-элементы иммутабельны.
 
 Представление React элементов через [`createElement`](https://ru.reactjs.org/docs/react-api.html#createelement)
 
-<img src="./images/createElement.png" />
+```jsx
+React.createElement(type, [props], [...children]);
+```
 
 <!-- v -->
 
@@ -105,7 +109,7 @@ React.createElement(
 
 <!-- v -->
 
-[React-компоненты](https://ru.reactjs.org/docs/glossary.html) — это маленькие, повторно используемые части кода, которые возвращают React-элементы для отображения на странице. Самый простой React-компонент — это простая функция JavaScript, которая возвращает элементы React.
+[React-компоненты](https://ru.reactjs.org/docs/glossary.html) — это маленькие, повторно используемые части кода, которые возвращают React-элементы для отображения на странице. Самый простой React-компонент — JavaScript функция, которая возвращает элементы React.
 
 <!-- v -->
 
@@ -124,6 +128,7 @@ const Button = ({ name }) => {
   );
 };
 
+// применение компонента
 React.createElement(
   "div",
   {
@@ -145,6 +150,7 @@ const Button = ({ name }) => (
   </button>
 );
 
+// применение компонента
 <div className="wrapper" style="margin: 5px">
   <Button name="Click me" />
 </div>;
@@ -156,20 +162,22 @@ const Button = ({ name }) => (
 
 ```jsx [1-10]
 const element = <h1>Hello, world</h1>;
-ReactDOM.render(element, document.getElementById("root"));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(element);
 ```
 
 <!-- v -->
 
-[Пример работы с React элементами](https://stackblitz.com/edit/basic-react-dom-novgwc?file=index.js)
+### [Пример работы с React элементами](https://stackblitz.com/edit/basic-react-dom-novgwc?file=index.js)
 
 <!-- v -->
 
-Для поддержки синтаксиса `jsx` нужен пакет [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react). Но при этом вполне можно обходиться и [вообще без jsx](https://ru.reactjs.org/docs/react-without-jsx.html)
+Для поддержки синтаксиса `JSX` нужен пакет [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react). Но при этом вполне можно обходиться и [вообще без JSX](https://ru.reactjs.org/docs/react-without-jsx.html)
 
 <!-- v -->
 
-Вопросы?
+### Вопросы?
 
 <!-- s -->
 
@@ -177,9 +185,9 @@ ReactDOM.render(element, document.getElementById("root"));
 
 <!-- v -->
 
-JSX — синтаксический сахар для функции React.createElement
+`JSX` — синтаксический сахар для функции `React.createElement`
 
-> Это JSX — расширение языка JavaScript. Мы рекомендуем использовать его, когда требуется объяснить React, как должен выглядеть UI. JSX напоминает язык шаблонов, наделённый силой JavaScript.
+> JSX — расширение языка JavaScript. Мы рекомендуем использовать его, когда требуется объяснить React, как должен выглядеть UI. JSX напоминает язык шаблонов, наделённый силой JavaScript.
 
 <!-- v -->
 
@@ -189,7 +197,7 @@ JSX — синтаксический сахар для функции React.crea
 
 <!-- v -->
 
-[Немного о правилах JSX](https://stackblitz.com/edit/react-basic-jsx-otus?file=jsxExamples.jsx)
+#### [Немного о правилах JSX](https://stackblitz.com/edit/react-basic-jsx-otus?file=jsxExamples.jsx)
 
 <!-- v -->
 
@@ -277,9 +285,11 @@ const Cmp5 = (props) => (
 import React from "react";
 ```
 
+Начиная с React 17 появилась [возможность](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) использования новой JSX трансформации
+
 <!-- v -->
 
-Вопросы?
+### Вопросы?
 
 <!-- s -->
 
@@ -312,8 +322,8 @@ describe("App", () => {
     // Debug info
     screen.debug();
     // For debugging using testing-playground,
-    //  screen exposes this convenient method
-    //  which logs a URL that can be opened in a browser
+    // screen exposes this convenient method
+    // which logs a URL that can be opened in a browser
     screen.logTestingPlaygroundURL();
   });
 });
@@ -396,7 +406,7 @@ describe("App", () => {
     // пройдет
     expect(screen.getByText("Search:")).toBeInTheDocument();
 
-    // Пройдет
+    // пройдет
     expect(screen.getByText(/Search/)).toBeInTheDocument();
   });
 });
@@ -406,7 +416,7 @@ describe("App", () => {
 
 ### Возможности для поиска
 
-`getByRole` используется для поиска по [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute). Но, [у некоторых HTML элементов есть неявные роли](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)
+`getByRole` используется для поиска по [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label). Но, [у некоторых HTML элементов есть неявные роли](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)
 
 ```js [1-30]
 import React from "react";
@@ -528,9 +538,9 @@ describe("App", () => {
 
 <!-- v -->
 
-`getBy` выбрасывает исключение если элемент не найден.
+**getBy** выбрасывает исключение если элемент не найден.
 
-Для работы и проверки элементов, которых нет - можно использовать `queryBy`
+Для работы и проверки элементов, которых нет - можно использовать **queryBy**
 
 <!-- v -->
 
@@ -572,7 +582,7 @@ describe("App", () => {
 
 <!-- v -->
 
-для коллекций элементов есть
+Для коллекций элементов есть
 
 - getAllBy
 - queryAllBy
@@ -592,6 +602,10 @@ describe("App", () => {
 - toBeInvalid
 - toBeRequired
 - and etc...
+
+<!-- v -->
+
+### [Testing-playground](https://testing-playground.com/)
 
 <!-- v -->
 
@@ -779,7 +793,7 @@ npx create-react-app my-app --template typescript
 
 <!-- v -->
 
-Для открытия настроек есть команда `eject`
+Для открытия настроек есть команда **eject**
 
 <!-- v -->
 
@@ -791,11 +805,20 @@ npx create-react-app my-app --template typescript
 
 <!-- s -->
 
+### [Storybook](https://storybook.js.org/)
+
+<!-- v -->
+
+### [Loki](https://loki.js.org/)
+
+<!-- s -->
+
 ### Дополнительные материалы
 
 0. https://ru.reactjs.org/docs/getting-started.html
 1. https://pomb.us/build-your-own-react/
 2. https://jasonformat.com/wtf-is-jsx/
 3. https://github.com/pomber/didact
-4. Paul O Shannessy - Building React From Scratch https://www.youtube.com/watch?v=_MAD4Oly9yg
+4. [Paul O Shannessy - Building React From Scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg)
 5. [YT: Автотесты. Модульное тестирование – Дмитрий Андриянов](https://www.youtube.com/watch?v=DFLXBdfnAeE)
+6. [Начало работы со Storybook](https://www.youtube.com/watch?v=lUf8qC_xFHo)
