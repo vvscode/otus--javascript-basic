@@ -17,7 +17,7 @@ description: Mediator и EventEmitter как инструмент организ
 
 <!-- s -->
 
-### Сначала разберемся с задачей
+### Разберемся с задачей
 
 <!-- v -->
 
@@ -39,7 +39,7 @@ description: Mediator и EventEmitter как инструмент организ
 
 <!-- v -->
 
-Высокая связность говорит об эффективность программы (или ее отдельных модулей).
+Высокая связность говорит об эффективности программы (или ее отдельных модулей).
 
 Низкая связанность означает легкость рефакторинга и переиспользуемость кода.
 
@@ -49,7 +49,7 @@ description: Mediator и EventEmitter как инструмент организ
 
 <!-- s -->
 
-### Наблюдатель
+### Наблюдатель (Observer)
 
 <!-- v -->
 
@@ -132,11 +132,11 @@ document.querySelector(element).addEventListener("click", (ev) => {
 
 <!-- v -->
 
-Оговорка: чаще всего обработчиком события является функция. Но это так же может быть и объект ([EventListener](https://developer.mozilla.org/ru/docs/Web/API/EventListener)) - в зависимости от реализации.
+Оговорка: чаще всего обработчиком события является функция. Но это также может быть и объект ([EventListener](https://developer.mozilla.org/ru/docs/Web/API/EventListener)) - в зависимости от реализации.
 
 <!-- v -->
 
-# Вопросы?
+### Вопросы?
 
 <!-- s -->
 
@@ -156,7 +156,7 @@ document.querySelector(element).addEventListener("click", (ev) => {
 
 <!-- v -->
 
-Самый распространенный (и простой) вариант реализации паттерна - с использованием EventEmitter интерфейса (Шина событий - Event Bus).
+Самый распространенный (и простой) вариант реализации паттерна - с использованием **EventEmitter** интерфейса (**Event Bus** - Шина событий).
 
 <!-- v -->
 
@@ -171,7 +171,7 @@ document.querySelector(element).addEventListener("click", (ev) => {
 
 <!-- v -->
 
-При этом, чтобы избежать коллизии имен событий, зачастую вводят `namespaces`, в формате `{NAMESPACE}:{EVENT NAME}`. Например `user:add`, `searchHistory:add`.
+При этом, чтобы избежать коллизии имен событий, зачастую вводят `namespaces`, в формате **{NAMESPACE}:{EVENT NAME}**. Например `user:add`, `searchHistory:add`.
 
 Нужно отметить, что по-хорошему, префиксы делаются на основе сущностей, а не на основе модулей (иначе происходит раскрытие структуры системы).
 
@@ -205,7 +205,7 @@ eventBus.trigger("city:changed", "Minsk");
 
 <!-- v -->
 
-Реализовать поверх существующего функционала метод `once` (для одноразового вызова обработчика).
+Реализовать поверх существующего функционала метод **once** (для одноразового вызова обработчика).
 
 <!-- v -->
 
@@ -218,6 +218,7 @@ eventBus.trigger("city:changed", "Minsk");
 - [Backbone Events](https://backbonejs.org/#Events) и [исходники](https://backbonejs.org/docs/backbone.html#section-17)
 - [EventTarget simple implementation](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)
 - [Паттерны проектирования понятным языком](https://refactoring.guru/ru/design-patterns)
+- [Design patterns for humans!](https://github.com/sohamkamani/javascript-design-patterns-for-humans)
 
 <!-- v -->
 
