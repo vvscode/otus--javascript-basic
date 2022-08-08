@@ -646,7 +646,7 @@ Content-Type: application/json
 Authorization: Bearer xoxp-16501860-a24afg234
 {
   ...
- }
+}
 ```
 
 </script></section><section data-markdown><script type="text/template">
@@ -656,8 +656,19 @@ Authorization: Bearer xoxp-16501860-a24afg234
 </script></section><section data-markdown><script type="text/template">
 
 - Во-первых, токен доступа действителен. Вам необходимо сопоставить данный токен доступа с предоставленными токенами доступа в вашей базе данных.
-  </script></section><section data-markdown><script type="text/template">
-  Во-вторых, токен доступа имеет необходимую область действия, которое должен выполнить запрос. Если какая-либо из проверок не удалась, сервер должен вернуть ошибку.
+- Во-вторых, токен доступа имеет необходимую область действия, которое должен выполнить запрос. Если какая-либо из проверок не удалась, сервер должен вернуть ошибку.
+
+</script></section><section data-markdown><script type="text/template">
+
+### [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+**WebSocket** - протокол, позволяющий устанавливать двунаправленное(дуплексное) соединение между сервером и клиентом. Используется для создания real-time приложений, таких как чаты, мультиплеерные игр и т.д.
+
+</script></section><section data-markdown><script type="text/template">
+
+### Практика. Напишем свой чат с использованием WebSockets.
 
 </script></section></section><section  data-markdown><script type="text/template">
 
