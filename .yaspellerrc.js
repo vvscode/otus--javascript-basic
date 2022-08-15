@@ -238,6 +238,7 @@ module.exports = {
     "TSLint",
     "typeof",
     "typesafe",
+    "queueMicrotask",
     "U pdate",
     "Uber",
     "unpublish",
