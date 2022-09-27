@@ -256,7 +256,7 @@ $ npm install @types/cookie-session --save-dev
 ```
 
 ```js
-import cookieSession from "cookie-session";
+import session from "cookie-session";
 
 const oneDay = 1000 * 60 * 60 * 24;
 
