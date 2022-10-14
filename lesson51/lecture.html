@@ -65,14 +65,14 @@ $ curl -v www.google.com
 ### Базовый http-сервер
 
 ```js
-import http from "http";
+import http from "node:http";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 
-// Create a local server to receive data from
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>Hello, Otus!</h1>");
+  // Обязательно закрываем соединение!
   res.end();
 });
 
@@ -108,12 +108,24 @@ $ npm install @types/express --save-dev
 
 </script></section><section data-markdown><script type="text/template">
 
+### Порядок создания express-приложения
+
+1. Импортируем все необходимые модули, утилиты и миддлвары
+1. Создаём Express.js объект
+1. Подключаемся к базам данных (MongoDB, Postgres, Redis и др.)
+1. Производим настройку Express.js объекта при необходимости
+1. Подключаем миддлвары - парсеры, миддлвары для работы со статикой, обработчики ошибок, cors и т.д.
+1. Определяем роуты и соответствующие им обработчики запросов
+1. Запускам сервер
+
+</script></section><section data-markdown><script type="text/template">
+
 ### Перепишем наш http-сервер с использованием express
 
 ```js
 import express from "express";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 const app = express();
 
@@ -230,12 +242,12 @@ $ npm install supertest @types/supertest --save-dev
 ### Пишем свой middleware
 
 ```js
-import Express from "express";
+import express from "express";
 
 const requestLogger = (
-  request: Express.Request,
-  response: Express.Response,
-  next: Express.NextFunction
+  req: express.Request,
+  _: express.Response,
+  next: express.NextFunction
 ) => {
   console.log(req.url, " ", req.method);
   console.log("-------------------");
@@ -260,7 +272,7 @@ $ npm install @types/cookie-session --save-dev
 ```
 
 ```js
-import cookieSession from "cookie-session";
+import session from "cookie-session";
 
 const oneDay = 1000 * 60 * 60 * 24;
 
@@ -349,21 +361,18 @@ mongoose
 
 ### Опишем произвольную схему и на её основе создадим модель.
 
-```js
+```ts
 interface BookSchema {
   author: string;
   title: string;
   year: number;
 }
 
-const bookSchema =
-  new mongoose.Schema() <
-  BookSchema >
-  {
-    author: String,
-    title: { type: String, required: true },
-    year: Number,
-  };
+const bookSchema = new mongoose.Schema<BookSchema>({
+  author: String,
+  title: { type: String, required: true },
+  year: Number,
+});
 
 const Book = mongoose.model("Book", bookSchema);
 ```
@@ -422,7 +431,9 @@ const initialBooks = [
 ];
 
 beforeAll(async () => {
+  await connectToMongoDb(process.env.MONGODB_URL_TEST as string);
   await Book.deleteMany({});
+
   let bookObj = new Book(initialBooks[0]);
   await bookObj.save();
 });
@@ -472,6 +483,18 @@ test("should return one book", async () => {
 
 - [**Postman**](https://www.postman.com/)
 - [**Insomnia**](https://insomnia.rest/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Что дальше?
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Авторизация с помощью jwt токенов](https://fullstackopen.com/en/part4/token_authentication)
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Express-validator](https://express-validator.github.io/docs/)
 
 </script></section><section data-markdown><script type="text/template">
 
