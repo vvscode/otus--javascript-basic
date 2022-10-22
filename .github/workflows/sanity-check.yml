@@ -15,3 +15,7 @@ jobs:
       - name: Lint
         run: |
           yarn lint
+      - name: Build
+        run: |
+          npx reveal-md lessons/ --static dist
+          rsync -a -r lessons/ dist/
