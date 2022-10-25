@@ -154,8 +154,9 @@ function someActionCreator1(payload: { name: string; age: number }) {
   };
 }
 
-const someActionCreator2 =
-  createAction<{ name: string; age: number }>("SOME_ACTION");
+const someActionCreator2 = createAction<{ name: string; age: number }>(
+  "SOME_ACTION"
+);
 ```
 
 https://redux-toolkit.js.org/api/createAction
