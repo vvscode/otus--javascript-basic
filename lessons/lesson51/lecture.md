@@ -491,4 +491,10 @@ _\* с 28.11.2022 heroku прекратил поддержку бесплатн�
 
 <!-- v -->
 
+### Материалы
+
+- [Chain of responsibility](https://refactoring.guru/design-patterns/chain-of-responsibility)
+
+<!-- v -->
+
 ## Спасибо за внимание!
