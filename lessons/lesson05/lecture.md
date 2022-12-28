@@ -618,6 +618,11 @@ describe('createCalculatorUI', () => {
 6. [JavaScript & Node.js testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
 7. [Автоматизированное тестирование (в контексте разных языков, обзорно)](https://gist.github.com/codedokode/a455bde7d0748c0a351a)
 8. [YT: Важные нюансы тестирования которые редко рассказывают (с примером на typescript + jest)](https://www.youtube.com/watch?v=-B-KAMi67e0)
+
+<!-- s -->
+
+## [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson05/homework.md)
+
 <!-- v -->
 
 #### Вопросы для самопроверки
