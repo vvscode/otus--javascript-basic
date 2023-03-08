@@ -450,10 +450,19 @@ test("should return one book", async () => {
 
 <!-- v -->
 
-### Размещение на [heroku](https://www.heroku.com/)
+### Размещение на [heroku](https://www.heroku.com/)\*
 
 - [официальный мануал](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 - [с использованием github actions](https://github.com/marketplace/actions/deploy-to-heroku)
+
+_\* с 28.11.2022 heroku прекратил поддержку бесплатных планов_
+
+<!-- v -->
+
+### Размещение на [vercel](https://vercel.com/)
+
+- [официальный мануал](https://vercel.com/guides/using-express-with-vercel)
+- [stackoverflow](https://stackoverflow.com/questions/72133185/deploy-an-express-server-that-uses-express-static-to-serve-a-build-folder-to-ver)
 
 <!-- v -->
 
@@ -479,6 +488,12 @@ test("should return one book", async () => {
 <!-- v -->
 
 ### [Express-validator](https://express-validator.github.io/docs/)
+
+<!-- v -->
+
+### Материалы
+
+- [Chain of responsibility](https://refactoring.guru/design-patterns/chain-of-responsibility)
 
 <!-- v -->
 
