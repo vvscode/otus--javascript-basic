@@ -100,7 +100,7 @@ React.createElement(
 ```jsx [1-30]
 // jsx:
 // https://bit.ly/3gCKQOI
-<div className="wrapper" style="margin: 5px">
+<div className="wrapper" style={{ margin: "5px" }}>
   <button onClick={() => alert("Click")} className="btn">
     Click me
   </button>
@@ -151,7 +151,7 @@ const Button = ({ name }) => (
 );
 
 // применение компонента
-<div className="wrapper" style="margin: 5px">
+<div className="wrapper" style={{ margin: "5px" }}>
   <Button name="Click me" />
 </div>;
 ```
