@@ -400,7 +400,8 @@ let bookId: BookId = bobId;
 [Типы и интерфейсы](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)
 
 - Почти все возможности интерфейсов доступны с типами (type aliases)
-- Ключевое различие **Типы не могут наследовать другие типы, а интерфейс может наследовать другой тип или интерфейс, добавляя, таким образом, новые свойства**
+- **Типы не могут наследовать другие типы, а интерфейс может наследовать другой тип или интерфейс, добавляя, таким образом, новые свойства**
+- [Типы не могут декларативно объединяться, а интерфейсы могут](https://www.typescriptlang.org/play?#code/PTAEEEDtQS0gXApgJwGYEMDGjSfdAIx2UQFoB7AB0UkQBMAoEUfO0Wgd1ADd0AbAK6IAzizp16ALgYM4SNFhwBZdAFtV-UAG8GoPaADmNAcMmhh8ZHAMMAvjLkoM2UCvWad+0ARL0A-GYWVpA29gyY5JAWLJAwGnxmbvGgALzauvpGkCZmAEQAjABMAMwALLkANBl6zABi6DB8okR4Jjg+iPSgABboovDk3jjo5pbW1d6+dGb5djLwAJ7UoABKiJTwjThpnpnGpqPBoTLMAJrkArj4kOTwYmycPOhW6AR8IrDQ8N04wmo4HHQCwYi2Waw2W1S6S8HX8gTGITsQA)
 - Поскольку интерфейсы больше похожи на поведение объектов в Javascript, **рекомендуется отдавать предпочтение интерфейсам**
 - Типы подходят, если вы не можете выразить какую-то форму с помощью интерфейса или вам нужны кортежи или объединения
 
