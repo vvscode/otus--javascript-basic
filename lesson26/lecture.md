@@ -21,13 +21,27 @@ description: «Разбор базовых приемов разработки �
 
 <!-- v -->
 
-Примитивные типы:
+Базовые типы:
 
 - string
 - number
 - boolean
-- null
-- undefined
+- void
+- unknown
+- symbol
+- any
+- null / undefined
+- never
+
+<!-- v -->
+
+Базовые типы:
+
+- array
+- tuple (кортеж)
+- enum
+- object
+- function
 
 <!-- v -->
 
@@ -40,10 +54,36 @@ type Zero = 0;
 
 <!-- v -->
 
-Массивы
+Литеральные типы
 
-- `number[]` - легче читать
+```ts [1-30]
+type Yes = "yes";
+let answer: Yes = "no"; // ERROR Type '"no"' is not assignable to type '"yes"'
+
+type Zero = 0;
+let result: Zero = 1; // ERROR Type '1' is not assignable to type '0'
+```
+
+<!-- v -->
+
+Массивы  
+_между этими вариантами нет разницы_
+
+- `number[]`
 - `Array<number>`
+
+<!-- v -->
+
+Явные/Неявные типы  
+_их поведение не отличается_
+
+```ts [1-30]
+let a = 1; // implicit
+a = "one"; // ERROR Type 'string' is not assignable to type 'number'
+
+let b: number = 1;
+b = "one"; // ERROR Type 'string' is not assignable to type 'number'
+```
 
 <!-- v -->
 
@@ -53,6 +93,19 @@ Object types
 type Coord = {
   x: number;
   y: number;
+};
+```
+
+<!-- v -->
+
+Object types
+
+```ts [1-30]
+type Coord = { x: number; y: number };
+
+type Square = {
+  leftTop: Coord;
+  rightBottom: Coord;
 };
 ```
 
@@ -85,6 +138,8 @@ function getOptionalNameLength(name?: string): number {
 
 <!-- v -->
 
+Декларация функций
+
 ```ts [1-30]
 let cb1: Function = (a: number) => a * 2;
 
@@ -94,10 +149,14 @@ let cb2: (a: number) => number = (a) => a * 2;
 let cb3: (a: number) => number = () => 2;
 
 // Но нельзя расширять
-// let cb4: () => number = (a: number) => a * 2;
+// ERROR Type '(a: number) => number' is not assignable to type '() => number'.
+let cb4: () => number = (a: number) => a * 2;
 ```
 
 <!-- v -->
+
+Декларация функций  
+_типизация контекста_
 
 ```ts [1-30]
 // возможность задать тип для контекста
@@ -166,6 +225,17 @@ const el = document.querySelector("#app") as HTMLElement;
 
 У вас есть возможность объявлять объекты неизменяемыми c помощью `as const`.
 
+```ts [1-30]
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
+    d: 3,
+    e: 4,
+  },
+} as const;
+```
+
 <!-- v -->
 
 ```ts [1-30]
@@ -203,12 +273,23 @@ type DeepReadonlyObject<T> = {
 В паре с приведением это позволяет делать например `force cast`.
 
 ```ts [1-30]
+const a = 1 as unknown as string;
+console.log(a.length); // что будет в консоли?
+```
+
+Бывает полезно в тестах. В рабочем коде лучше использовать [пользовательские type guards](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
+
+<!-- v -->
+
+Более сложный пример с дженериком
+
+```ts [1-30]
 function castTo<T>(x: unknown) {
   return x as T;
 }
 
 let x: string = castTo<string>(123);
-x.length;
+console.log(x.length);
 ```
 
 Бывает полезно в тестах. В рабочем коде лучше использовать [пользовательские type guards](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
@@ -273,7 +354,7 @@ enum Direction {
 
 По умолчанию поддерживают [reverse mapping](https://www.typescriptlang.org/docs/handbook/enums.html#reverse-mappings).
 
-Для его отключения [используют `const enums`](https://www.typescriptlang.org/docs/handbook/enums.html#const-enums)
+Для отключения транспиляции в JS [используют `const enums`](https://www.typescriptlang.org/docs/handbook/enums.html#const-enums)
 
 <!-- v -->
 
@@ -319,7 +400,8 @@ let bookId: BookId = bobId;
 [Типы и интерфейсы](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)
 
 - Почти все возможности интерфейсов доступны с типами (type aliases)
-- Ключевое различие **в тип нельзя добавить новые свойства, а интерфейс всегда можно дополнить**
+- **Типы не могут наследовать другие типы, а интерфейс может наследовать другой тип или интерфейс, добавляя, таким образом, новые свойства**
+- [Типы не могут декларативно объединяться, а интерфейсы могут](https://www.typescriptlang.org/play?#code/PTAEEEDtQS0gXApgJwGYEMDGjSfdAIx2UQFoB7AB0UkQBMAoEUfO0Wgd1ADd0AbAK6IAzizp16ALgYM4SNFhwBZdAFtV-UAG8GoPaADmNAcMmhh8ZHAMMAvjLkoM2UCvWad+0ARL0A-GYWVpA29gyY5JAWLJAwGnxmbvGgALzauvpGkCZmAEQAjABMAMwALLkANBl6zABi6DB8okR4Jjg+iPSgABboovDk3jjo5pbW1d6+dGb5djLwAJ7UoABKiJTwjThpnpnGpqPBoTLMAJrkArj4kOTwYmycPOhW6AR8IrDQ8N04wmo4HHQCwYi2Waw2W1S6S8HX8gTGITsQA)
 - Поскольку интерфейсы больше похожи на поведение объектов в Javascript, **рекомендуется отдавать предпочтение интерфейсам**
 - Типы подходят, если вы не можете выразить какую-то форму с помощью интерфейса или вам нужны кортежи или объединения
 
@@ -333,6 +415,31 @@ interface Double {
 
 const double: Double = (x) => x * 2;
 ```
+
+<!-- v -->
+
+```ts [1-30]
+// пример наследования интерфейсов
+interface Human {
+  name: string;
+  email: string;
+}
+
+interface Student extends Base {
+  averageRate: number;
+}
+
+const kotov: Student = {
+  name: "Василий Котов",
+  email: "kotov@gmail.com",
+  averageRate: 4.6,
+};
+```
+
+<!-- v -->
+
+<a href="https://cqx92skly5b.typeform.com/to/mrwZgwbc" target="_blank">ОПРОС</a>
+<a href="https://admin.typeform.com/form/mrwZgwbc/results#insights" target="_blank"><img src="./images/mrbean.jpg"></a><br>
 
 <!-- s -->
 
