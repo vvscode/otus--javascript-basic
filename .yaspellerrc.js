@@ -6,6 +6,8 @@ module.exports = {
   ignoreCapitalization: true,
   ignoreUppercase: true,
   dictionary: [
+    "enum",
+    "дженериком",
     "accessToken",
     "AirBnb",
     "Anders",
@@ -47,7 +49,7 @@ module.exports = {
     "createSlice",
     "createStore",
     "Crypto",
-    "cклонированным",
+    "склонированным",
     "cors",
     "D elete",
     "Dahl",
