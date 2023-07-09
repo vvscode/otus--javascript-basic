@@ -1,8 +1,8 @@
 <div align="center">
   <h1><code>Game of life</code></h1>
 
-  <strong>Conway's Game of Life built in Typescript</strong>
-    
+<strong>Conway's Game of Life built in Typescript</strong>
+
   <p>
     <a href=""><img src="https://img.shields.io/azure-devops/build/rustwasm/gloo/6.svg?style=flat-square" alt="Build Status" /></a>
     <a href=""><img src="https://codecov.io/gh/SBoudrias/Inquirer.js/branch/master/graph/badge.svg" alt="Coverage Status" /></a>
@@ -37,19 +37,18 @@
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
 - [Usage examples](#usage-examples)
- - [Patterns to explore](#patterns)
+- [Patterns to explore](#patterns)
 - [Contact](#contact)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
-
 
 ## About <a name="about"></a>
 
 _Cекция содержит краткое описание вашего проекта. Вдохновение, идеи, мотивация, которые послужили началом для создания._
 
-This project was inspired by __[The Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)__ created by *John Horton Conway*.  
+This project was inspired by **[The Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)** created by _John Horton Conway_.  
 No players are needed for this game. Just create a pattern and you are ready to go! 🤗  
-You can  get acquainted with the _[rules](#rules)_ and _[usage examples](#usage-examples)_ below. 
+You can get acquainted with the _[rules](#rules)_ and _[usage examples](#usage-examples)_ below.
 
 Have a nice trip!
 
@@ -90,7 +89,7 @@ _Пример того, как вы можете дать инструкции �
 
 ### Prerequisites <a name="prerequisites"></a>
 
-:warning: Before installing the project latest version of __npm__ should be installed.
+:warning: Before installing the project latest version of **npm** should be installed.
 
 ```
 npm install -g npm@latest
@@ -103,11 +102,13 @@ npm install -g npm@latest
 ```
 git clone https://github.com/your_username_/GameOfLife.git
 ```
+
 2. Install NPM packages
 
 ```
 npm install
 ```
+
 3. Start the project
 
 ```
@@ -123,7 +124,7 @@ _В этой секции могут содержаться полезные п�
 
 const options: GameOpts = {
   width: 10,
-  height: 10
+  height: 10,
 };
 
 const newGame = new GameOfLife(options);
@@ -150,8 +151,6 @@ const newGame = new GameOfLife(options);
   <sub>Built with :heart: by Passionate Otus Student</sub>
 </div>
 
-
-
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
@@ -160,4 +159,3 @@ const newGame = new GameOfLife(options);
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/username
-
