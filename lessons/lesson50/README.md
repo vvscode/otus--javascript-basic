@@ -8,7 +8,7 @@
     <a href=""><img src="https://codecov.io/gh/SBoudrias/Inquirer.js/branch/master/graph/badge.svg" alt="Coverage Status" /></a>
     <a href=""><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" /></a>
   </p>
-  
+
   <img src="https://user-images.githubusercontent.com/18004357/131463806-e5286d9c-3acd-4274-a52d-9718953a0495.gif">
   <h3>
     <a href="https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors">Contributing</a>
@@ -44,10 +44,10 @@
 
 ## About <a name="about"></a>
 
-_Cекция содержит краткое описание вашего проекта. Вдохновение, идеи, мотивация, которые послужили началом для создания._
+_Секция содержит краткое описание вашего проекта. Вдохновение, идеи, мотивация, которые послужили началом для создания._
 
-This project was inspired by **[The Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)** created by _John Horton Conway_.  
-No players are needed for this game. Just create a pattern and you are ready to go! 🤗  
+This project was inspired by **[The Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)** created by _John Horton Conway_.
+No players are needed for this game. Just create a pattern and you are ready to go! 🤗
 You can get acquainted with the _[rules](#rules)_ and _[usage examples](#usage-examples)_ below.
 
 Have a nice trip!
@@ -61,12 +61,12 @@ Have a nice trip!
 _Секция содержит используемые в проекте технологии. Если их слишком много следует оставлять наиболее крупные из них._
 
 <p align="center"><a href="https://babeljs.io/" target="_blank">
-  <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-icon.svg" alt="babel" width="60" height="60"/> </a> <a href="https://www.w3schools.com/css/" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="60" height="60"/> </a> <a href="https://git-scm.com/" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="60" height="60"/> </a> <a href="https://www.typescriptlang.org/" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="60" height="60"/> </a> <a href="https://jestjs.io" target="_blank"> 
-  <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="60" height="60"/> </a> <a href="https://reactjs.org/" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="60" height="60"/> </a> <a href="https://redux.js.org" target="_blank"> 
+  <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-icon.svg" alt="babel" width="60" height="60"/> </a> <a href="https://www.w3schools.com/css/" target="_blank">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="60" height="60"/> </a> <a href="https://git-scm.com/" target="_blank">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="60" height="60"/> </a> <a href="https://www.typescriptlang.org/" target="_blank">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="60" height="60"/> </a> <a href="https://jestjs.io" target="_blank">
+  <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="60" height="60"/> </a> <a href="https://reactjs.org/" target="_blank">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="60" height="60"/> </a> <a href="https://redux.js.org" target="_blank">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="60" height="60"/> </a>
 </p>
 
