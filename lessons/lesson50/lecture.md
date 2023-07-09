@@ -158,11 +158,11 @@ description: Презентация работы - что сделать, что
 ### Другие виды ссылок
 
 - **SHA ссылки**:
-  > hash  
+  > hash
   > username@hash
 - **ссылки на Issue или PR**:
-  > #1  
-  > GH-#1  
+  > #1
+  > GH-#1
   > username/github-flavored-markdown#1
 
 <!-- v -->
@@ -226,14 +226,14 @@ description: Презентация работы - что сделать, что
 
 <!-- v -->
 
-## [Пример](https://github.com/AntiHero/Markdown/blob/master/README.md)
+## [Пример](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson50/README.md)
 
 <!-- v -->
 
 ### Материалы
 
-[Readme](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-readmes)  
-[Как написать хороший Readme](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)  
+[Readme](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-readmes)
+[Как написать хороший Readme](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)
 [Readme для npm и github](https://stackoverflow.com/questions/41297117/how-to-specify-different-readme-files-for-github-and-npm)
 
 <!-- s -->
