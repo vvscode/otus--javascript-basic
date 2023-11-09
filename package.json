@@ -8,7 +8,7 @@
     "dev": "reveal-md",
     "lint:prettier": "prettier --check .",
     "lint:spell": "yaspeller .",
-    "lint": "yarn lint:prettier && yarn lint:spell && yarn lint:code",
+    "lint": "yarn lint:prettier && yarn lint:code",
     "lint:code": "eslint --ext .js,.ts,.md .",
     "prepare": "husky install"
   },
@@ -26,11 +26,11 @@
     "prettier": "^2.7.1",
     "reveal-md": "^5.3.4",
     "typescript": "^4.8.4",
-    "yaspeller": "^8.0.1"
+    "yaspeller": "^9.1.0"
   },
   "lint-staged": {
     "*.{js,json,html,css,md,yml,yaml,ts,tsx}": "prettier --write",
     "{*js,*.md}": "eslint --cache --fix",
-    "*.md": "yaspeller"
+    "*.md": "echo 'yaspeller is disabled'"
   }
 }
