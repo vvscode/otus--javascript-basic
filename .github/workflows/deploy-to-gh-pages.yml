@@ -19,6 +19,7 @@ jobs:
         run: |
           npx reveal-md lessons/ --static dist
           rsync -a -r lessons/ dist/
+          cp -r plugins dist/_assets/
 
       - name: Deploy
         # https://github.com/marketplace/actions/deploy-to-github-pages
