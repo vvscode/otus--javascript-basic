@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 52</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+## `Сферы применения Node.js, отличия от разработки в браузере`
+
+</script></section><section data-markdown><script type="text/template">
+
+### Маршрут вебинара
+
+1. Что такое Node.js
+1. Особенности Node.js
+1. Пишем свой Node.js script
+1. Библиотеки и фреймворки
+1. Практика
+1. Итоги
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## `Что такое Node.js`
+
+</script></section><section data-markdown><script type="text/template">
+
+> [Node.js](https://nodejs.dev/learn) is an open-source and cross-platform JavaScript runtime environment. It is a popular tool for almost any kind of project!
+
+</script></section><section data-markdown><script type="text/template">
+
+> Node.js runs the [V8 JavaScript engine](https://v8.dev/), the core of Google Chrome, outside of the browser. This allows Node.js to be very fast.
+
+</script></section><section data-markdown><script type="text/template">
+
+### `Преимущества Node.js`
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [Isomorphic] `JavaScript`
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [`Event Loop`](https://nodejs.dev/learn/the-nodejs-event-loop)
+
+</script></section><section data-markdown><script type="text/template">
+
+> \*A Node.js app runs in a single process, without creating a new thread for every request.
+
+> [Non-blocking paradigms](https://blog.usejournal.com/everything-you-need-to-know-about-event-loop-in-javascript-1f14f94e5ab6). \*Blocking behavior the exception rather than the norm.
+
+</script></section><section data-markdown><script type="text/template">
+
+> When Node.js performs an I/O operation, like reading from the network, accessing a database or the file system, instead of blocking the thread and wasting CPU cycles waiting, Node.js will resume the operations when the response comes back.
+
+> This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing thread concurrency, which could be a significant source of bugs.
+
+</script></section><section data-markdown><script type="text/template">
+
+### `Установка Node.js`
+
+</script></section><section data-markdown><script type="text/template">
+
+https://nodejs.org/en/download/
+
+</script></section><section data-markdown><script type="text/template">
+
+[nvm](https://github.com/nvm-sh/nvm)
+
+Для более 2-х версий Node.js
+
+```sh
+$ nvm list # list all locally installed versions
+$ nvm install v12 # install node v12
+$ nvm install v14 # install node v14
+$ nvm use v12 # use node v12
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [LTS](https://nodesource.com/blog/understanding-how-node-js-release-lines-work/#:~:text=LTS%3A%20LTS%20is%20an%20acronym,an%20extended%20period%20of%20time.) `versions`
+
+Long term support
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### `Особенности Node.js`
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [`CommonJS`](https://www.sitepoint.com/understanding-es6-modules/) `module system`
+
+</script></section><section data-markdown><script type="text/template">
+
+```js
+// ES6 modules
+
+/* main.js */
+console.log("running main.js");
+import secondary from "./secondary.js"; //👈
+
+/* secondary.js */
+console.log("running secondary.js");
+```
+
+```txt
+running secondary.js
+running main.js
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js
+// CommonJS modules
+
+/* main.js */
+console.log("running main.js");
+const secondary = require("./secondary.js"); //👈
+
+/* secondary.js */
+console.log("running secondary.js");
+```
+
+```txt
+running main.js
+running secondary.js
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+> ES6 modules are pre-parsed in order to resolve further imports before code is executed.
+
+> CommonJS modules load dependencies on demand while executing the code.
+
+</script></section><section data-markdown><script type="text/template">
+
+Появилась поддержка ES6 Node.js >= "v13"
+
+```js
+// ES6 modules for Node.js
+
+/* main.js */
+console.log("running main.js");
+import secondary from "./secondary.js";
+
+/* secondary.mjs */ //👈
+console.log("running secondary.js");
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+\*Можно использовать babel/webpack
+
+</script></section><section data-markdown><script type="text/template">
+
+#### `Access to the machine environment`
+
+</script></section><section data-markdown><script type="text/template">
+
+[Built-in modules](https://www.w3schools.com/nodejs/ref_modules.asp)
+
+```js
+require("module").builtinModules;
+/*
+[
+  '_http_agent',       '_http_client',        '_http_common',
+  '_http_incoming',    '_http_outgoing',      '_http_server',
+  '_stream_duplex',    '_stream_passthrough', '_stream_readable',
+  '_stream_transform', '_stream_wrap',        '_stream_writable',
+  '_tls_common',       '_tls_wrap',           'assert',
+  'async_hooks',       'buffer',              'child_process',
+  'cluster',           'console',             'constants',
+  'crypto',            'dgram',               'dns',
+  'domain',            'events',              'fs',
+  'http',              'http2',               'https',
+  'inspector',         'module',              'net',
+  'os',                'path',                'perf_hooks',
+  'process',           'punycode',            'querystring',
+  'readline',          'repl',                'stream',
+  'string_decoder',    'sys',                 'timers',
+  'tls',               'trace_events',        'tty',
+  'url',               'util',                'v8',
+  'vm',                'worker_threads',      'zlib'
+]
+*/
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### `No browser API`
+
+```js
+console.log(document); // undefined
+console.log(window); // undefined
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### `Пишем свой Node.js script`
+
+</script></section><section data-markdown><script type="text/template">
+
+IDE/Environment
+
+- Locally
+- [Online](https://www.katacoda.com/courses/nodejs/playground)
+
+</script></section><section data-markdown><script type="text/template">
+
+**1. Create a simple program to list all files in a given directory**
+
+</script></section><section data-markdown><script type="text/template">
+
+**2. Debugging**
+
+</script></section><section data-markdown><script type="text/template">
+
+[node --inspect](https://nodejs.org/en/docs/guides/debugging-getting-started/)
+
+```txt
+$ node --inspect index.js
+
+Debugger listening on ws://127.0.0.1:9229/a8225776-a251-4497-bb0d-abbb4c5b61f0
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+started
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[chrome://inspect](https://nodejs.org/en/docs/guides/debugging-getting-started/#chrome-devtools-55-microsoft-edge)
+
+</script></section><section data-markdown><script type="text/template">
+
+[VS Code](https://nodejs.org/en/docs/guides/debugging-getting-started/#visual-studio-code-1-10)
+
+</script></section><section data-markdown><script type="text/template">
+
+[Other IDEs...](https://nodejs.org/en/docs/guides/debugging-getting-started/#inspector-clients)
+
+</script></section><section data-markdown><script type="text/template">
+
+CLI Debugger [node-inspect](https://nodejs.org/en/docs/guides/debugging-getting-started/#node-inspect)
+
+```js
+// index.js
+const START_MSG = "started";
+const END_MSG = "ended";
+
+console.log(START_MSG);
+
+debugger; //👈
+
+console.log(END_MSG);
+```
+
+```txt
+$ node inspect index.js
+
+< Debugger listening on ws://127.0.0.1:9229/f8a47ad6-097b-4c93-bca1-0c53964f51c2
+< For help, see: https://nodejs.org/en/docs/inspector
+Break on start in index.js:1
+debug>
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### 3. [`Nodemon`](https://github.com/remy/nodemon) `for auto-restarting`
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### `Библиотеки и фреймворки`
+
+</script></section><section data-markdown><script type="text/template">
+
+[**NPM**](https://www.npmjs.com/)
+
+\*Без использования browser API
+
+</script></section><section data-markdown><script type="text/template">
+
+**Web server libraries**
+
+- https://expressjs.com
+- https://koajs.com
+- https://nestjs.com
+- https://nodejs.dev/learn#nodejs-frameworks-and-tools
+- ...
+
+</script></section><section data-markdown><script type="text/template">
+
+**Working with databases**
+
+- https://expressjs.com/en/guide/database-integration.html
+- https://www.prisma.io/dataguide/database-tools/top-nodejs-orms-query-builders-and-database-libraries
+
+</script></section><section data-markdown><script type="text/template">
+
+**Command line helper libraries**
+
+- https://github.com/SBoudrias/Inquirer.js/
+- https://github.com/tj/commander.js#readme
+- https://github.com/yargs/yargs
+- https://github.com/terkelg/prompts
+- https://dev.to/yvonnickfrin/7-libraries-to-build-node-js-cli-3jc7
+- ...
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [`Практика`]()
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Простая версия команды "ls"
+
+```sh
+# USAGE
+$ node ls.js ./ '.+js$'
+
+```
+
+```js
+/* HINTs */
+
+// Get arguments passed
+process.argv; // ['node', 'ls.js', '.', '.+js$']
+
+// Get list of files & dirs
+const fs = require("fs");
+fs.readdir(directory, (err, files) => {});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+2. Простой сервер для получения
+
+текущей даты и времени по тайм зоне
+
+```js
+/*
+ * Example: http://localhost:8080
+ * Example: http://localhost:8080?timezone=Asia/Jakarta
+ * Example: http://localhost:8080?timezone=America/New_York
+ */
+```
+
+```js
+// server.js template
+const http = require("http");
+
+// Create a server object
+const server = http.createServer((req, res) => {
+  req.url; // get request url
+  res.write("Hello World!!!"); // Write a response to the client
+  res.end(); // End the response
+});
+
+server.listen(8080);
+```
+
+```js
+/* HINTs */
+require("url").parse; // for parsing req.url
+new Date().toLocaleString("en-US", { timeZone });
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### `Итоги`
+
+</script></section><section data-markdown><script type="text/template">
+
+- CommonJS: "require"
+- No browser API
+- Access to machine environment
+- Development: "debugger", "nodemon"
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### `Дополнительные материалы`
+
+- https://nodejs.dev/learn
+- https://nodejs.org/en/docs/guides/getting-started-guide/
+- https://github.com/goldbergyoni/nodebestpractices#readme
+- https://www.w3schools.com/nodejs/
+- https://www.tutorialsteacher.com/nodejs/nodejs-tutorials
+
+</script></section><section  data-markdown><script type="text/template">
+
+https://otus.ru/polls/20381
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

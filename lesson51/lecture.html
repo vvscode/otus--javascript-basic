@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 51</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+### План занятия
+
+- http-сервер
+- express
+- mongodb
+- тестирование
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Напишем свой HTTP-сервер
+
+#### но перед этим...
+
+</script></section><section data-markdown><script type="text/template">
+
+### TCP/IP и OSI модели
+
+<img src="./images/osi.jpeg" alt="tcp/ip and osi model" />
+
+</script></section><section data-markdown><script type="text/template">
+
+### HTTP-запрос
+
+<img src="./images/http.png" alt="tcp/ip and osi model" />
+
+</script></section><section data-markdown><script type="text/template">
+
+### Рассмотрим на примере
+
+<!-- eslint skip -->
+
+```
+$ curl -v www.google.com
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Базовый http-сервер
+
+```js
+import http from "node:http";
+
+const PORT = process.env.PORT || 9000;
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.write("<h1>Hello, Otus!</h1>");
+  // Обязательно закрываем соединение!
+  res.end();
+});
+
+server.listen(PORT, () => {
+  console.log("Server is running at http://localhost:%s", PORT);
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## Обслуживаем статику и роутинги
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## [Express](https://expressjs.com/)
+
+</script></section><section data-markdown><script type="text/template">
+
+**Express** - это гибкий и минималистичный фреймворк, работающий поверх Node.js веб-сервера, который упрощает работу по созданию веб-приложений.
+
+</script></section><section data-markdown><script type="text/template">
+
+### Установка
+
+```
+$ npm install express --save
+$ npm install @types/express --save-dev
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Порядок создания express-приложения
+
+1. Импортируем все необходимые модули, утилиты и миддлвары
+1. Создаём Express.js объект
+1. Подключаемся к базам данных (MongoDB, Postgres, Redis и др.)
+1. Производим настройку Express.js объекта при необходимости
+1. Подключаем миддлвары - парсеры, миддлвары для работы со статикой, обработчики ошибок, cors и т.д.
+1. Определяем роуты и соответствующие им обработчики запросов
+1. Запускам сервер
+
+</script></section><section data-markdown><script type="text/template">
+
+### Перепишем наш http-сервер с использованием express
+
+```js
+import express from "express";
+
+const port = process.env.PORT || 9000;
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello, Otus!</h1>");
+});
+
+app.listen(port, () => {
+  console.log("Server is running at http://localhost:%s", PORT);
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+## Обслуживаем [статику](https://expressjs.com/en/starter/static-files.html) и роутинги с использованием express
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Использование шаблонизаторов в express
+
+</script></section><section data-markdown><script type="text/template">
+
+### Шаблонизаторы с которыми работает express
+
+- Pug
+- Mustache
+- Ejs
+- [ещё](https://expressjs.com/en/resources/template-engines.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Настраиваем работу с шаблонизатором](https://expressjs.com/en/guide/using-template-engines.html)
+
+<!-- prettier-ignore -->
+1. Устанавливаем шаблонизатор:  
+<!-- eslint skip -->
+
+```
+$ npm install pug --save
+```
+
+2. Для свойства приложения `views`, определяющее директорию для хранения шаблонов, зададим необходимый путь:
+
+```js
+app.set("views", "./views");
+```
+
+3. Также, установим нужное значения для свойства `view engine`, отвечающее за используемый шаблонизатор:
+
+```js
+app.set("view engine", "pug");
+```
+
+4. Создаём файл шаблона index.pug:
+<!-- eslint skip -->
+
+```
+html
+  head
+    title= title
+  body
+    h1= message
+```
+
+5. Создаём роут для итогового шаблона:
+
+```js
+app.get("/", function (req, res) {
+  res.render("index", { title: "My Template", message: "Hello, Otus!" });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Тестирование серверной части
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Supertest](https://www.npmjs.com/package/supertest)
+
+Данный модуль предоставляет высокоуровневую абстракцию для тестирования HTTP.
+
+<!-- eslint skip -->
+
+```
+// Установка
+$ npm install supertest @types/supertest --save-dev
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Express middlewares
+
+</script></section><section data-markdown><script type="text/template">
+
+За **middleware** в **Express** скрыта простая идея: вместо _одного_ монолитного обработчика запроса, мы можем вызывать _несколько_ обработчиков, каждый из которых выполняет свою определённую функцию.
+
+</script></section><section data-markdown><script type="text/template">
+
+### Пример прохождения двух запросов через middleware функции
+
+<img src="./images/middleware.jpg" alt="express middleware example" />
+
+</script></section><section data-markdown><script type="text/template">
+
+### Пишем свой middleware
+
+```js
+import express from "express";
+
+const requestLogger = (
+  req: express.Request,
+  _: express.Response,
+  next: express.NextFunction
+) => {
+  console.log(req.url, " ", req.method);
+  console.log("-------------------");
+  next();
+};
+```
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Cookie-session](https://www.npmjs.com/package/cookie-session)
+
+</script></section><section data-markdown><script type="text/template">
+
+Node.js модуль, с помощью которого можно создавать и управлять пользовательскими сессиями.
+
+<!-- eslint skip -->
+
+```
+// Установка
+$ npm install cookie-session --save
+$ npm install @types/cookie-session --save-dev
+```
+
+```js
+import session from "cookie-session";
+
+const oneDay = 1000 * 60 * 60 * 24;
+
+app.use(
+  session({
+    secret: "sfajnh4faAN99", // обязательное поле
+    maxAge: oneDay,
+  })
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Для тестирования пользовательских сессий используем [supertest-session](https://www.npmjs.com/package/supertest-session).
+
+<!-- eslint skip -->
+
+```
+// Установка
+$ npm install supertest-session --save-dev
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## [MongoDB](https://www.mongodb.com/)
+
+</script></section><section data-markdown><script type="text/template">
+
+**MongoDB** - масштабируемая, кросс-платформенная, [документо-ориентированная](https://en.wikipedia.org/wiki/Document-oriented_database) база данных.
+
+</script></section><section data-markdown><script type="text/template">
+
+**MongoDB** может быть установлена и запущена локально на нашем компьютере, в сети также присутствует множество сервисов предоставляющих возможность работы с **MongoDB**. Для нашего приложения мы выберем [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas).
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Создание и настройка доступа к базе данных](https://youtu.be/fbYExfeFsI0?t=116)
+
+</script></section><section data-markdown><script type="text/template">
+
+Для интеграции **MongoDB** в наше приложение нам понадобится специальный драйвер. Можно использовать [**официальный MongoDB Node.js драйвер**](https://mongodb.github.io/node-mongodb-native/), но зачастую он вызывает много сложностей при использовании, поэтому мы воспользуемся другим популярным решением: [**mongoose**](https://www.npmjs.com/package/mongoose).
+
+<!-- eslint skip -->
+
+```
+$ npm install mongoose
+$ npm install @types/mongoose --save-dev
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Подключаемся к базе данных
+
+```js
+import mongoose from "mongoose";
+
+// НЕ СОХРАНЯЕМ ДАННУЮ СТРОКУ НА GITHUB!
+const url =
+  "mongodb+srv://<USERNAME>:<PASSWORD>@cluster0-ostce.mongodb.net/<DB_NAME>?retryWrites=true";
+
+console.log("connecting to", url);
+
+mongoose
+  .connect(url)
+  .then((_) => {
+    console.log("connected to MongoDB");
+  })
+  .catch((error) => {
+    console.log("error connecting to MongoDB:", error.message);
+  });
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Данные в MongoDB хранятся в так называемых [**коллекциях**](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) в виде [**документов**](https://docs.mongodb.com/manual/core/document/). Структура документа описывается с помощью специальной [**схемы**](https://mongoosejs.com/docs/guide.html), на основе которой, в свою очередь, создаётся [**модель**](https://mongoosejs.com/docs/models.html).
+
+</script></section><section data-markdown><script type="text/template">
+
+**Модели** - это так называемые функции-конструкторы, которые создают новые JavaScript объекты на основе предоставляемых параметров. Данные объекты обладают свойствами модели, включая различные методы. Экземпляром **модели** является **документ**.
+
+</script></section><section data-markdown><script type="text/template">
+
+### Опишем произвольную схему и на её основе создадим модель.
+
+```ts
+interface BookSchema {
+  author: string;
+  title: string;
+  year: number;
+}
+
+const bookSchema = new mongoose.Schema<BookSchema>({
+  author: String,
+  title: { type: String, required: true },
+  year: Number,
+});
+
+const Book = mongoose.model("Book", bookSchema);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Используем базу данных в обработчике роутинга
+
+```js
+app.post("/api/books", (req, res) => {
+  const { author, title, year } = req.body;
+
+  const book = new Book({
+    author,
+    year,
+    title,
+  });
+
+  book
+    .save()
+    .then((savedBook) => {
+      res.json(savedBook);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(400).send("Bad request");
+    });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Для тестирования базы данных можно создать **отдельную (тестовую)** базу данных в MongoDB Atlas, к которой будут производиться запросы. Это не оптимальное решение, особенно в случае, если над проектом работает много людей, чьи изменения в базе данных могут конфликтовать.
+
+</script></section><section data-markdown><script type="text/template">
+
+Лучшим решением будет использование для каждого теста своей базы данных. Это сравнительного легко достигается за счёт запуска MongoDB в памяти компьютера, либо в Docker контейнере.
+
+</script></section><section data-markdown><script type="text/template">
+
+Пример тестирования базы данных.
+
+```js
+import mongoose from "mongoose";
+import supertest from "supertest";
+import app from "./app";
+
+const api = supertest(app);
+
+const initialBooks = [
+  {
+    author: "Mark Twain",
+    date: 1876,
+    title: "The Adventures of Tom Sawyer",
+  },
+];
+
+beforeAll(async () => {
+  await connectToMongoDb(process.env.MONGODB_URL_TEST as string);
+  await Book.deleteMany({});
+
+  let bookObj = new Book(initialBooks[0]);
+  await bookObj.save();
+});
+
+afterAll(() => {
+  mongoose.connection.close();
+});
+
+test("should return books as json", async () => {
+  await api
+    .get("/api/books")
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+});
+
+test("should return one book", async () => {
+  const response = await api.get("/api/books");
+
+  expect(response.body).toHaveLength(1);
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Размещение серверной части на сторонних ресурсах
+
+</script></section><section data-markdown><script type="text/template">
+
+### Размещение на [heroku](https://www.heroku.com/)\*
+
+- [официальный мануал](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+- [с использованием github actions](https://github.com/marketplace/actions/deploy-to-heroku)
+
+_\* с 28.11.2022 heroku прекратил поддержку бесплатных планов_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Размещение на [vercel](https://vercel.com/)
+
+- [официальный мануал](https://vercel.com/guides/using-express-with-vercel)
+- [stackoverflow](https://stackoverflow.com/questions/72133185/deploy-an-express-server-that-uses-express-static-to-serve-a-build-folder-to-ver)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## Инструменты для тестирования и разработки API
+
+</script></section><section data-markdown><script type="text/template">
+
+- [**Postman**](https://www.postman.com/)
+- [**Insomnia**](https://insomnia.rest/)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Что дальше?
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Авторизация с помощью jwt токенов](https://fullstackopen.com/en/part4/token_authentication)
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Express-validator](https://express-validator.github.io/docs/)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Материалы
+
+- [Chain of responsibility](https://refactoring.guru/design-patterns/chain-of-responsibility)
+
+</script></section><section data-markdown><script type="text/template">
+
+## Спасибо за внимание!
+</script></section></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

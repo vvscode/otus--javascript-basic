@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 43</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [React](https://ru.reactjs.org/)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Проблемы шаблонизации
+
+- скорость разработки приложения
+- скорость работы приложения
+
+</script></section><section data-markdown><script type="text/template">
+
+#### React
+
+- декларативный
+- основан на [компонентах](https://reactjs.org/docs/components-and-props.html)
+- научитесь однажды — пишите где угодно
+
+</script></section><section data-markdown><script type="text/template">
+
+Особенности **React**
+
+- с компонентами (но не [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))
+- оптимизация обновлений через [vDOM](https://reactjs.org/docs/faq-internals.html)
+- минимальный синтаксис шаблонов — [JSX](https://facebook.github.io/jsx/)
+
+</script></section><section data-markdown><script type="text/template">
+
+Идея скорости — [**Virtual DOM**](https://reactjs.org/docs/faq-internals.html)
+
+- архитектура React — отрисовать минимально необходимые изменения
+- работа с DOM напрямую — медленно
+- vDOM — модель настоящего DOM на легких js-объектах
+
+</script></section><section data-markdown><script type="text/template">
+
+<img src="./images/dom-reconciliation.webp" style="height:500px" />
+
+</script></section><section data-markdown><script type="text/template">
+
+### React - абстрактная идея
+
+- может использоваться на разных платформах (не только Web, но и нативные системы и что-угодно еще представляющее UI - [React Native](https://reactnative.dev/), [React for terminal](https://github.com/vadimdemedes/ink))
+- сам React никак не связан ни с Web ни с DOM
+- для работы с DOM(HTML) используется отдельный пакет — [react-dom](https://reactjs.org/docs/react-dom.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Из чего состоит приложение на React?
+
+[React-элементы](https://ru.reactjs.org/docs/glossary.html) — это составляющие блоки React-приложений. Их **можно перепутать с более известной концепцией «компонентов»**, но в отличие от компонента, элемент описывает то, что вы хотите увидеть на экране.
+React-элементы иммутабельны.
+
+</script></section><section data-markdown><script type="text/template">
+
+Представление React элементов через [`createElement`](https://ru.reactjs.org/docs/react-api.html#createelement)
+
+```jsx
+React.createElement(type, [props], [...children]);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+React.createElement(
+  "div",
+  {
+    className: "wrapper",
+    style: "margin: 5px",
+  },
+  React.createElement(
+    "button",
+    {
+      onClick: function onClick() {
+        return alert("Click");
+      },
+      className: "btn",
+    },
+    "Click me"
+  )
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```jsx [1-30]
+// jsx:
+// https://bit.ly/3gCKQOI
+<div className="wrapper" style={{ margin: "5px" }}>
+  <button onClick={() => alert("Click")} className="btn">
+    Click me
+  </button>
+</div>
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[React-компоненты](https://ru.reactjs.org/docs/glossary.html) — это маленькие, повторно используемые части кода, которые возвращают React-элементы для отображения на странице. Самый простой React-компонент — JavaScript функция, которая возвращает элементы React.
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-50]
+// компонент
+const Button = ({ name }) => {
+  return React.createElement(
+    "button",
+    {
+      onClick: function onClick() {
+        return alert("Click");
+      },
+      className: "btn",
+    },
+    name
+  );
+};
+
+// применение компонента
+React.createElement(
+  "div",
+  {
+    className: "wrapper",
+    style: "margin: 5px",
+  },
+  React.createElement(Button, {
+    name: "Click me",
+  })
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```jsx [1-30]
+const Button = ({ name }) => (
+  <button onClick={() => alert("Click")} className="btn">
+    {name}
+  </button>
+);
+
+// применение компонента
+<div className="wrapper" style={{ margin: "5px" }}>
+  <Button name="Click me" />
+</div>;
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Чтобы [отрисовать элемент на странице](https://ru.reactjs.org/docs/rendering-elements.html) нужен пакет [`react-dom`](https://ru.reactjs.org/docs/react-dom.html)
+
+```jsx [1-10]
+const element = <h1>Hello, world</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(element);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Пример работы с React элементами](https://stackblitz.com/edit/basic-react-dom-novgwc?file=index.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+Для поддержки синтаксиса `JSX` нужен пакет [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react). Но при этом вполне можно обходиться и [вообще без JSX](https://ru.reactjs.org/docs/react-without-jsx.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### JSX
+
+</script></section><section data-markdown><script type="text/template">
+
+`JSX` — синтаксический сахар для функции `React.createElement`
+
+> JSX — расширение языка JavaScript. Мы рекомендуем использовать его, когда требуется объяснить React, как должен выглядеть UI. JSX напоминает язык шаблонов, наделённый силой JavaScript.
+
+</script></section><section data-markdown><script type="text/template">
+
+[Знакомство с JSX](https://ru.reactjs.org/docs/introducing-jsx.html)
+
+[JSX в деталях](https://ru.reactjs.org/docs/jsx-in-depth.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [Немного о правилах JSX](https://stackblitz.com/edit/react-basic-jsx-otus?file=jsxExamples.jsx)
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+// 1. Объявление компонентов
+
+// 1.1 Как функция
+const Cmp1 = (props) => <div>{props.name}</div>;
+
+// 1.2 Как класс
+class Cmp2 extends React.Component {
+  render() {
+    return <Cmp1 name={this.props.userName}></Cmp1>;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+// 2. Использование компонентов
+
+// 2.1 С закрывающим тегов
+<Cmp1 name="Bob"></Cmp1>
+
+// 2.2 С самозакрывающимся тегом (если нет дочерних элементов)
+<Cmp1 name="Sam" />
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+// 3. Передача свойств в компонент
+
+// 3.1 Все свойства пишутся в {}
+<Cmp1 name={"Sam"} />
+
+
+// 3.2 Строковые литералы передаются как-есть
+<Cmp1 name="Sam" />
+
+// 3.3 Булевые true свойства можно передавать просто указанием
+<Cmp1 disabled />
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+// 4 Комментарий
+
+// 4.1 Вокруг компонентов/их методов - обычный js
+// так
+const Cmp3 = (props /* или так */) => <div>{props.name}</div>;
+
+// 4.2 Внутри jsx
+const Cmp4 = (props) => (
+  <div>
+    {/* вот так */}
+    {props.name}
+  </div>
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx [1-30]
+// 5 Выражения
+
+// jsx - subset js, выражения пишутся внутри {} (как в примере с свойствами компонентов)
+const Cmp5 = (props) => (
+  <div>
+    {props.disabled ? <span>No way</span> : <button>Go</button>}
+    {props.names.map((name) => (
+      <button>{name}</button>
+    ))}
+    {props.someFlag && <NestedCompnent />}
+  </div>
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```tsx
+// Важно! (ну или было важно)
+import React from "react";
+```
+
+Начиная с React 17 появилась [возможность](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) использования новой JSX трансформации
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Тестирование
+
+</script></section><section data-markdown><script type="text/template">
+
+- Подход от реализации - [Enzyme](https://enzymejs.github.io/enzyme/)
+
+- Подход от пользователя - [RTL](https://testing-library.com/docs/react-testing-library/intro/)
+
+</script></section><section data-markdown><script type="text/template">
+
+### React-testing-library
+
+> The React Testing Library is a very light-weight solution for testing React components. It provides light utility functions on top of react-dom and react-dom/test-utils
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    // Render component
+    render(<App />);
+    // Debug info
+    screen.debug();
+    // For debugging using testing-playground,
+    // screen exposes this convenient method
+    // which logs a URL that can be opened in a browser
+    screen.logTestingPlaygroundURL();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Вывод
+
+> RTL используется для взаимодействия с вашими компонентами React так, как это делает человек. То, что видит человек, - это просто визуализированный HTML из ваших компонентов React, поэтому вы видите эту структуру HTML как результат
+
+```html [1-30]
+<body>
+  <div>
+    <div>Hello React</div>
+  </div>
+</body>
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Выбор элементов
+
+</script></section><section data-markdown><script type="text/template">
+
+[jest-dom](https://github.com/testing-library/jest-dom/)
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    expect(screen.getByText("Search:")).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    // неявная проверка
+    // getByText выбрасывает исключение если элемент не найден
+    screen.getByText("Search:");
+
+    // явная проверка - рекомендуется
+    expect(screen.getByText("Search:")).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    // упадет
+    expect(screen.getByText("Search")).toBeInTheDocument();
+
+    // пройдет
+    expect(screen.getByText("Search:")).toBeInTheDocument();
+
+    // пройдет
+    expect(screen.getByText(/Search/)).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Возможности для поиска
+
+`getByRole` используется для поиска по [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label). Но, [у некоторых HTML элементов есть неявные роли](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    screen.getByRole("");
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```[1-30]
+Unable to find an accessible element with the role ""
+
+Here are the accessible roles:
+
+document:
+
+Name "":
+<body />
+
+--------------------------------------------------
+textbox:
+
+Name "Search:":
+<input
+  id="search"
+  type="text"
+  value=""
+/>
+
+--------------------------------------------------
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Есть более специфичные способы поиска:
+
+`getByLabelText`:
+
+```html
+<label for="search" />
+```
+
+`getByPlaceholderText`:
+
+```html
+<input placeholder="Search" />
+```
+
+`getByAltText`:
+
+```html
+<img alt="profile" />
+```
+
+`getByDisplayValue`:
+
+```html
+<input value="JavaScript" />
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+И другие
+
+- getByText
+- getByRole
+- getByLabelText
+- getByPlaceholderText
+- getByAltText
+- getByDisplayValue
+
+</script></section><section data-markdown><script type="text/template">
+
+### getBy vs queryBy
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    screen.debug();
+
+    // fails
+    expect(screen.getByText(/Searches for JavaScript/)).toBeNull();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+**getBy** выбрасывает исключение если элемент не найден.
+
+Для работы и проверки элементов, которых нет - можно использовать **queryBy**
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### findBy делает асинхронный поиск (И ожидание) элементов
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", async () => {
+    render(<App />);
+
+    expect(screen.queryByText(/Signed in as/)).toBeNull();
+
+    expect(await screen.findByText(/Signed in as/)).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Для коллекций элементов есть
+
+- getAllBy
+- queryAllBy
+- findAllBy
+
+</script></section><section data-markdown><script type="text/template">
+
+### Assertive Functions
+
+[jest-dom](https://github.com/testing-library/jest-dom/)
+
+- toBeDisabled
+- toBeEnabled
+- toBeEmpty
+- toBeEmptyDOMElement
+- toBeInTheDocument
+- toBeInvalid
+- toBeRequired
+- and etc...
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Testing-playground](https://testing-playground.com/)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+### FIRE EVENT
+
+```js [1-30]
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    screen.debug();
+
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "JavaScript" },
+    });
+
+    screen.debug();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", async () => {
+    render(<App />);
+
+    // wait for the user to resolve
+    // needs only be used in our special case
+    await screen.findByText(/Signed in as/);
+
+    expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "JavaScript" },
+    });
+
+    expect(screen.getByText(/Searches for JavaScript/)).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### React Testing Library: User Event
+
+> userEvent API имитирует реальное поведение браузера более точно, чем fireEvent API. Например, fireEvent.change() запускает только событие изменения, тогда как userEvent.type запускает событие изменения, а также события keyDown, keyPress и keyUp.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+import App from "./App";
+
+describe("App", () => {
+  test("renders App component", async () => {
+    render(<App />);
+
+    // wait for the user to resolve
+    await screen.findByText(/Signed in as/);
+
+    expect(screen.queryByText(/Searches for JavaScript/)).toBeNull();
+
+    await userEvent.type(screen.getByRole("textbox"), "JavaScript");
+
+    expect(screen.getByText(/Searches for JavaScript/)).toBeInTheDocument();
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Обработчики событий
+
+</script></section><section data-markdown><script type="text/template">
+
+<!-- eslint-skip -->
+
+```js
+import React from "react";
+
+function Search({ value, onChange, children }) {
+  return (
+    <div>
+      <label htmlFor="search">{children}</label>
+      <input id="search" type="text" value={value} onChange={onChange} />
+    </div>
+  );
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import Search from "./Search";
+//  FireEvent
+describe("Search", () => {
+  test("calls the onChange callback handler", () => {
+    const onChange = jest.fn();
+
+    render(
+      <Search value="" onChange={onChange}>
+        Search:
+      </Search>
+    );
+
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "JavaScript" },
+    });
+
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+import React from "react";
+import Search from "./Search";
+// UserEvent
+describe("Search", () => {
+  test("calls the onChange callback handler", async () => {
+    const onChange = jest.fn();
+
+    render(
+      <Search value="" onChange={onChange}>
+        Search:
+      </Search>
+    );
+
+    await userEvent.type(screen.getByRole("textbox"), "JavaScript");
+
+    expect(onChange).toHaveBeenCalledTimes(10);
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### CRA
+
+</script></section><section data-markdown><script type="text/template">
+
+[CRA](https://create-react-app.dev/) - инструмент от [facebook](https://github.com/facebook/create-react-app) для старта разработки приложений
+
+</script></section><section data-markdown><script type="text/template">
+
+```
+npx create-react-app my-app
+cd my-app
+npm start
+```
+
+c TS:
+
+```
+npx create-react-app my-app --template typescript
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Скрывает от пользователя все настройка за [`react-scripts`](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts)
+
+</script></section><section data-markdown><script type="text/template">
+
+Для открытия настроек есть команда **eject**
+
+</script></section><section data-markdown><script type="text/template">
+
+### На курсе мы НЕ будем использовать CRA!
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Storybook](https://storybook.js.org/)
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Loki](https://loki.js.org/)
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Дополнительные материалы
+
+0. https://ru.reactjs.org/docs/getting-started.html
+1. https://pomb.us/build-your-own-react/
+2. https://jasonformat.com/wtf-is-jsx/
+3. https://github.com/pomber/didact
+4. [Paul O Shannessy - Building React From Scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg)
+5. [YT: Автотесты. Модульное тестирование – Дмитрий Андриянов](https://www.youtube.com/watch?v=DFLXBdfnAeE)
+6. [Начало работы со Storybook](https://www.youtube.com/watch?v=lUf8qC_xFHo)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

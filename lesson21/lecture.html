@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 21</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+## ООП
+
+</script></section><section data-markdown><script type="text/template">
+
+**Объектно-ориенти́рованное программирование (ООП)** — методология программирования, основанная на представлении программы в виде совокупности объектов
+
+</script></section><section data-markdown><script type="text/template">
+
+### Disclaimer [(i)](https://habr.com/ru/post/451982/)
+
+- ООП может объясняться по разному
+- Мы не рассматриваем паттерны ООП (но при этом мы к ним отсылаем)
+- Мы почти не говорим про принципы ООП
+
+</script></section><section data-markdown><script type="text/template">
+
+[Кошелек Миллера](https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE_%D1%81%D0%B5%D0%BC%D1%8C_%D0%BF%D0%BB%D1%8E%D1%81-%D0%BC%D0%B8%D0%BD%D1%83%D1%81_%D0%B4%D0%B2%D0%B0)
+
+</script></section><section data-markdown><script type="text/template">
+
+Главное для чего мы будем использовать ООП - [Абстракция](https://ru.wikipedia.org/wiki/%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%86%D0%B8%D1%8F_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)([!](https://ru.wikipedia.org/wiki/%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%86%D0%B8%D1%8F)).
+
+Абстракция позволяет обойти ограничение Миллера, позволяя оперировать более крупными единицами информации.
+
+</script></section><section data-markdown><script type="text/template">
+
+В первом приближении зачатком абстракции может быть группировка данных в структуры.
+
+```ts [1-30]
+const nameA = "Bob";
+const ageA = 17;
+
+const nameB = "Sam";
+const ageB = 28;
+
+//
+
+type Person = {
+  name: string;
+  age: number;
+};
+
+const bob: Person = {
+  name: "Bob",
+  age: 17,
+};
+
+const sam: Person = {
+  name: "Sam",
+  age: 18,
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Продолжением является вычленение кода, который работает с данными, и присоединения этого кода к сущностям. Чтобы они знали **как** работать, с относящимися к ним данными
+
+</script></section><section data-markdown><script type="text/template">
+
+```ts [1-30]
+type Greetable = {
+  getGreetPhrase(): string;
+};
+
+const bob: Person & Greetable = {
+  name: "Bob",
+  age: 17,
+  getGreetPhrase() {
+    return this.age > 17 ? "Good morning" : "Hi";
+  },
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Объект - совокупность данных и реализация поведения (функций, для работы с данными объекта).
+
+</script></section><section data-markdown><script type="text/template">
+
+В Javascript мы имеем возможность создавать новые объекты, на основе других объектов (прототипное наследование).
+
+```ts [1-30]
+type GreetablePerson = Person & Greetable;
+
+const basePerson: GreetablePerson = {
+  name: "Noname",
+  age: 0,
+  getGreetPhrase() {
+    return this.age > 17 ? "Good morning" : "Hi";
+  },
+};
+
+const bob: GreetablePerson = Object.create(basePerson, {
+  name: { value: "Bob" },
+  age: { value: 17 },
+});
+
+const sam: GreetablePerson = Object.create(basePerson);
+sam.name = "Sam";
+sam.age = 20;
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Другой подход к этому вопросу - создание новых объектов на основе шаблонов (использование конструкторов или классов)
+
+```ts [1-30]
+type Person = {
+  name: string;
+  age: number;
+};
+
+type Greetable = {
+  getGreetPhrase(): string;
+};
+
+class GreetablePerson implements Person, Greetable {
+  constructor(public name: string = "Noname", public age: number = 0) {}
+
+  getGreetPhrase() {
+    return this.age > 17 ? "Good morning" : "Hi";
+  }
+}
+
+const bob = new GreetablePerson("Bob", 17);
+const sam = new GreetablePerson("Sam");
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+При этом, если мы хотим добавить в шаблонную сущность новые свойства:
+
+- Для объектов - мы можем просто добавить новый элемент в цепочку прототипов (тот же `Object.create`)
+
+- Для классов - мы можем использовать механизм наследование, через расширение классов (`class A extends B {}`)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Нет "единственно верного" способа организовывать объекты и классы.
+
+Ключевой критерий - упрощение [**чтения и понимания**](https://habr.com/ru/post/354750/) кода.
+
+</script></section><section data-markdown><script type="text/template">
+
+<img src="./images/slicing.png" title="Slicing: MVC, Components etc." />
+
+</script></section><section data-markdown><script type="text/template">
+
+Вы уже оперировали объектами в том или ином виде
+
+```js [1-30]
+let button = document.createElement("button");
+button.innerHTML = "add";
+button.addEventListener("click", () => {
+  alert("Hi");
+});
+// ...
+input.addEventListener("keyup", () => {
+  if (input.value !== "") {
+    el.appendChild(button);
+  } else {
+    el.removeChild(button);
+  }
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Самый простой подход к выделению сущностей - описать, что вы хотите сделать, и обратить внимание на то, какими терминами вы пользуетесь для описания процесса.
+
+Эти термины могут у разных людей быть разными для одного и того же процесса.
+
+</script></section><section data-markdown><script type="text/template">
+
+Процесс покупки шоколадки в магазине:
+
+- взять с **полки** понравившуюся **шоколадку**
+- положить ее в **корзину**
+- предъявить ее на **кассе**
+- достать из **кошелька** подходящую **купюру** и отдать ее **кассиру**
+
+</script></section><section data-markdown><script type="text/template">
+
+При этом, в программе мы реализуем некоторые приближенные модели процессов, поэтому некоторые сущности могут оказаться для нас лишними (в данной конкретной реализации).
+
+Например _кассир_, _кошелек_, _полка_
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Game of Life](https://codesandbox.io/s/game-of-life-tsoopblank-bsdkb?file=/src/GameView.ts)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Опрос о занятии
+
+</script></section><section  data-markdown><script type="text/template">
+
+Дополнительные материалы:
+
+- [Фундаментальные принципы объектно-ориентированного программирования на JavaScript](https://tproger.ru/translations/oop-js-fundamentals/)
+- [Антипаттерны в программировании и проектировании архитектуры](https://bool.dev/blog/detail/antipatterny-v-programmirovanii-i-proektirovanii-arkhitektury)
+- Что такое антипаттерны? Разбираем примеры [1](https://javarush.ru/groups/posts/2622-chto-takoe-antipatternih-razbiraem-primerih-chastjh-1) и [2](https://javarush.ru/groups/posts/2624-chto-takoe-antipatternih-razbiraem-primerih-chastjh-2)
+- [YT: Основы ООП - Иван Бибилов](https://www.youtube.com/watch?v=t8zwdpkSRWs)
+- [YT: САМЫЕ ЧАСТЫЕ ЗАБЛУЖДЕНИЯ ООП](https://www.youtube.com/watch?v=BHNt1fcg8iw)
+- [YT: Антипаттерны ООП (часть 1) c примерами на JavaScript](https://www.youtube.com/watch?v=9d5TG1VsLeU)
+- [ФП против ООП](https://habr.com/ru/post/474518/)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

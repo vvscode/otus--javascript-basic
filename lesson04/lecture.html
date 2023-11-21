@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 4</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section ><section data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Базовое использование API и JavaScript.
+
+#### Как работать с DOM и другими доступными API
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+### Асинхронный код - минимум для работы
+
+_Подробнее будет в третьем модуле на занятии про асинхронный код_
+
+</script></section><section data-markdown><script type="text/template">
+
+#### JS - ОДНОПОТОЧНЫЙ ЯЗЫК
+
+- Отрисовка DOM
+- Обработка пользовательского ввода
+- Выполнение JS кода
+
+</script></section><section data-markdown><script type="text/template">
+
+#### [ОЧЕРЕДЬ ЗАДАЧ В JS](https://developer.mozilla.org/ru/docs/Web/JavaScript/EventLoop)
+
+- Среда выполнения содержит очередь событий (список событий, подлежащих обработке)
+- Каждое событие ассоциируется с некоторой функцией.
+- Каждый вызов функции добавляет запись в стек
+- При завершении функции запись изымается из стека
+- Когда стек освобождается, событие извлекается из очереди и обрабатывается (функция вызывается).
+
+</script></section><section data-markdown><script type="text/template">
+
+На бытовом уровне мы могли бы это объяснить так...
+
+</script></section><section data-markdown><script type="text/template">
+
+[Демонстрация](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/singleThreadInJs?file=/index.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+Поэтому операции, которые занимают длительное (больше 50 ms) операции стараются
+
+- переложить на внешнего исполнителя
+- отложить исполнение и разбить на части
+
+</script></section><section data-markdown><script type="text/template">
+
+Так появляется **асинхронный код** - когда результат вы получаете не немедленно, а отложено во времени.
+
+</script></section><section data-markdown><script type="text/template">
+
+Как работать с таким асинхронным кодом? Как это выглядит?
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// работа с callback-функциями
+const x = 2;
+// результат мы можем обработать в callback-функции
+calculateSomethingAsyncWithCallback(x, (result) => {
+  console.log(result);
+});
+// в node.js было принято
+calculateSomethingAsyncWithCallback(x, (error, result) => {
+  if (error) {
+    return console.error(error);
+  }
+  // ...
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// работа с callback-функциями
+const x = 2;
+calculateSomethingAsyncWithCallback(x, (result) => {
+  calculateSomethingElseAsyncWithCallback(result, (secondResult) => {
+    console.log(result);
+  });
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Для решения проблемы [callback hell](http://callbackhell.com/) ввели интерфейс [Promise](https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Ispolzovanie_promisov).
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+function doSomething() {
+  return new Promise((resolve, reject) => {
+    console.log("Готово.");
+    // Успех в половине случаев.
+    if (Math.random() > 0.5) {
+      resolve("Успех");
+    } else {
+      reject("Ошибка");
+    }
+  });
+}
+
+const promise = doSomething();
+promise.then(successCallback, failureCallback);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+calculateSomethingAsyncWithPromise(x)
+  .then((result) => calculateSomethingElseAsyncWithPromise(result))
+  .then((secondResult) => console.log(secondResult));
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Но в Javascript приходит все больше и больше людей с других языков, и им непривычно читать такой код. Кроме того он имеет некоторые проблемы (например нам нужен одновременный доступ к `result` и `secondResult`).
+
+</script></section><section data-markdown><script type="text/template">
+
+Появились `async` функции. Которые предоставляют [`await` механизм](https://learn.javascript.ru/async-await).
+
+</script></section><section data-markdown><script type="text/template">
+
+Мы можем пометить функцию ключевым словом async. Это дает следующее:
+
+1. функция теперь неявно возвращает Promise
+
+1. внутри функции мы можем использовать ключевое слово `await` для разворачивания Promise-результатов
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+(async function () {
+  const x = 2;
+  const result = await calculateSomethingAsyncWithPromise(x);
+  const secondResult = await calculateSomethingElseAsyncWithPromise(result);
+  console.log(secondResult);
+})();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+**НО!** сейчас `await` работает только в `async` функциях.
+
+Хотя мы все ждем [Top-level await](https://github.com/tc39/proposal-top-level-await).
+
+</script></section><section data-markdown><script type="text/template">
+
+Краткий итог:
+
+- некоторый функции нужно вызывать с ключевым словом `await`
+- `await` работает только внутри функций, которые помечены как `async`
+
+Подробнее мы будем разбирать на занятии про асинхронность
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### API
+
+</script></section><section data-markdown><script type="text/template">
+
+**API** (**программный интерфейс** приложения, интерфейс прикладного программирования) (англ. application programming interface, API [эй-пи-ай]) — [описание способов (набор классов, процедур, функций, структур или констант), которыми одна компьютерная программа может взаимодействовать с другой программой](https://ru.wikipedia.org/wiki/API).
+
+</script></section><section data-markdown><script type="text/template">
+
+Под API можно понимать любые методы и свойства, которые не относятся непосредственно к конструкциям языка
+
+</script></section><section data-markdown><script type="text/template">
+
+Каким API пользуются разработчики?
+
+- встроенное в язык
+- встроенное в среду исполнения
+- предоставляемое дополнительными пакетами
+- предоставляемое сторонними сервисами (доступ к которым делается посредством API среды исполнения или дополнительных пакетов)
+
+</script></section><section data-markdown><script type="text/template">
+
+Единственный способ узнать про API - читать документацию (статьи, книги, смотреть доклады).
+
+Единственный способ научиться пользоваться API - работать с API.
+
+</script></section><section data-markdown><script type="text/template">
+
+[Интерфейсы веб API](https://developer.mozilla.org/ru/docs/Web/API)
+
+</script></section><section data-markdown><script type="text/template">
+
+Что мы посмотрим сегодня:
+
+- работу со страницей (изменение страницы и чтение данных от пользователя)
+- работу удаленными ресурсами
+- сохранение данных
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Работа со страницей
+
+</script></section><section data-markdown><script type="text/template">
+
+**DOM** - Document Object Model.
+
+API браузера для работы с веб страницей и ее элементами. Представлено глобальными объектами `window`, `document` и API для работы с HTML элементами (создание, удаление, редактирование).
+
+</script></section><section data-markdown><script type="text/template">
+
+Поиск элементов на странице:
+
+- `document.getElementById`
+- `document.getElementsByTagName`
+- `document.querySelector`
+- `document.querySelectoAll`
+
+[Document API](https://developer.mozilla.org/ru/docs/Web/API/Document) и [описание селекторов](http://htmlbook.ru/css/selector)([1](http://sauron.org.ua/post/1254), [2](https://migo.com.ua/blog/css/css-selectory-kotorue-dolzhen-znat-kazhduy.html), [3](https://www.exlab.net/files/tools/sheets/css/css.pdf))
+
+</script></section><section data-markdown><script type="text/template">
+
+Создание и изменение элементов. Два варианта:
+
+- использование `innerHTML` и работа с элементами как со строкой HTML
+- использование `document.createElement` и работа с элементами как с узлами дерева
+
+</script></section><section data-markdown><script type="text/template">
+
+Для подписки на события элементов есть 3 варианта:
+
+- `addEventListener` <-- мы будем использовать вот этот
+- `onclick="func()"`
+- `el.onclick=func`
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/DOMExamples)
+
+</script></section><section data-markdown><script type="text/template">
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/DOMExamplesPractice)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Сохранение данных](https://learn.javascript.ru/data-storage)
+
+</script></section><section data-markdown><script type="text/template">
+
+- [IndexedDB](https://developer.mozilla.org/ru/docs/Web/API/IndexedDB_API)
+- [Storage](https://developer.mozilla.org/ru/docs/Web/API/Storage) (Local Storage / Session Storage)
+- [Cookies](https://developer.mozilla.org/ru/docs/Web/API/Document/cookie)
+
+</script></section><section data-markdown><script type="text/template">
+
+DOM Storage полезен для хранения небольшого количества данных, но он менее выгоден для большого числа структурированных данных (тк работает со строками). IndexedDB предоставляет решение для клиентского хранилища большого объема структурированных данных, включая файлы/blobs.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// Пример работы с local storage
+const key = "someKey";
+const value = "someValue";
+localStorage.setItem(key, value);
+console.log(localStorage.getItem(key));
+localStorage.removeItem(key);
+console.log(localStorage.getItem(key)); // null
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// ВАЖНО! работает только со строками
+const key = "someKey";
+const value = 1;
+localStorage.setItem(key, value);
+console.log(localStorage.getItem(key)); // "1"
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// для работы с другими типами данных
+// обычно используют сериализацию
+const value1 = 1;
+const value2 = { name: "Bob" };
+localStorage.setItem("value1", JSON.stringify(value1));
+localStorage.setItem("value2", JSON.stringify(value2));
+console.log(JSON.parse(localStorage.getItem("value1"))); // 1
+console.log(JSON.parse(localStorage.getItem("value2"))); // { name: 'Bob' }
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Важно помнить, что если значения нет - вы получите `null` и десериализация сломается. Поэтому перед вызовом `parse` нужно проверять данные.
+
+</script></section><section data-markdown><script type="text/template">
+
+И еще одно отступление про асинхронность (мы будем об этом говорить подробнее на занятии по дизайну вашего API)
+
+</script></section><section data-markdown><script type="text/template">
+
+В разработке принято писать на уровне интерфейсов (абстракций), а не реализаций. То есть вы должны знать ЧТО делает функция или модуль, но не КАК.
+
+Когда вы начинаете использовать детали реализации - это называется "протекающая абстракция".
+
+</script></section><section data-markdown><script type="text/template">
+
+Типичные кандидаты на асинхронные операции:
+
+- запрос данных от пользователя
+- сохранение и чтение данных
+- обращение к стороннему сервису
+- валидации и сложные вычисления
+
+</script></section><section data-markdown><script type="text/template">
+
+Но при этом
+
+- для запроса данных от пользователя есть синхронные `alert` / `prompt`
+- для чтения и сохранения данных есть синхронный `localStorage`
+
+</script></section><section data-markdown><script type="text/template">
+
+Лучше сразу заложить возможность для расширения, и использовать асинхронные обертки. Тогда в любой момент можно будет поменять реализацию, и вместо `localStorage` сохранять данные на сервере, например. А вместо `alert` показывать красивое стилизованное модальное окно (которое не блокирует поток).
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+async function asyncPrompt(request) {
+  return prompt(request);
+}
+// const x = asyncPrompt(); работать не будет
+const x = await asyncPrompt();
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/dataStoragePractice)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Работа со сторонними сервисами](https://learn.javascript.ru/network)
+
+</script></section><section data-markdown><script type="text/template">
+
+Для работы с HTTP запросами у нас есть два варианта (на самом деле больше, если подключать библиотеки):
+
+- [XMLHttpRequest](https://learn.javascript.ru/xmlhttprequest)
+- [fetch](https://learn.javascript.ru/fetch)
+
+</script></section><section data-markdown><script type="text/template">
+
+`fetch` - поддерживается современными браузерами, предоставляет Promise-based интерфейс (удобен для `async` функций) и прост в использовании.
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// await-friendly окружение
+let response = await fetch(url);
+
+let text = await response.text();
+
+console.log(text);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```js [1-30]
+// await-friendly окружение
+let response = await fetch("/article/fetch/post/user", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json;charset=utf-8",
+  },
+  body: JSON.stringify(user),
+});
+
+let jsonData = await response.json();
+console.log(jsonData);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+`fetch` возвращает вам объект типа [`Response`](https://developer.mozilla.org/ru/docs/Web/API/Response).
+
+Чаще всего используются
+
+- поле `ok`
+- поле `status`
+- методы `text()` и `json()`
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+[Практика](https://codesandbox.io/s/github/vvscode/otus--javascript-basic/tree/lesson04/lessons/lesson04/code/fetchPractice)
+
+[OpenWeather API](https://openweathermap.org/current)
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section><section data-markdown><script type="text/template">
+
+Дополнительное задание:
+
+при заходе на страницу показать пользователю погоду в его городе. Для получения этой информации можно сделать запрос на `https://get.geojs.io/v1/ip/geo.json`, который вернет данные в формате JSON.
+
+[GeoAPI](https://www.geojs.io/docs/v1/endpoints/geo/)
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+Собираем все вместе. Создайте страницу:
+
+- при открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
+- он может ввести имя города в поле ввода и увидеть погоду в выбранном городе
+- введенные города сохраняются у пользователя в браузере, так что он видит последние 10 городов, где он смотрел погоду
+- при клике по строчке города в списке он видит погоду в выбранном
+
+</script></section><section data-markdown><script type="text/template">
+
+### Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Домашнее задание](https://github.com/vvscode/otus--javascript-basic/blob/master/lessons/lesson04/homework.md)
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+#### Дополнительные материалы
+
+</script></section><section data-markdown><script type="text/template">
+
+1. [Путеводитель по JavaScript Promise для новичков](https://habr.com/ru/company/zerotech/blog/317256/)
+1. [Public APIs](https://github.com/public-apis/public-apis#open-source-projects)
+1. [Чистый код на Javascript](https://github.com/BoryaMogila/clean-code-javascript-ru/)
+1. [JavaScript. Как работать с API Telegram, Youtube и VK](https://live.ithillel.ua/javascript.-rabota-s-api)
+1. [Что на самом деле происходит, когда пользователь вбивает в браузер адрес google.com](https://habr.com/ru/company/htmlacademy/blog/254825/)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Вопросы для самопроверки
+
+1. Чем куки (cookie) отличаются от localStorage ?
+
+2. Что такое CORS?
+
+3. Что такое и какие есть коды ответов HTTP?
+
+4. Что такое jsonp-запрос?
+
+5. Как реализовать подписку на клик по кнопке, которая отработает только один раз? ( с примером кода )
+
+</script></section><section data-markdown><script type="text/template">
+
+6. Что такое KISS, DRY, YAGNI?
+
+7. Быть в состоянии рассказать что такое XHR, AJAX, CDN
+
+8. Чем XMLHTTPRequest отличается от fetch?
+</script></section></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

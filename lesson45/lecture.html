@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Занятие 45</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# OTUS
+
+## Javascript Basic
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+## `Оптимизация производительности`
+
+## `React приложений`
+
+</script></section><section data-markdown><script type="text/template">
+
+### Маршрут вебинара
+
+1. Как работает React
+1. Как избежать ненужных рендерингов
+1. Ленивая загрузка компонент
+1. Профилирование. Дебаг производительности
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Как работает React](https://dev.to/kedark/how-the-react-updates-dom-1kc7)
+
+</script></section><section data-markdown><script type="text/template">
+
+React создает **Virtual DOM** для построение дерево компонентов.
+
+</script></section><section data-markdown><script type="text/template">
+
+Манипуляции сперва происходят с VDOM, и после React сравнивает с DOM, и **применяет все изменения**.
+
+</script></section><section data-markdown><script type="text/template">
+
+<img src="./images/tree.png" style="width:1200px" />
+
+</script></section><section data-markdown><script type="text/template">
+
+React рендерит всю ветку компонент
+
+</script></section><section data-markdown><script type="text/template">
+
+<img src="./images/tree-state.png" style="width:1200px" />
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Рендеринг Virtual DOM
+2. Коммит изменений в Browser DOM
+
+</script></section><section data-markdown><script type="text/template">
+
+Таким образом, основное React уже оптимизирует из под капота
+
+</script></section><section data-markdown><script type="text/template">
+
+**Базовый совет!!!**
+
+[Используйте production build](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)
+
+Не будет лишнего дев кода: warnings, prop-types
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Как избежать ненужных рендерингов
+
+</script></section><section data-markdown><script type="text/template">
+
+**1. [Мемоизация компонента](https://dev.to/nibble/react-memo-and-react-purecomponent-3k7k)**
+
+</script></section><section data-markdown><script type="text/template">
+
+shouldComponentUpdate
+
+- для классовых компонент
+- shallow comparison of state & props
+
+```jsx
+class MyComponent extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps && this.state !== nextState;
+  }
+
+  render() {
+    return <div>...</div>;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+React.PureComponent
+
+- для классовых компонент
+- shallow comparison of state & props
+
+```jsx
+class MyComponent extends React.PureComponent {
+  render() {
+    return <div>...</div>;
+  }
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+React.memo HOC
+
+- для функциональных компонент
+- shallow comparison of props
+
+```jsx
+const MyComponent = React.memo(() => {
+  return <div>...</div>;
+});
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[Примеры](https://codesandbox.io/s/floral-hill-6ueb6?file=/src/App.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+**2. [Списки "key"](https://reactjs.org/docs/lists-and-keys.html#keys)**
+
+</script></section><section data-markdown><script type="text/template">
+
+```jsx
+function Example({ items }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li>{item.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Для улучшения производительности. Key
+
+```jsx
+function Example({ items }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>{item.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+- Не является частью `props` !!
+- Оптимизация обработки изменений в списках
+- Уникальный в рамках списка
+- Привязан к данным, а не к положению данных в списке
+
+</script></section><section data-markdown><script type="text/template">
+
+**3. [Виртуальные списки](https://reactjs.org/docs/optimizing-performance.html#virtualize-long-lists)**
+
+</script></section><section data-markdown><script type="text/template">
+
+**4. Для функциональных компонент**
+
+</script></section><section data-markdown><script type="text/template">
+
+[React.useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+
+```jsx
+function MyComponent({ items }) {
+  const average = useMemo(() => computeExpensiveValue(items), [items]);
+
+  return <p>{average}</p>;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+[React.useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
+
+```jsx
+function MyComponent({ a, b }) {
+  const onClick = useCallback(() => {
+    // do something
+  }, [a, b]);
+
+  return <AnotherComponent onClick={onClick} />;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Ленивая загрузка компонент](https://ru.reactjs.org/docs/code-splitting.html#bundling)
+
+</script></section><section data-markdown><script type="text/template">
+
+Используется для разделения кода/bundle'а и поздней/ленивой загрузки
+
+```jsx
+import React, { Suspense } from "react";
+
+const OtherComponent = React.lazy(() => import("./OtherComponent"));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <OtherComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Через динамический "import()" webpack (или другой сборщик) разделит код на несколько bundle'ов.
+
+</script></section><section data-markdown><script type="text/template">
+
+1. Загрузиться основой код компонента
+2. После отрисовки, на клиенте сделается ещё запрос на получение кода ленивой компоненты
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/optimizing-react-app-6ueb6?file=/src/App.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+Разделение кода на основе маршрутов
+
+```jsx
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+const Home = lazy(() => import("./routes/Home"));
+const About = lazy(() => import("./routes/About"));
+
+const App = () => (
+  <Router>
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+      </Switch>
+    </Suspense>
+  </Router>
+);
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### [Профилирование. Дебаг производительности](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)
+
+</script></section><section data-markdown><script type="text/template">
+
+- Devtools extension
+- показывает какие компоненты были отрендерены и почему
+- показывает сколько времени ушло на каждый компонент
+- возможность подсвечивать обновления в браузере
+
+</script></section><section data-markdown><script type="text/template">
+
+[Пример](https://codesandbox.io/s/optimizing-react-app-6ueb6?file=/src/ProfilerExample/index.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+[React.Profiler component](https://reactjs.org/docs/profiler.html#onrender-callback)
+
+- программный доступ к профилированию
+
+```jsx
+import React, { Profiler } from "react";
+
+const MyComponent = (props) => (
+  <Profiler id="StockChart" onRender={logTimes}>
+    <StockChart>{/* ... */}</StockChart>
+  </Profiler>
+);
+
+const logTimes = (id, phase, actualTime, baseTime, startTime, commitTime) => {
+  console.log(`${id}'s ${phase} phase:`);
+  console.log(`Actual time: ${actualTime}`);
+  console.log(`Base time: ${baseTime}`);
+  console.log(`Start time: ${startTime}`);
+  console.log(`Commit time: ${commitTime}`);
+};
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+- [По умолчанию выключено для production сборки](https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977)
+- Можно включить "`yarn build --profile`"
+
+</script></section><section data-markdown><script type="text/template">
+
+- Профилирует всё дерево дочерних компонент
+- Можно использовать более одного Profiler компонент
+- Можно использовать вложено
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+[Практика](https://codesandbox.io/s/optimizing-react-app-6ueb6?file=/src/Practice/index.js)
+
+</script></section><section data-markdown><script type="text/template">
+
+Вопросы?
+
+</script></section></section><section  data-markdown><script type="text/template">
+
+### Дополнительные материалы
+
+- [21 Performance Optimization Techniques for React Apps](https://www.codementor.io/blog/react-optimization-5wiwjnf9hj)
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

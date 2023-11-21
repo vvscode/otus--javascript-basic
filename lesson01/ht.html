@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="shortcut icon" href="./../favicon.ico" />
+    <link rel="stylesheet" href="./../dist/reset.css" />
+    <link rel="stylesheet" href="./../dist/reveal.css" />
+    <link rel="stylesheet" href="./../dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./../css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./../_assets/.reveal-md/styles.css" />
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">## Знакомство
+
+> Сформулирует цели и задачи поступления на курс, опишет свои ожидания от обучения. Познакомится с правилами "Хорошего тона" для продуктивного общения на технические темы
+
+1. Развернуто (от 1000 символов) написать о следующих вещах
+
+- цель поступления на курс
+- ожидания от курса
+- как вы поймете, что курс был полезен (по каким конкретным критериям)
+
+2. Написать конспект/чеклист/план к действию по мотивам статьи https://www.opennet.ru/docs/RUS/smart_question/
+
+И то и другое отправить в "Чат с преподавателем"
+
+**Важно!**
+Если у вас нет опыта в JS, приступите к самостоятельному изучению видеокурса ["Javascript-для начинающих разработчиков"](https://otus.ru/online/online-js/). Если у вас нет к нему доступа, пожалуйста, напишите запрос на help@otus.ru. Вам нужно освоить его до начала модуля "Frontend-технологии".
+
+### Критерии приемки
+
+- Описаны цели - 1 балл
+- Описаны ожидания - 1 балл
+- Описаны критерии оценки пользы курса - 1 балл
+- Описания даны в четком формате ("сенсорно очевидные"), чтобы другой человек глядя на описание мог сказать, достигнуто/выполнено или нет - по 1 баллу за цели / ожидания / критерии
+- Описание развернутое (больше 1000 символов) - 1 балл
+
+- Написан конспект к статье - 1 балл
+- Конспект содержит от 5 пунктов - 1 балл
+  -Задание сдано в срок - 1 балл
+
+**Задание принято** от 9 баллов
+</script></section></div>
+    </div>
+
+    <script src="./../dist/reveal.js"></script>
+
+    <script src="./../plugin/markdown/markdown.js"></script>
+    <script src="./../plugin/highlight/highlight.js"></script>
+    <script src="./../plugin/zoom/zoom.js"></script>
+    <script src="./../plugin/notes/notes.js"></script>
+    <script src="./../plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
+    </script>
+
+    <script src="./../_assets/plugins.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
