@@ -312,9 +312,10 @@ _Это все разбирается в рамках первого модул�
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%"}, queryOptions);
+      var options = extend(defaultOptions, {"slideNumber":true,"hash":true,"history":false,"backgroundTransition":"fade","width":"80%","tableofcontents":{"title":"План","position":1000}}, queryOptions);
     </script>
 
+    <script src="./../_assets/plugins.js"></script>
 
     <script>
       Reveal.initialize(options);
