@@ -1,0 +1,81 @@
+1.1 ТЕМА React
+1.2 Вопросы
+
+2.1 ТЕМА React
+2.2 Проблемы шаблонизации
+2.3 React, декларативный, компонентный
+2.4 особенности Компоненты, Виртуальный ДОМ, Синтаксис JSX (javascript xml (Extensible Markup Language))
+2.5 скорость - Virtual DOM, 
+2.6 virtual DOM - схема
+2.7 Абстрактная идея (в package.json вы обнаружите react и react-dom)
+2.8 Реакт-элементы
+2.9 React.createElement
+2.10 React.createElement пример
+2.11 React.createElement -> JSX
+2.12 React компоненты определение
+2.13 React компоненты пример с createElement
+2.14 React компоненты пример с JSX (и как он отрендерится)
+2.15 React-Dom (createRoot)
+
+2.16 тема ПРИМЕР
+2.17 @babel/preset-react
+2.18 ВОПРОСЫ 
+
+3.1 ТЕМА JSX
+3.2 JSX - синтаксический сахар
+3.3 ТЕМА Знакомство с JSX
+3.4 ТЕМА правила
+3.5 объявление компонентов
+3.6 использование компонентов
+3.7 передача свойств
+3.8 комментарии
+3.9 выражения внутри JSX
+3.10 React 17 новая трансформация https://habr.com/ru/articles/521930/
+3.11 Вопросы
+
+4.1 ТЕМА Тестирование
+4.2 Enzyme / RTL https://enzymejs.github.io/enzyme/
+4.3 RTL https://testing-library.com/docs/react-testing-library/intro/
+4.4 RTL пример https://codesandbox.io/p/devbox/restless-wood-khswp4?file=%2F.eslintrc.js%3A1%2C1
+4.5 RTL объяснение
+
+4.6 ТЕМА выбор элементов
+4.7 jest-dom (toBeInTheDocument) https://github.com/testing-library/jest-dom
+4.8 getByText неявная проверка
+4.9 getByText упадёт/упадёт/пройдёт
+4.10 getByRole WAI-ARIA, (Web Accessibility Initiative – Accessible Rich Internet Applications) https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles
+4.11 getByRole ругательство с пояснением
+4.12 getByLabelText, getByPlaceholderText, getByAltText, getByDisplayValue
+4.13 и другие
+4.14 GETBY VS QUERYBY пример
+4.15 GETBY VS QUERYBY
+4.16 getBy выбрасывает исключение
+4.17 queryByText пример
+4.18 FINDBY пример
+4.19 для коллекций getAllBy, queryAllBy, findAllBy
+4.20 ASSERTIVE FUNCTIONS jest-dom
+4.21 TESTING-PLAYGROUND
+4.22 ВОПРОСЫ?
+
+4.23 fireEvent пример
+4.24 fireEvent пример
+
+4.25 продвинутое решение userEvent API
+4.26 userEvent пример
+
+4.27 ТЕМА Обработчики событий
+4,28 пример React кода с обработчиком
+4.29 пример теста fireEvent.change
+4.30 пример теста fireEvent.change с ошибкой (?)
+4,31 ВОПРОСЫ
+
+5.1 ТЕМА CRA 
+5.2 про CRA
+5.3 пример установки 
+5.4 фича - скрывает настройки за react-scripts
+5.5 CRA eject
+5.6 используем CRA
+5.7 вопросы
+
+6.1 ТЕМА STORYBOOK (npm run storybook)
+6.2 ТЕМА LOKI
