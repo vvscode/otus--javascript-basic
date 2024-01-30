@@ -25,7 +25,7 @@
 
 **Date**  
 7 kyu https://www.codewars.com/kata/it-is-written-in-the-stars  
-6 kyu https://www.codewars.com/kata/friday-the-13ths
+6 kyu https://www.codewars.com/kata/5a0d6d8c6975982b5b000383
 
 **Object**  
 7 kyu https://www.codewars.com/kata/57eb936de1051801d500008a  
