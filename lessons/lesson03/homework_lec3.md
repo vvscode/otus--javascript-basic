@@ -10,7 +10,7 @@
 Задачи для решения:
 
 **String**  
-7 kyu https://www.codewars.com/kata/56d6b921c9ae3fd926000601
+7 kyu https://www.codewars.com/kata/56d6b921c9ae3fd926000601  
 7 kyu https://www.codewars.com/kata/anagram-detection  
 7 kyu https://www.codewars.com/kata/disemvowel-trolls/  
 7 kyu https://www.codewars.com/kata/mumbling/  
