@@ -28,7 +28,7 @@
 6 kyu https://www.codewars.com/kata/friday-the-13ths
 
 **Object**  
-7 kyu https://www.codewars.com/kata/counting-array-elements  
+7 kyu https://www.codewars.com/kata/57eb936de1051801d500008a  
 7 kyu https://www.codewars.com/kata/who-is-the-killer-1
 
 **Regular expression**  
