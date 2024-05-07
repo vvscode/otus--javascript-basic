@@ -19,3 +19,7 @@
   overflow: -moz-scrollbars-vertical;
   font-size: 14px;
 }
+
+.section[data-markdown-parsed="true"] i {
+  font-style: italic;
+}
