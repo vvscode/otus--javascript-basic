@@ -16,3 +16,8 @@ https://www.codewars.com/kata/56eff1e64794404a720002d2
 https://www.codewars.com/kata/56d931ecc443d475d5000003
 https://www.codewars.com/kata/56d9c274c550b4a5c2000d92
 https://www.codewars.com/kata/5507309481b8bd3b7e001638
+
+### Критерии принятия
+
+- студент сбросил в чат профиль со своими именем и фамилией
+- в профиле решены требуемые задачи
